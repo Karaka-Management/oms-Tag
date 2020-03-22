@@ -132,6 +132,33 @@ final class ApiController extends Controller
     }
 
     /**
+     * Api method to create tag localization
+     *
+     * @param RequestAbstract  $request  Request
+     * @param ResponseAbstract $response Response
+     * @param mixed            $data     Generic data
+     *
+     * @return void
+     *
+     * @api
+     *
+     * @since 1.0.0
+     */
+    public function apiTagL11nCreate(RequestAbstract $request, ResponseAbstract $response, $data = null) : void
+    {
+        if (!empty($val = $this->validateTagCreate($request))) {
+            $response->set('tag_create', new FormValidation($val));
+
+            return;
+        }
+
+        $l11nTag = $this->createL11nTagFromRequest($request);
+        $this->createModel($request->getHeader()->getAccount(), $l11nTag, L11nTagMapper::class, 'tag_l11n');
+
+        $this->fillJsonResponse($request, $response, NotificationLevel::OK, 'Localization', 'Tag localization successfully created', $l11nTag);
+    }
+
+    /**
      * Method to create tag from request.
      *
      * @param RequestAbstract $request Request
