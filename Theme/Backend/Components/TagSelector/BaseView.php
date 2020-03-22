@@ -47,6 +47,14 @@ class BaseView extends View
     private bool $isRequired = false;
 
     /**
+     * Dom form
+     *
+     * @var string
+     * @since 1.0.0
+     */
+    private string $form = '';
+
+    /**
      * Dom name
      *
      * @var string
@@ -88,6 +96,18 @@ class BaseView extends View
     }
 
     /**
+     * Get form
+     *
+     * @return string
+     *
+     * @since 1.0.0
+     */
+    public function getForm() : string
+    {
+        return $this->form;
+    }
+
+    /**
      * Is required?
      *
      * @return bool
@@ -106,7 +126,8 @@ class BaseView extends View
     {
         $this->id         = $data[0];
         $this->name       = $data[1];
-        $this->isRequired = $data[2] ?? false;
+        $this->form       = $data[2];
+        $this->isRequired = $data[3] ?? false;
         return parent::render();
     }
 }
