@@ -13,8 +13,10 @@
 declare(strict_types=1);
 
 use phpOMS\Uri\UriFactory;
+use phpOMS\Localization\ISO639Enum;
 
-$tag = $this->getData('tag');
+$tag  = $this->getData('tag');
+$l11n = $this->getData('l11n') ?? [];
 
 /**
  * @var \phpOMS\Views\View $this
@@ -39,4 +41,28 @@ echo $this->getData('nav')->render(); ?>
             </form>
         </div>
     </div>
+
+    <div class="col-xs-12 col-md-6">
+        <div class="portlet">
+            <div class="portlet-head"><?= $this->getHtml('Permissions') ?><i class="fa fa-download floatRight download btn"></i></div>
+            <table class="default">
+                <thead>
+                    <tr>
+                        <td>
+                        <td>
+                        <td><?= $this->getHtml('Language'); ?>
+                        <td class="wf-100"><?= $this->getHtml('Title'); ?>
+                <tbody>
+                    <?php $c = 0; foreach ($l11n as $key => $value) : ++$c; ?>
+                    <tr>
+                        <td><a href="#"><i class="fa fa-times"></i></a>
+                        <td><a href="#"><i class="fa fa-cogs"></i></a>
+                        <td><?= ISO639Enum::getByName('_' . \strtoupper($value->getLanguage())); ?>
+                        <td><?= $value->getTitle(); ?>
+                    <?php endforeach; ?>
+                    <?php if ($c === 0) : ?>
+                    <tr><td colspan="3" class="empty"><?= $this->getHtml('Empty', '0', '0'); ?>
+                    <?php endif; ?>
+            </table>
+        </div>
 </div>

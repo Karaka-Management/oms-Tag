@@ -106,7 +106,7 @@ class L11nTag implements ArrayableInterface, \JsonSerializable
      */
     public function getLanguage() : string
     {
-        return $this->title;
+        return $this->language;
     }
 
     /**

@@ -20,6 +20,7 @@ use phpOMS\Contract\RenderableInterface;
 use phpOMS\Message\RequestAbstract;
 use phpOMS\Message\ResponseAbstract;
 use phpOMS\Views\View;
+use Modules\Tag\Models\L11nTagMapper;
 
 /**
  * Calendar controller class.
@@ -98,6 +99,9 @@ final class BackendController extends Controller
         $view->setTemplate('/Modules/Tag/Theme/Backend/tag-single');
         $view->addData('nav', $this->app->moduleManager->get('Navigation')->createNavigationMid(1007501001, $request, $response));
         $view->addData('tag', $tag);
+
+        $l11n = L11nTagMapper::withConditional('tag', $tag->getId())::getAll();
+        $view->addData('l11n', $l11n);
 
         return $view;
     }
