@@ -14,13 +14,13 @@ declare(strict_types=1);
 
 namespace Modules\Tag\Controller;
 
-use Modules\Tag\Models\TagMapper;
+use Modules\Tag\Models\L11nTagMapper;
 
+use Modules\Tag\Models\TagMapper;
 use phpOMS\Contract\RenderableInterface;
 use phpOMS\Message\RequestAbstract;
 use phpOMS\Message\ResponseAbstract;
 use phpOMS\Views\View;
-use Modules\Tag\Models\L11nTagMapper;
 
 /**
  * Calendar controller class.
