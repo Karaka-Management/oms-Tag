@@ -73,7 +73,7 @@ final class BackendController extends Controller
         $view->setTemplate('/Modules/Tag/Theme/Backend/tag-list');
         $view->addData('nav', $this->app->moduleManager->get('Navigation')->createNavigationMid(1007501001, $request, $response));
 
-        $tags = TagMapper::getNewest(50);
+        $tags = TagMapper::withConditional('language', $response->getHeader()->getL11n()->getLanguage())::getNewest(50);
         $view->addData('tags', $tags);
 
         return $view;
@@ -94,7 +94,7 @@ final class BackendController extends Controller
     public function viewTagSingle(RequestAbstract $request, ResponseAbstract $response, $data = null) : RenderableInterface
     {
         $view = new View($this->app->l11nManager, $request, $response);
-        $tag  = TagMapper::get((int) $request->getData('id'));
+        $tag  = TagMapper::withConditional('language', $response->getHeader()->getL11n()->getLanguage())::get((int) $request->getData('id'));
 
         $view->setTemplate('/Modules/Tag/Theme/Backend/tag-single');
         $view->addData('nav', $this->app->moduleManager->get('Navigation')->createNavigationMid(1007501001, $request, $response));
