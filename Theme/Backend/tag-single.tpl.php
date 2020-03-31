@@ -44,13 +44,13 @@ echo $this->getData('nav')->render(); ?>
 
     <div class="col-xs-12 col-md-6">
         <div class="portlet">
-            <div class="portlet-head"><?= $this->getHtml('Permissions') ?><i class="fa fa-download floatRight download btn"></i></div>
+            <div class="portlet-head"><?= $this->getHtml('Language', '0', '0') ?><i class="fa fa-download floatRight download btn"></i></div>
             <table class="default">
                 <thead>
                     <tr>
                         <td>
                         <td>
-                        <td><?= $this->getHtml('Language'); ?>
+                        <td><?= $this->getHtml('Language', '0', '0'); ?>
                         <td class="wf-100"><?= $this->getHtml('Title'); ?>
                 <tbody>
                     <?php $c = 0; foreach ($l11n as $key => $value) : ++$c; ?>
