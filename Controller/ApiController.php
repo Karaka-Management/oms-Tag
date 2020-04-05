@@ -19,14 +19,12 @@ use Modules\Tag\Models\L11nTagMapper;
 
 use Modules\Tag\Models\Tag;
 use Modules\Tag\Models\TagMapper;
-use phpOMS\Localization\ISO639x1Enum;
 use phpOMS\Message\Http\HttpRequest;
 use phpOMS\Message\NotificationLevel;
 use phpOMS\Message\RequestAbstract;
 use phpOMS\Message\ResponseAbstract;
 use phpOMS\Model\Message\FormValidation;
 use phpOMS\System\MimeType;
-use phpOMS\Uri\HttpUri;
 
 /**
  * Tag controller class.
