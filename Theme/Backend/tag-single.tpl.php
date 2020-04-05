@@ -12,8 +12,8 @@
  */
 declare(strict_types=1);
 
-use phpOMS\Uri\UriFactory;
 use phpOMS\Localization\ISO639Enum;
+use phpOMS\Uri\UriFactory;
 
 $tag  = $this->getData('tag');
 $l11n = $this->getData('l11n') ?? [];
