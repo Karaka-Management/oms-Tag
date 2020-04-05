@@ -12,11 +12,16 @@
  */
 declare(strict_types=1);
 
+use phpOMS\Uri\UriFactory;
+
 /**
  * @var \phpOMS\Views\View        $this
  * @var \Modules\Tag\Models\Tag[] $tags
  */
 $tags = $this->getData('tags');
+
+$previous = empty($tags) ? '{/prefix}tag/list' : '{/prefix}tag/list?{?}&id=' . \reset($tags)->getId() . '&ptype=-';
+$next     = empty($tags) ? '{/prefix}tag/list' : '{/prefix}tag/list?{?}&id=' . \end($tags)->getId() . '&ptype=+';
 
 echo $this->getData('nav')->render(); ?>
 <div class="row">
@@ -30,7 +35,7 @@ echo $this->getData('nav')->render(); ?>
                 <td class="wf-100"><?= $this->getHtml('Color') ?>
             <tbody>
             <?php $count = 0; foreach ($tags as $key => $value) : ++$count;
-            $url = \phpOMS\Uri\UriFactory::build('{/prefix}tag/single?{?}&id=' . $value->getId()); ?>
+            $url = UriFactory::build('{/prefix}tag/single?{?}&id=' . $value->getId()); ?>
                 <tr data-href="<?= $url; ?>">
                     <td data-label="<?= $this->getHtml('Title') ?>"><a href="<?= $url; ?>"><?= $this->printHtml($value->getTitle()); ?></a>
                     <td data-label="<?= $this->getHtml('Title') ?>"><a href="<?= $url; ?>"><span class="tag" style="background: <?= $this->printHtml($value->getColor()); ?>">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span></a>
@@ -39,6 +44,9 @@ echo $this->getData('nav')->render(); ?>
                 <tr><td colspan="3" class="empty"><?= $this->getHtml('Empty', '0', '0'); ?>
             <?php endif; ?>
         </table>
-        <div class="portlet-foot"></div>
+        <div class="portlet-foot">
+            <a class="button" href="<?= UriFactory::build($previous); ?>"><?= $this->getHtml('Previous', '0', '0'); ?></a>
+            <a class="button" href="<?= UriFactory::build($next); ?>"><?= $this->getHtml('Next', '0', '0'); ?></a>
+        </div>
     </div>
 </div>

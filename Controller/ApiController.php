@@ -20,11 +20,13 @@ use Modules\Tag\Models\L11nTagMapper;
 use Modules\Tag\Models\Tag;
 use Modules\Tag\Models\TagMapper;
 use phpOMS\Localization\ISO639x1Enum;
+use phpOMS\Message\Http\HttpRequest;
 use phpOMS\Message\NotificationLevel;
 use phpOMS\Message\RequestAbstract;
 use phpOMS\Message\ResponseAbstract;
 use phpOMS\Model\Message\FormValidation;
 use phpOMS\System\MimeType;
+use phpOMS\Uri\HttpUri;
 
 /**
  * Tag controller class.
@@ -53,7 +55,9 @@ final class ApiController extends Controller
     {
         $val = [];
         if (($val['title'] = empty($request->getData('title')))
-            || ($val['color'] = (!empty($request->getData('color')) && !\ctype_xdigit(\ltrim($request->getData('color'), '#'))))
+            || ($val['color'] = (!empty($request->getData('color'))
+                && (!\ctype_xdigit(\ltrim($request->getData('color'), '#'))
+                    || \stripos($request->getData('color'), '#') !== 0)))
         ) {
             return $val;
         }
@@ -124,8 +128,13 @@ final class ApiController extends Controller
         $tag = $this->createTagFromRequest($request);
         $this->createModel($request->getHeader()->getAccount(), $tag, TagMapper::class, 'tag');
 
-        $request->setData('tag', $tag->getId(), true);
-        $l11nTag = $this->createL11nTagFromRequest($request);
+        $l11nRequest = new HttpRequest($request->getUri());
+        $l11nRequest->setData('tag', $tag->getId());
+        $l11nRequest->setData('title', $request->getData('title'));
+        $l11nRequest->setData('color', $request->getData('color'));
+        $l11nRequest->setData('language', $request->getData('language'));
+
+        $l11nTag = $this->createL11nTagFromRequest($l11nRequest);
         $this->createModel($request->getHeader()->getAccount(), $l11nTag, L11nTagMapper::class, 'tag_l11n');
 
         $this->fillJsonResponse($request, $response, NotificationLevel::OK, 'Tag', 'Tag successfully created', $tag);
@@ -170,7 +179,7 @@ final class ApiController extends Controller
     private function createTagFromRequest(RequestAbstract $request) : Tag
     {
         $tag = new Tag();
-        $tag->setColor($request->getData('color') ?? '#00000000');
+        $tag->setColor(\str_pad($request->getData('color') ?? '#000000ff', 9, 'f'));
 
         return $tag;
     }
@@ -188,7 +197,9 @@ final class ApiController extends Controller
     {
         $l11nTag = new L11nTag();
         $l11nTag->setTag((int) ($request->getData('tag') ?? 0));
-        $l11nTag->setLanguage((string) ($request->getData('language') ?? ISO639x1Enum::_EN));
+        $l11nTag->setLanguage((string) (
+            $request->getData('language') ?? $request->getHeader()->getL11n()->getLanguage()
+        ));
         $l11nTag->setTitle((string) ($request->getData('title') ?? ''));
 
         return $l11nTag;

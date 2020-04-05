@@ -73,8 +73,17 @@ final class BackendController extends Controller
         $view->setTemplate('/Modules/Tag/Theme/Backend/tag-list');
         $view->addData('nav', $this->app->moduleManager->get('Navigation')->createNavigationMid(1007501001, $request, $response));
 
-        $tags = TagMapper::withConditional('language', $response->getHeader()->getL11n()->getLanguage())::getNewest(50);
-        $view->addData('tags', $tags);
+        if ($request->getData('ptype') === '-') {
+            $view->setData('tags',
+                TagMapper::withConditional('language', $response->getHeader()->getL11n()->getLanguage())
+                    ::getBeforePivot((int) ($request->getData('id') ?? 0), null, 25)
+            );
+        } else {
+            $view->setData('tags',
+                TagMapper::withConditional('language', $response->getHeader()->getL11n()->getLanguage())
+                    ::getAfterPivot((int) ($request->getData('id') ?? 0), null, 25)
+            );
+        }
 
         return $view;
     }
