@@ -78,6 +78,7 @@ final class ApiController extends Controller
      */
     public function apiTagUpdate(RequestAbstract $request, ResponseAbstract $response, $data = null) : void
     {
+        /** @var Tag $old */
         $old = clone TagMapper::get((int) $request->getData('id'));
         $new = $this->updateTagFromRequest($request);
         $this->updateModel($request->getHeader()->getAccount(), $old, $new, TagMapper::class, 'tag');
@@ -95,6 +96,7 @@ final class ApiController extends Controller
      */
     private function updateTagFromRequest(RequestAbstract $request) : Tag
     {
+        /** @var Tag $tag */
         $tag = TagMapper::get((int) $request->getData('id'));
         $tag->setTitle((string) ($request->getData('title') ?? $tag->getTitle()));
         $tag->setColor($request->getData('color') ?? $tag->getColor());
@@ -218,6 +220,7 @@ final class ApiController extends Controller
      */
     public function apiTagGet(RequestAbstract $request, ResponseAbstract $response, $data = null) : void
     {
+        /** @var Tag $tag */
         $tag = TagMapper::get((int) $request->getData('id'));
         $this->fillJsonResponse($request, $response, NotificationLevel::OK, 'Tag', 'Tag successfully returned', $tag);
     }
@@ -237,6 +240,7 @@ final class ApiController extends Controller
      */
     public function apiTagDelete(RequestAbstract $request, ResponseAbstract $response, $data = null) : void
     {
+        /** @var Tag $tag */
         $tag = TagMapper::get((int) $request->getData('id'));
         $this->deleteModel($request->getHeader()->getAccount(), $tag, TagMapper::class, 'tag');
         $this->fillJsonResponse($request, $response, NotificationLevel::OK, 'Tag', 'Tag successfully deleted', $tag);
