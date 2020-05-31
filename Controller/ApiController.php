@@ -81,7 +81,7 @@ final class ApiController extends Controller
         /** @var Tag $old */
         $old = clone TagMapper::get((int) $request->getData('id'));
         $new = $this->updateTagFromRequest($request);
-        $this->updateModel($request->getHeader()->getAccount(), $old, $new, TagMapper::class, 'tag');
+        $this->updateModel($request->getHeader()->getAccount(), $old, $new, TagMapper::class, 'tag', $request->getOrigin());
         $this->fillJsonResponse($request, $response, NotificationLevel::OK, 'Tag', 'Tag successfully updated', $new);
     }
 
@@ -126,7 +126,7 @@ final class ApiController extends Controller
         }
 
         $tag = $this->createTagFromRequest($request);
-        $this->createModel($request->getHeader()->getAccount(), $tag, TagMapper::class, 'tag');
+        $this->createModel($request->getHeader()->getAccount(), $tag, TagMapper::class, 'tag', $request->getOrigin());
 
         $l11nRequest = new HttpRequest($request->getUri());
         $l11nRequest->setData('tag', $tag->getId());
@@ -135,7 +135,7 @@ final class ApiController extends Controller
         $l11nRequest->setData('language', $request->getData('language'));
 
         $l11nTag = $this->createL11nTagFromRequest($l11nRequest);
-        $this->createModel($request->getHeader()->getAccount(), $l11nTag, L11nTagMapper::class, 'tag_l11n');
+        $this->createModel($request->getHeader()->getAccount(), $l11nTag, L11nTagMapper::class, 'tag_l11n', $request->getOrigin());
 
         $this->fillJsonResponse($request, $response, NotificationLevel::OK, 'Tag', 'Tag successfully created', $tag);
     }
@@ -162,7 +162,7 @@ final class ApiController extends Controller
         }
 
         $l11nTag = $this->createL11nTagFromRequest($request);
-        $this->createModel($request->getHeader()->getAccount(), $l11nTag, L11nTagMapper::class, 'tag_l11n');
+        $this->createModel($request->getHeader()->getAccount(), $l11nTag, L11nTagMapper::class, 'tag_l11n', $request->getOrigin());
 
         $this->fillJsonResponse($request, $response, NotificationLevel::OK, 'Localization', 'Tag localization successfully created', $l11nTag);
     }
@@ -242,7 +242,7 @@ final class ApiController extends Controller
     {
         /** @var Tag $tag */
         $tag = TagMapper::get((int) $request->getData('id'));
-        $this->deleteModel($request->getHeader()->getAccount(), $tag, TagMapper::class, 'tag');
+        $this->deleteModel($request->getHeader()->getAccount(), $tag, TagMapper::class, 'tag', $request->getOrigin());
         $this->fillJsonResponse($request, $response, NotificationLevel::OK, 'Tag', 'Tag successfully deleted', $tag);
     }
 
