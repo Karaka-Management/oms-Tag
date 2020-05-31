@@ -36,7 +36,7 @@ echo $this->getData('nav')->render(); ?>
             <tbody>
             <?php $count = 0; foreach ($tags as $key => $value) : ++$count;
             $url = UriFactory::build('{/prefix}tag/single?{?}&id=' . $value->getId()); ?>
-                <tr data-href="<?= $url; ?>">
+                <tr tabindex="0" data-href="<?= $url; ?>">
                     <td data-label="<?= $this->getHtml('Title') ?>"><a href="<?= $url; ?>"><?= $this->printHtml($value->getTitle()); ?></a>
                     <td data-label="<?= $this->getHtml('Title') ?>"><a href="<?= $url; ?>"><span class="tag" style="background: <?= $this->printHtml($value->getColor()); ?>">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span></a>
             <?php endforeach; ?>
