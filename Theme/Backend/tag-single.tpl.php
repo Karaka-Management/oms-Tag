@@ -18,9 +18,7 @@ use phpOMS\Uri\UriFactory;
 $tag  = $this->getData('tag');
 $l11n = $this->getData('l11n') ?? [];
 
-/**
- * @var \phpOMS\Views\View $this
- */
+/** @var \phpOMS\Views\View $this */
 echo $this->getData('nav')->render(); ?>
 <div class="row">
     <div class="col-xs-12 col-md-6">

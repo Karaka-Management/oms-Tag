@@ -24,6 +24,8 @@ use phpOMS\Localization\Defaults\LanguageMapper;
  * @license OMS License 1.0
  * @link    https://orange-management.org
  * @since   1.0.0
+ *
+ * @todo Do I really want to create a relation to the language mapper? It's not really needed right?
  */
 final class L11nTagMapper extends DataMapperAbstract
 {
