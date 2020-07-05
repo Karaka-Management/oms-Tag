@@ -15,8 +15,8 @@ declare(strict_types=1);
 namespace Modules\Tag\tests\Models;
 
 use Modules\Tag\Models\Tag;
-use Modules\Tag\Models\TagType;
 use Modules\Tag\Models\TagMapper;
+use Modules\Tag\Models\TagType;
 
 /**
  * @internal

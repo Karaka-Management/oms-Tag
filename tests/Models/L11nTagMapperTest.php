@@ -17,8 +17,8 @@ namespace Modules\Tag\tests\Models;
 use Modules\Tag\Models\L11nTag;
 use Modules\Tag\Models\L11nTagMapper;
 use Modules\Tag\Models\Tag;
-use Modules\Tag\Models\TagType;
 use Modules\Tag\Models\TagMapper;
+use Modules\Tag\Models\TagType;
 use phpOMS\Localization\ISO639x1Enum;
 
 /**

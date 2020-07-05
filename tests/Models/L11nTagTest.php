@@ -35,7 +35,7 @@ class L11nTagTest extends \PHPUnit\Framework\TestCase
                 'id' => 0,
                 'title' => '',
                 'tag' => 0,
-                'language' => ISO639x1Enum::_EN
+                'language' => ISO639x1Enum::_EN,
             ],
             $tag->toArray()
         );
@@ -44,7 +44,7 @@ class L11nTagTest extends \PHPUnit\Framework\TestCase
                 'id' => 0,
                 'title' => '',
                 'tag' => 0,
-                'language' => ISO639x1Enum::_EN
+                'language' => ISO639x1Enum::_EN,
             ],
             $tag->jsonSerialize()
         );
