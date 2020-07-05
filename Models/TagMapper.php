@@ -56,6 +56,7 @@ final class TagMapper extends DataMapperAbstract
             'table'    => 'tag_l11n',
             'external' => 'tag_l11n_tag',
             'column'   => 'title',
+            'conditional'   => true,
             'self'     => null,
         ],
     ];

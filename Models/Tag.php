@@ -17,6 +17,7 @@ namespace Modules\Tag\Models;
 use Modules\Admin\Models\Account;
 use Modules\Admin\Models\NullAccount;
 use phpOMS\Contract\ArrayableInterface;
+use phpOMS\Localization\ISO639x1Enum;
 
 /**
  * Tag class.
@@ -39,10 +40,10 @@ class Tag implements ArrayableInterface, \JsonSerializable
     /**
      * Title.
      *
-     * @var string
+     * @var string|L11nTag
      * @since 1.0.0
      */
-    private string $title = '';
+    private $title = '';
 
     /**
      * Color RGBA.
@@ -165,21 +166,29 @@ class Tag implements ArrayableInterface, \JsonSerializable
      */
     public function getTitle() : string
     {
-        return $this->title;
+        return $this->title instanceof L11nTag ? $this->title->getTitle() : $this->title;
     }
 
     /**
      * Set title
      *
-     * @param string $title Tag article title
+     * @param string|L11nTag $title Tag article title
      *
      * @return void
      *
      * @since 1.0.0
      */
-    public function setTitle(string $title) : void
+    public function setTitle($title, string $lang = ISO639x1Enum::_EN) : void
     {
-        $this->title = $title;
+        if ($title instanceof L11nTag) {
+            $this->title = new L11nTag();
+        } elseif ($this->title instanceof L11nTag && \is_string($title)) {
+            $this->title->setTitle($title);
+        } elseif (\is_string($title)) {
+            $this->title = new L11nTag();
+            $this->title->setTitle($title);
+            $this->title->setLanguage($lang);
+        }
     }
 
     /**

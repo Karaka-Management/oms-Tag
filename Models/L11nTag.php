@@ -60,6 +60,18 @@ class L11nTag implements ArrayableInterface, \JsonSerializable
     private string $title = '';
 
     /**
+     * Constructor.
+     *
+     * @param string $title Title
+     *
+     * @since 1.0.0
+     */
+    public function __construct(string $title = '')
+    {
+        $this->title = $title;
+    }
+
+    /**
      * Get id
      *
      * @return int

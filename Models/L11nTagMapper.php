@@ -54,6 +54,7 @@ final class L11nTagMapper extends DataMapperAbstract
             'self'   => 'tag_l11n_language',
             'by'     => 'code2',
             'column' => 'code2',
+            'conditional'   => true,
         ],
     ];
 
