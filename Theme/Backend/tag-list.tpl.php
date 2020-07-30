@@ -20,8 +20,8 @@ use phpOMS\Uri\UriFactory;
  */
 $tags = $this->getData('tags');
 
-$previous = empty($tags) ? '{/prefix}tag/list' : '{/prefix}tag/list?{?}&id=' . \reset($tags)->getId() . '&ptype=-';
-$next     = empty($tags) ? '{/prefix}tag/list' : '{/prefix}tag/list?{?}&id=' . \end($tags)->getId() . '&ptype=+';
+$previous = empty($tags) ? '{/prefix}tag/list' : '{/prefix}tag/list?{?}&id=' . \reset($tags)->getId() . '&ptype=p';
+$next     = empty($tags) ? '{/prefix}tag/list' : '{/prefix}tag/list?{?}&id=' . \end($tags)->getId() . '&ptype=n';
 
 echo $this->getData('nav')->render(); ?>
 <div class="row">
