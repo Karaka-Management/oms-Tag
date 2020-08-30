@@ -20,12 +20,12 @@ echo $this->getData('nav')->render(); ?>
     <div class="col-xs-12 col-md-6">
         <div class="portlet">
             <form id="fUnitCreate" method="put" action="<?= UriFactory::build('{/api}tag'); ?>">
-                <div class="portlet-head"><?= $this->getHtml('Tag') ?></div>
+                <div class="portlet-head"><?= $this->getHtml('Tag'); ?></div>
                 <div class="portlet-body">
                     <table class="layout wf-100" style="table-layout: fixed">
-                        <tr><td><label for="iTitle"><?= $this->getHtml('Title') ?></label>
+                        <tr><td><label for="iTitle"><?= $this->getHtml('Title'); ?></label>
                         <tr><td><input type="text" name="title" id="iTitle" placeholder="&#xf040; oms" required>
-                        <tr><td><label for="iColor"><?= $this->getHtml('Color') ?></label>
+                        <tr><td><label for="iColor"><?= $this->getHtml('Color'); ?></label>
                         <tr><td><input type="color" name="color" id="iColor"required>
                     </table>
                 </div>

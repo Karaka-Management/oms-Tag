@@ -27,7 +27,7 @@ use phpOMS\Localization\ISO639x1Enum;
  * @link    https://orange-management.org
  * @since   1.0.0
  */
-class Tag implements ArrayableInterface, \JsonSerializable
+class Tag implements \JsonSerializable, ArrayableInterface
 {
     /**
      * Article ID.

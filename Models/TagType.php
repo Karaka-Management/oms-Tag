@@ -27,5 +27,6 @@ use phpOMS\Stdlib\Base\Enum;
 abstract class TagType extends Enum
 {
     public const SINGLE = 1;
+
     public const SHARED = 2;
 }

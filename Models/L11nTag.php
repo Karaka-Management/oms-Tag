@@ -25,7 +25,7 @@ use phpOMS\Localization\ISO639x1Enum;
  * @link    https://orange-management.org
  * @since   1.0.0
  */
-class L11nTag implements ArrayableInterface, \JsonSerializable
+class L11nTag implements \JsonSerializable, ArrayableInterface
 {
     /**
      * Article ID.
