@@ -35,7 +35,7 @@ echo $this->getData('nav')->render(); ?>
                 <td class="wf-100"><?= $this->getHtml('Color'); ?>
             <tbody>
             <?php $count = 0; foreach ($tags as $key => $value) : ++$count;
-            $url = UriFactory::build('{/prefix}tag/single?{?}&id=' . $value->getId()); ?>
+            $url         = UriFactory::build('{/prefix}tag/single?{?}&id=' . $value->getId()); ?>
                 <tr tabindex="0" data-href="<?= $url; ?>">
                     <td data-label="<?= $this->getHtml('Title'); ?>"><a href="<?= $url; ?>"><?= $this->printHtml($value->getTitle()); ?></a>
                     <td data-label="<?= $this->getHtml('Title'); ?>"><a href="<?= $url; ?>"><span class="tag" style="background: <?= $this->printHtml(\substr($value->getColor(), 0, 7)); ?>">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span></a>

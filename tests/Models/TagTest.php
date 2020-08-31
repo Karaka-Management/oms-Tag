@@ -34,7 +34,7 @@ class TagTest extends \PHPUnit\Framework\TestCase
         self::assertEquals('', $tag->getTitle());
         self::assertEquals(
             [
-                'id' => 0,
+                'id'    => 0,
                 'title' => '',
                 'color' => '00000000',
             ],
@@ -42,7 +42,7 @@ class TagTest extends \PHPUnit\Framework\TestCase
         );
         self::assertEquals(
             [
-                'id' => 0,
+                'id'    => 0,
                 'title' => '',
                 'color' => '00000000',
             ],

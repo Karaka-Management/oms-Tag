@@ -52,12 +52,12 @@ final class TagMapper extends DataMapperAbstract
      */
     protected static array $hasMany = [
         'title' => [
-            'mapper'   => L11nTagMapper::class,
-            'table'    => 'tag_l11n',
-            'external' => 'tag_l11n_tag',
-            'column'   => 'title',
+            'mapper'        => L11nTagMapper::class,
+            'table'         => 'tag_l11n',
+            'external'      => 'tag_l11n_tag',
+            'column'        => 'title',
             'conditional'   => true,
-            'self'     => null,
+            'self'          => null,
         ],
     ];
 

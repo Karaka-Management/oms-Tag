@@ -8,34 +8,34 @@ use phpOMS\Router\RouteVerb;
 return [
     '^.*/tag/create.*$' => [
         [
-            'dest' => '\Modules\Tag\Controller\BackendController:viewTagCreate',
-            'verb' => RouteVerb::GET,
+            'dest'       => '\Modules\Tag\Controller\BackendController:viewTagCreate',
+            'verb'       => RouteVerb::GET,
             'permission' => [
                 'module' => BackendController::MODULE_NAME,
-                'type'  => PermissionType::CREATE,
-                'state' => PermissionState::TAG,
+                'type'   => PermissionType::CREATE,
+                'state'  => PermissionState::TAG,
             ],
         ],
     ],
     '^.*/tag/list.*$' => [
         [
-            'dest' => '\Modules\Tag\Controller\BackendController:viewTagList',
-            'verb' => RouteVerb::GET,
+            'dest'       => '\Modules\Tag\Controller\BackendController:viewTagList',
+            'verb'       => RouteVerb::GET,
             'permission' => [
                 'module' => BackendController::MODULE_NAME,
-                'type'  => PermissionType::READ,
-                'state' => PermissionState::TAG,
+                'type'   => PermissionType::READ,
+                'state'  => PermissionState::TAG,
             ],
         ],
     ],
     '^.*/tag/single.*$' => [
         [
-            'dest' => '\Modules\Tag\Controller\BackendController:viewTagSingle',
-            'verb' => RouteVerb::GET,
+            'dest'       => '\Modules\Tag\Controller\BackendController:viewTagSingle',
+            'verb'       => RouteVerb::GET,
             'permission' => [
                 'module' => BackendController::MODULE_NAME,
-                'type'  => PermissionType::READ,
-                'state' => PermissionState::TAG,
+                'type'   => PermissionType::READ,
+                'state'  => PermissionState::TAG,
             ],
         ],
     ],

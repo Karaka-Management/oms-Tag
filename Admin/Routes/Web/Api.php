@@ -8,41 +8,41 @@ use phpOMS\Router\RouteVerb;
 return [
     '^.*/tag$' => [
         [
-            'dest' => '\Modules\Tag\Controller\ApiController:apiTagCreate',
-            'verb' => RouteVerb::PUT,
+            'dest'       => '\Modules\Tag\Controller\ApiController:apiTagCreate',
+            'verb'       => RouteVerb::PUT,
             'permission' => [
                 'module' => ApiController::MODULE_NAME,
-                'type'  => PermissionType::CREATE,
-                'state' => PermissionState::TAG,
+                'type'   => PermissionType::CREATE,
+                'state'  => PermissionState::TAG,
             ],
         ],
         [
-            'dest' => '\Modules\Tag\Controller\ApiController:apiTagUpdate',
-            'verb' => RouteVerb::SET,
+            'dest'       => '\Modules\Tag\Controller\ApiController:apiTagUpdate',
+            'verb'       => RouteVerb::SET,
             'permission' => [
                 'module' => ApiController::MODULE_NAME,
-                'type'  => PermissionType::MODIFY,
-                'state' => PermissionState::TAG,
+                'type'   => PermissionType::MODIFY,
+                'state'  => PermissionState::TAG,
             ],
         ],
         [
-            'dest' => '\Modules\Tag\Controller\ApiController:apiTagDelete',
-            'verb' => RouteVerb::DELETE,
+            'dest'       => '\Modules\Tag\Controller\ApiController:apiTagDelete',
+            'verb'       => RouteVerb::DELETE,
             'permission' => [
                 'module' => ApiController::MODULE_NAME,
-                'type'  => PermissionType::DELETE,
-                'state' => PermissionState::TAG,
+                'type'   => PermissionType::DELETE,
+                'state'  => PermissionState::TAG,
             ],
         ],
     ],
     '^.*/tag/find.*$' => [
         [
-            'dest' => '\Modules\Tag\Controller\ApiController:apiTagFind',
-            'verb' => RouteVerb::GET,
+            'dest'       => '\Modules\Tag\Controller\ApiController:apiTagFind',
+            'verb'       => RouteVerb::GET,
             'permission' => [
                 'module' => ApiController::MODULE_NAME,
-                'type'  => PermissionType::READ,
-                'state' => PermissionState::TAG,
+                'type'   => PermissionType::READ,
+                'state'  => PermissionState::TAG,
             ],
         ],
     ],

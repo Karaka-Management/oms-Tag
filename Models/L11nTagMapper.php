@@ -50,10 +50,10 @@ final class L11nTagMapper extends DataMapperAbstract
      */
     protected static array $ownsOne = [
         'language' => [
-            'mapper' => LanguageMapper::class,
-            'self'   => 'tag_l11n_language',
-            'by'     => 'code2',
-            'column' => 'code2',
+            'mapper'        => LanguageMapper::class,
+            'self'          => 'tag_l11n_language',
+            'by'            => 'code2',
+            'column'        => 'code2',
             'conditional'   => true,
         ],
     ];

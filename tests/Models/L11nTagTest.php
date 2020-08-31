@@ -32,18 +32,18 @@ class L11nTagTest extends \PHPUnit\Framework\TestCase
         self::assertEquals(ISO639x1Enum::_EN, $tag->getLanguage());
         self::assertEquals(
             [
-                'id' => 0,
-                'title' => '',
-                'tag' => 0,
+                'id'       => 0,
+                'title'    => '',
+                'tag'      => 0,
                 'language' => ISO639x1Enum::_EN,
             ],
             $tag->toArray()
         );
         self::assertEquals(
             [
-                'id' => 0,
-                'title' => '',
-                'tag' => 0,
+                'id'       => 0,
+                'title'    => '',
+                'tag'      => 0,
                 'language' => ISO639x1Enum::_EN,
             ],
             $tag->jsonSerialize()
