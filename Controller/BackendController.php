@@ -15,7 +15,6 @@ declare(strict_types=1);
 namespace Modules\Tag\Controller;
 
 use Modules\Tag\Models\L11nTagMapper;
-
 use Modules\Tag\Models\TagMapper;
 use phpOMS\Contract\RenderableInterface;
 use phpOMS\Message\RequestAbstract;

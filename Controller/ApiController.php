@@ -16,7 +16,6 @@ namespace Modules\Tag\Controller;
 
 use Modules\Tag\Models\L11nTag;
 use Modules\Tag\Models\L11nTagMapper;
-
 use Modules\Tag\Models\Tag;
 use Modules\Tag\Models\TagMapper;
 use phpOMS\Message\Http\HttpRequest;
