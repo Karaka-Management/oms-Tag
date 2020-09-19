@@ -15,6 +15,7 @@ declare(strict_types=1);
 use phpOMS\Localization\ISO639Enum;
 use phpOMS\Uri\UriFactory;
 
+/** @var \Modules\Tag\Models\Tag */
 $tag  = $this->getData('tag');
 $l11n = $this->getData('l11n') ?? [];
 
@@ -23,7 +24,7 @@ echo $this->getData('nav')->render(); ?>
 <div class="row">
     <div class="col-xs-12 col-md-6">
         <div class="portlet">
-            <form id="fUnitCreate" method="put" action="<?= UriFactory::build('{/api}tag'); ?>">
+            <form id="fTagUpdate" method="post" action="<?= UriFactory::build('{/api}tag'); ?>">
                 <div class="portlet-head"><?= $this->getHtml('Tag'); ?></div>
                 <div class="portlet-body">
                     <table class="layout wf-100" style="table-layout: fixed">
@@ -34,6 +35,7 @@ echo $this->getData('nav')->render(); ?>
                     </table>
                 </div>
                 <div class="portlet-foot">
+                    <input type="hidden" name="id" value="<?= $tag->getId(); ?>">
                     <input id="iSubmit" name="submit" type="submit" value="<?= $this->getHtml('Save', '0', '0'); ?>">
                 </div>
             </form>
