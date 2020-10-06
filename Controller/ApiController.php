@@ -24,6 +24,7 @@ use phpOMS\Message\RequestAbstract;
 use phpOMS\Message\ResponseAbstract;
 use phpOMS\Model\Message\FormValidation;
 use phpOMS\System\MimeType;
+use phpOMS\Message\Http\RequestStatusCode;
 
 /**
  * Tag controller class.
@@ -120,6 +121,7 @@ final class ApiController extends Controller
     {
         if (!empty($val = $this->validateTagCreate($request))) {
             $response->set('tag_create', new FormValidation($val));
+            $response->getHeader()->setStatusCode(RequestStatusCode::R_400);
 
             return;
         }
@@ -156,6 +158,7 @@ final class ApiController extends Controller
     {
         if (!empty($val = $this->validateTagCreate($request))) {
             $response->set('tag_create', new FormValidation($val));
+            $response->getHeader()->setStatusCode(RequestStatusCode::R_400);
 
             return;
         }
