@@ -23,6 +23,10 @@ use Modules\Tag\Models\TagType;
  */
 class TagTest extends \PHPUnit\Framework\TestCase
 {
+    /**
+     * @covers Modules\Tag\Models\Tag
+     * @group module
+     */
     public function testDefault() : void
     {
         $tag = new Tag();
@@ -50,6 +54,10 @@ class TagTest extends \PHPUnit\Framework\TestCase
         );
     }
 
+    /**
+     * @covers Modules\Tag\Models\Tag
+     * @group module
+     */
     public function testTitleInputOutput() : void
     {
         $tag = new Tag();
@@ -58,6 +66,10 @@ class TagTest extends \PHPUnit\Framework\TestCase
         self::assertEquals('Test', $tag->getTitle());
     }
 
+    /**
+     * @covers Modules\Tag\Models\Tag
+     * @group module
+     */
     public function testColorInputOutput() : void
     {
         $tag = new Tag();
@@ -66,6 +78,10 @@ class TagTest extends \PHPUnit\Framework\TestCase
         self::assertEquals('ffffffff', $tag->getColor());
     }
 
+    /**
+     * @covers Modules\Tag\Models\Tag
+     * @group module
+     */
     public function testTypeInputOutput() : void
     {
         $tag = new Tag();
