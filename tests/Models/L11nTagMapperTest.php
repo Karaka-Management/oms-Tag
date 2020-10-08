@@ -26,6 +26,10 @@ use phpOMS\Localization\ISO639x1Enum;
  */
 class L11nTagMapperTest extends \PHPUnit\Framework\TestCase
 {
+    /**
+     * @covers Modules\Tag\Models\L11nTagMapper
+     * @group module
+     */
     public function testCR() : void
     {
         $tag = new Tag();

@@ -22,6 +22,10 @@ use phpOMS\Localization\ISO639x1Enum;
  */
 class L11nTagTest extends \PHPUnit\Framework\TestCase
 {
+    /**
+     * @covers Modules\Tag\Models\L11nTag
+     * @group module
+     */
     public function testDefault() : void
     {
         $tag = new L11nTag();

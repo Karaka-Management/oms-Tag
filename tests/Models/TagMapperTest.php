@@ -23,6 +23,10 @@ use Modules\Tag\Models\TagType;
  */
 class TagMapperTest extends \PHPUnit\Framework\TestCase
 {
+    /**
+     * @covers Modules\Tag\Models\TagMapper
+     * @group module
+     */
     public function testCR() : void
     {
         $tag = new Tag();
