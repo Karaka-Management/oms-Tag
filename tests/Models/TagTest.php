@@ -15,6 +15,7 @@ declare(strict_types=1);
 namespace Modules\Tag\tests\Models;
 
 use Modules\Admin\Models\NullAccount;
+use Modules\Tag\Models\L11nTag;
 use Modules\Tag\Models\Tag;
 use Modules\Tag\Models\TagType;
 
@@ -23,35 +24,24 @@ use Modules\Tag\Models\TagType;
  */
 class TagTest extends \PHPUnit\Framework\TestCase
 {
+    private Tag $tag;
+
+    public function setUp() : void
+    {
+        $this->tag = new Tag();
+    }
+
     /**
      * @covers Modules\Tag\Models\Tag
      * @group module
      */
     public function testDefault() : void
     {
-        $tag = new Tag();
-
-        self::assertEquals(0, $tag->getId());
-        self::assertInstanceOf(NullAccount::class, $tag->getOwner());
-        self::assertEquals(TagType::SINGLE, $tag->getType());
-        self::assertEquals('00000000', $tag->getColor());
-        self::assertEquals('', $tag->getTitle());
-        self::assertEquals(
-            [
-                'id'    => 0,
-                'title' => '',
-                'color' => '00000000',
-            ],
-            $tag->toArray()
-        );
-        self::assertEquals(
-            [
-                'id'    => 0,
-                'title' => '',
-                'color' => '00000000',
-            ],
-            $tag->jsonSerialize()
-        );
+        self::assertEquals(0, $this->tag->getId());
+        self::assertInstanceOf(NullAccount::class, $this->tag->getOwner());
+        self::assertEquals(TagType::SINGLE, $this->tag->getType());
+        self::assertEquals('00000000', $this->tag->getColor());
+        self::assertEquals('', $this->tag->getTitle());
     }
 
     /**
@@ -60,10 +50,24 @@ class TagTest extends \PHPUnit\Framework\TestCase
      */
     public function testTitleInputOutput() : void
     {
-        $tag = new Tag();
+        $this->tag->setTitle('Test');
+        self::assertEquals('Test', $this->tag->getTitle());
 
-        $tag->setTitle('Test');
-        self::assertEquals('Test', $tag->getTitle());
+        $this->tag->setTitle(new L11nTag('Test2'));
+        self::assertEquals('Test2', $this->tag->getTitle());
+
+        $this->tag->setTitle('Test3');
+        self::assertEquals('Test3', $this->tag->getTitle());
+    }
+
+    /**
+     * @covers Modules\Tag\Models\Tag
+     * @group module
+     */
+    public function testOwnerInputOutput() : void
+    {
+        $this->tag->setOwner(new NullAccount(2));
+        self::assertEquals(2, $this->tag->getOwner()->getId());
     }
 
     /**
@@ -72,10 +76,8 @@ class TagTest extends \PHPUnit\Framework\TestCase
      */
     public function testColorInputOutput() : void
     {
-        $tag = new Tag();
-
-        $tag->setColor('ffffffff');
-        self::assertEquals('ffffffff', $tag->getColor());
+        $this->tag->setColor('ffffffff');
+        self::assertEquals('ffffffff', $this->tag->getColor());
     }
 
     /**
@@ -84,9 +86,30 @@ class TagTest extends \PHPUnit\Framework\TestCase
      */
     public function testTypeInputOutput() : void
     {
-        $tag = new Tag();
+        $this->tag->setType(TagType::SHARED);
+        self::assertEquals(TagType::SHARED, $this->tag->getType());
+    }
 
-        $tag->setType(TagType::SHARED);
-        self::assertEquals(TagType::SHARED, $tag->getType());
+    /**
+     * @covers Modules\Tag\Models\Tag
+     * @group module
+     */
+    public function testSerialize() : void
+    {
+        $this->tag->setTitle($t = new L11nTag('Test'));
+        $this->tag->setOwner($a = new NullAccount(2));
+        $this->tag->setColor('ffffffff');
+        $this->tag->setType(TagType::SHARED);
+
+        self::assertEquals(
+            [
+                'id'    => 0,
+                'title' => $t,
+                'color' => 'ffffffff',
+                'type'  => TagType::SHARED,
+                'owner' => $a,
+            ],
+            $this->tag->jsonSerialize()
+        );
     }
 }

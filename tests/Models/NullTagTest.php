@@ -1,0 +1,42 @@
+<?php
+/**
+ * Orange Management
+ *
+ * PHP Version 7.4
+ *
+ * @package   tests
+ * @copyright Dennis Eichhorn
+ * @license   OMS License 1.0
+ * @version   1.0.0
+ * @link      https://orange-management.org
+ */
+declare(strict_types=1);
+
+namespace Modules\Tag\tests\Models;
+
+use Modules\Tag\Models\NullTag;
+
+/**
+ * @internal
+ */
+final class NullTagTest extends \PHPUnit\Framework\TestCase
+{
+    /**
+     * @covers Modules\Tag\Models\NullTag
+     * @group module
+     */
+    public function testNull() : void
+    {
+        self::assertInstanceOf('\Modules\Tag\Models\Tag', new NullTag());
+    }
+
+    /**
+     * @covers Modules\Tag\Models\NullTag
+     * @group module
+     */
+    public function testId() : void
+    {
+        $null = new NullTag(2);
+        self::assertEquals(2, $null->getId());
+    }
+}

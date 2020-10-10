@@ -138,7 +138,30 @@ final class ApiController extends Controller
         $l11nTag = $this->createL11nTagFromRequest($l11nRequest);
         $this->createModel($request->getHeader()->getAccount(), $l11nTag, L11nTagMapper::class, 'tag_l11n', $request->getOrigin());
 
+        $tag->setTitle($l11nTag);
+
         $this->fillJsonResponse($request, $response, NotificationLevel::OK, 'Tag', 'Tag successfully created', $tag);
+    }
+
+    /**
+     * Validate tag l11n create request
+     *
+     * @param RequestAbstract $request Request
+     *
+     * @return array<string, bool>
+     *
+     * @since 1.0.0
+     */
+    private function validateTagL11nCreate(RequestAbstract $request) : array
+    {
+        $val = [];
+        if (($val['title'] = empty($request->getData('title')))
+            || ($val['tag'] = empty($request->getData('tag')))
+        ) {
+            return $val;
+        }
+
+        return [];
     }
 
     /**
@@ -156,8 +179,8 @@ final class ApiController extends Controller
      */
     public function apiTagL11nCreate(RequestAbstract $request, ResponseAbstract $response, $data = null) : void
     {
-        if (!empty($val = $this->validateTagCreate($request))) {
-            $response->set('tag_create', new FormValidation($val));
+        if (!empty($val = $this->validateTagL11nCreate($request))) {
+            $response->set('tag_l11n_create', new FormValidation($val));
             $response->getHeader()->setStatusCode(RequestStatusCode::R_400);
 
             return;
@@ -267,7 +290,7 @@ final class ApiController extends Controller
         $response->set(
             $request->getUri()->__toString(),
             \array_values(
-                TagMapper::find((string) ($request->getData('search') ?? ''))
+                TagMapper::find((string) ($request->getData('search') ?? ''), 3)
             )
         );
     }

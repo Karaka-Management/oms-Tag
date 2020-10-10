@@ -181,7 +181,7 @@ class Tag implements \JsonSerializable, ArrayableInterface
     public function setTitle($title, string $lang = ISO639x1Enum::_EN) : void
     {
         if ($title instanceof L11nTag) {
-            $this->title = new L11nTag();
+            $this->title = $title;
         } elseif ($this->title instanceof L11nTag && \is_string($title)) {
             $this->title->setTitle($title);
         } elseif (\is_string($title)) {
@@ -200,6 +200,8 @@ class Tag implements \JsonSerializable, ArrayableInterface
             'id'    => $this->id,
             'title' => $this->title,
             'color' => $this->color,
+            'type'  => $this->type,
+            'owner' => $this->owner,
         ];
     }
 
