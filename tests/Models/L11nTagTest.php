@@ -24,7 +24,7 @@ class L11nTagTest extends \PHPUnit\Framework\TestCase
 {
     private L11nTag $l11n;
 
-    public function setUp() : void
+    protected function setUp() : void
     {
         $this->l11n = new L11nTag();
     }
