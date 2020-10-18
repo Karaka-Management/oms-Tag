@@ -15,8 +15,8 @@ declare(strict_types=1);
 namespace Modules\Tag\tests\Models;
 
 use Modules\Admin\Models\NullAccount;
-use Modules\Tag\Models\TagL11n;
 use Modules\Tag\Models\Tag;
+use Modules\Tag\Models\TagL11n;
 use Modules\Tag\Models\TagType;
 
 /**

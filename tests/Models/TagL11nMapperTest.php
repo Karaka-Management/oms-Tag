@@ -14,9 +14,9 @@ declare(strict_types=1);
 
 namespace Modules\Tag\tests\Models;
 
+use Modules\Tag\Models\Tag;
 use Modules\Tag\Models\TagL11n;
 use Modules\Tag\Models\TagL11nMapper;
-use Modules\Tag\Models\Tag;
 use Modules\Tag\Models\TagMapper;
 use Modules\Tag\Models\TagType;
 use phpOMS\Localization\ISO639x1Enum;

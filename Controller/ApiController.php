@@ -14,9 +14,9 @@ declare(strict_types=1);
 
 namespace Modules\Tag\Controller;
 
+use Modules\Tag\Models\Tag;
 use Modules\Tag\Models\TagL11n;
 use Modules\Tag\Models\TagL11nMapper;
-use Modules\Tag\Models\Tag;
 use Modules\Tag\Models\TagMapper;
 use phpOMS\Message\Http\HttpRequest;
 use phpOMS\Message\Http\RequestStatusCode;
