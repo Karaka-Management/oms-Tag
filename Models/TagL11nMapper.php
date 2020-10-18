@@ -27,7 +27,7 @@ use phpOMS\Localization\Defaults\LanguageMapper;
  *
  * @todo Do I really want to create a relation to the language mapper? It's not really needed right?
  */
-final class L11nTagMapper extends DataMapperAbstract
+final class TagL11nMapper extends DataMapperAbstract
 {
     /**
      * Columns.

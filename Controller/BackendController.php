@@ -14,7 +14,7 @@ declare(strict_types=1);
 
 namespace Modules\Tag\Controller;
 
-use Modules\Tag\Models\L11nTagMapper;
+use Modules\Tag\Models\TagL11nMapper;
 use Modules\Tag\Models\TagMapper;
 use phpOMS\Contract\RenderableInterface;
 use phpOMS\Message\RequestAbstract;
@@ -113,7 +113,7 @@ final class BackendController extends Controller
         $view->addData('nav', $this->app->moduleManager->get('Navigation')->createNavigationMid(1007501001, $request, $response));
         $view->addData('tag', $tag);
 
-        $l11n = L11nTagMapper::withConditional('tag', $tag->getId())::getAll();
+        $l11n = TagL11nMapper::withConditional('tag', $tag->getId())::getAll();
         $view->addData('l11n', $l11n);
 
         return $view;

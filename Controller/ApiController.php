@@ -14,8 +14,8 @@ declare(strict_types=1);
 
 namespace Modules\Tag\Controller;
 
-use Modules\Tag\Models\L11nTag;
-use Modules\Tag\Models\L11nTagMapper;
+use Modules\Tag\Models\TagL11n;
+use Modules\Tag\Models\TagL11nMapper;
 use Modules\Tag\Models\Tag;
 use Modules\Tag\Models\TagMapper;
 use phpOMS\Message\Http\HttpRequest;
@@ -135,8 +135,8 @@ final class ApiController extends Controller
         $l11nRequest->setData('color', $request->getData('color'));
         $l11nRequest->setData('language', $request->getData('language'));
 
-        $l11nTag = $this->createL11nTagFromRequest($l11nRequest);
-        $this->createModel($request->getHeader()->getAccount(), $l11nTag, L11nTagMapper::class, 'tag_l11n', $request->getOrigin());
+        $l11nTag = $this->createTagL11nFromRequest($l11nRequest);
+        $this->createModel($request->getHeader()->getAccount(), $l11nTag, TagL11nMapper::class, 'tag_l11n', $request->getOrigin());
 
         $tag->setTitle($l11nTag);
 
@@ -186,8 +186,8 @@ final class ApiController extends Controller
             return;
         }
 
-        $l11nTag = $this->createL11nTagFromRequest($request);
-        $this->createModel($request->getHeader()->getAccount(), $l11nTag, L11nTagMapper::class, 'tag_l11n', $request->getOrigin());
+        $l11nTag = $this->createTagL11nFromRequest($request);
+        $this->createModel($request->getHeader()->getAccount(), $l11nTag, TagL11nMapper::class, 'tag_l11n', $request->getOrigin());
 
         $this->fillJsonResponse($request, $response, NotificationLevel::OK, 'Localization', 'Tag localization successfully created', $l11nTag);
     }
@@ -214,13 +214,13 @@ final class ApiController extends Controller
      *
      * @param RequestAbstract $request Request
      *
-     * @return L11nTag
+     * @return TagL11n
      *
      * @since 1.0.0
      */
-    private function createL11nTagFromRequest(RequestAbstract $request) : L11nTag
+    private function createTagL11nFromRequest(RequestAbstract $request) : TagL11n
     {
-        $l11nTag = new L11nTag();
+        $l11nTag = new TagL11n();
         $l11nTag->setTag((int) ($request->getData('tag') ?? 0));
         $l11nTag->setLanguage((string) (
             $request->getData('language') ?? $request->getHeader()->getL11n()->getLanguage()

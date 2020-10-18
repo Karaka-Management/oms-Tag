@@ -25,7 +25,7 @@ use phpOMS\Localization\ISO639x1Enum;
  * @link    https://orange-management.org
  * @since   1.0.0
  */
-class L11nTag implements \JsonSerializable, ArrayableInterface
+class TagL11n implements \JsonSerializable, ArrayableInterface
 {
     /**
      * Article ID.
@@ -66,9 +66,10 @@ class L11nTag implements \JsonSerializable, ArrayableInterface
      *
      * @since 1.0.0
      */
-    public function __construct(string $title = '')
+    public function __construct(string $title = '', string $language = ISO639x1Enum::_EN)
     {
-        $this->title = $title;
+        $this->title    = $title;
+        $this->language = $language;
     }
 
     /**

@@ -14,23 +14,23 @@ declare(strict_types=1);
 
 namespace Modules\Tag\tests\Models;
 
-use Modules\Tag\Models\L11nTag;
+use Modules\Tag\Models\TagL11n;
 use phpOMS\Localization\ISO639x1Enum;
 
 /**
  * @internal
  */
-class L11nTagTest extends \PHPUnit\Framework\TestCase
+class TagL11nTest extends \PHPUnit\Framework\TestCase
 {
-    private L11nTag $l11n;
+    private TagL11n $l11n;
 
     protected function setUp() : void
     {
-        $this->l11n = new L11nTag();
+        $this->l11n = new TagL11n();
     }
 
     /**
-     * @covers Modules\Tag\Models\L11nTag
+     * @covers Modules\Tag\Models\TagL11n
      * @group module
      */
     public function testDefault() : void
@@ -42,7 +42,7 @@ class L11nTagTest extends \PHPUnit\Framework\TestCase
     }
 
     /**
-     * @covers Modules\Tag\Models\L11nTag
+     * @covers Modules\Tag\Models\TagL11n
      * @group module
      */
     public function testTagInputOutput() : void
@@ -52,7 +52,7 @@ class L11nTagTest extends \PHPUnit\Framework\TestCase
     }
 
     /**
-     * @covers Modules\Tag\Models\L11nTag
+     * @covers Modules\Tag\Models\TagL11n
      * @group module
      */
     public function testLanguageInputOutput() : void
@@ -62,7 +62,7 @@ class L11nTagTest extends \PHPUnit\Framework\TestCase
     }
 
     /**
-     * @covers Modules\Tag\Models\L11nTag
+     * @covers Modules\Tag\Models\TagL11n
      * @group module
      */
     public function testTitleInputOutput() : void
@@ -72,7 +72,7 @@ class L11nTagTest extends \PHPUnit\Framework\TestCase
     }
 
     /**
-     * @covers Modules\Tag\Models\L11nTag
+     * @covers Modules\Tag\Models\TagL11n
      * @group module
      */
     public function testSerialize() : void

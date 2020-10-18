@@ -15,7 +15,7 @@ declare(strict_types=1);
 namespace Modules\Tag\tests\Models;
 
 use Modules\Admin\Models\NullAccount;
-use Modules\Tag\Models\L11nTag;
+use Modules\Tag\Models\TagL11n;
 use Modules\Tag\Models\Tag;
 use Modules\Tag\Models\TagType;
 
@@ -53,7 +53,7 @@ class TagTest extends \PHPUnit\Framework\TestCase
         $this->tag->setTitle('Test');
         self::assertEquals('Test', $this->tag->getTitle());
 
-        $this->tag->setTitle(new L11nTag('Test2'));
+        $this->tag->setTitle(new TagL11n('Test2'));
         self::assertEquals('Test2', $this->tag->getTitle());
 
         $this->tag->setTitle('Test3');
@@ -96,7 +96,7 @@ class TagTest extends \PHPUnit\Framework\TestCase
      */
     public function testSerialize() : void
     {
-        $this->tag->setTitle($t = new L11nTag('Test'));
+        $this->tag->setTitle($t = new TagL11n('Test'));
         $this->tag->setOwner($a = new NullAccount(2));
         $this->tag->setColor('ffffffff');
         $this->tag->setType(TagType::SHARED);

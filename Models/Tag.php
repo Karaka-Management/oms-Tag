@@ -40,7 +40,7 @@ class Tag implements \JsonSerializable, ArrayableInterface
     /**
      * Title.
      *
-     * @var string|L11nTag
+     * @var string|TagL11n
      * @since 1.0.0
      */
     private $title = '';
@@ -166,13 +166,13 @@ class Tag implements \JsonSerializable, ArrayableInterface
      */
     public function getTitle() : string
     {
-        return $this->title instanceof L11nTag ? $this->title->getTitle() : $this->title;
+        return $this->title instanceof TagL11n ? $this->title->getTitle() : $this->title;
     }
 
     /**
      * Set title
      *
-     * @param string|L11nTag $title Tag article title
+     * @param string|TagL11n $title Tag article title
      *
      * @return void
      *
@@ -180,12 +180,12 @@ class Tag implements \JsonSerializable, ArrayableInterface
      */
     public function setTitle($title, string $lang = ISO639x1Enum::_EN) : void
     {
-        if ($title instanceof L11nTag) {
+        if ($title instanceof TagL11n) {
             $this->title = $title;
-        } elseif ($this->title instanceof L11nTag && \is_string($title)) {
+        } elseif ($this->title instanceof TagL11n && \is_string($title)) {
             $this->title->setTitle($title);
         } elseif (\is_string($title)) {
-            $this->title = new L11nTag();
+            $this->title = new TagL11n();
             $this->title->setTitle($title);
             $this->title->setLanguage($lang);
         }

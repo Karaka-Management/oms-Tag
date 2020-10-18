@@ -52,7 +52,7 @@ final class TagMapper extends DataMapperAbstract
      */
     protected static array $hasMany = [
         'title' => [
-            'mapper'        => L11nTagMapper::class,
+            'mapper'        => TagL11nMapper::class,
             'table'         => 'tag_l11n',
             'external'      => 'tag_l11n_tag',
             'column'        => 'title',
