@@ -54,10 +54,10 @@ final class TagMapper extends DataMapperAbstract
         'title' => [
             'mapper'        => TagL11nMapper::class,
             'table'         => 'tag_l11n',
-            'external'      => 'tag_l11n_tag',
+            'self'      => 'tag_l11n_tag',
             'column'        => 'title',
             'conditional'   => true,
-            'self'          => null,
+            'external'          => null,
         ],
     ];
 
@@ -71,7 +71,7 @@ final class TagMapper extends DataMapperAbstract
     protected static array $belongsTo = [
         'owner' => [
             'mapper' => AccountMapper::class,
-            'self'   => 'tag_owner',
+            'external'   => 'tag_owner',
         ],
     ];
     */
