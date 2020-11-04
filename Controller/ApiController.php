@@ -132,7 +132,6 @@ final class ApiController extends Controller
         $l11nRequest = new HttpRequest($request->getUri());
         $l11nRequest->setData('tag', $tag->getId());
         $l11nRequest->setData('title', $request->getData('title'));
-        $l11nRequest->setData('color', $request->getData('color'));
         $l11nRequest->setData('language', $request->getData('language'));
 
         $l11nTag = $this->createTagL11nFromRequest($l11nRequest);
