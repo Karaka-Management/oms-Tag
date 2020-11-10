@@ -74,17 +74,17 @@ final class BackendController extends Controller
 
         if ($request->getData('ptype') === 'p') {
             $view->setData('tags',
-                TagMapper::withConditional('language', $response->getHeader()->getL11n()->getLanguage())
+                TagMapper::withConditional('language', $response->getLanguage())
                     ::getBeforePivot((int) ($request->getData('id') ?? 0), null, 25)
             );
         } elseif ($request->getData('ptype') === 'n') {
             $view->setData('tags',
-                TagMapper::withConditional('language', $response->getHeader()->getL11n()->getLanguage())
+                TagMapper::withConditional('language', $response->getLanguage())
                     ::getAfterPivot((int) ($request->getData('id') ?? 0), null, 25)
             );
         } else {
             $view->setData('tags',
-                TagMapper::withConditional('language', $response->getHeader()->getL11n()->getLanguage())
+                TagMapper::withConditional('language', $response->getLanguage())
                     ::getAfterPivot(0, null, 25)
             );
         }
@@ -107,7 +107,7 @@ final class BackendController extends Controller
     public function viewTagSingle(RequestAbstract $request, ResponseAbstract $response, $data = null) : RenderableInterface
     {
         $view = new View($this->app->l11nManager, $request, $response);
-        $tag  = TagMapper::withConditional('language', $response->getHeader()->getL11n()->getLanguage())::get((int) $request->getData('id'));
+        $tag  = TagMapper::withConditional('language', $response->getLanguage())::get((int) $request->getData('id'));
 
         $view->setTemplate('/Modules/Tag/Theme/Backend/tag-single');
         $view->addData('nav', $this->app->moduleManager->get('Navigation')->createNavigationMid(1007501001, $request, $response));

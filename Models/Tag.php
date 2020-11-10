@@ -173,6 +173,7 @@ class Tag implements \JsonSerializable, ArrayableInterface
      * Set title
      *
      * @param string|TagL11n $title Tag article title
+     * @param string         $lang  Language
      *
      * @return void
      *

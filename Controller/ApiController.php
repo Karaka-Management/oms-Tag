@@ -219,14 +219,14 @@ final class ApiController extends Controller
      */
     private function createTagL11nFromRequest(RequestAbstract $request) : TagL11n
     {
-        $l11nTag = new TagL11n();
-        $l11nTag->setTag((int) ($request->getData('tag') ?? 0));
-        $l11nTag->setLanguage((string) (
-            $request->getData('language') ?? $request->getHeader()->getL11n()->getLanguage()
+        $tagL11n = new TagL11n();
+        $tagL11n->setTag((int) ($request->getData('tag') ?? 0));
+        $tagL11n->setLanguage((string) (
+            $request->getData('language') ?? $request->getLanguage()
         ));
-        $l11nTag->setTitle((string) ($request->getData('title') ?? ''));
+        $tagL11n->setTitle((string) ($request->getData('title') ?? ''));
 
-        return $l11nTag;
+        return $tagL11n;
     }
 
     /**
