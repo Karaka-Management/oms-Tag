@@ -81,7 +81,7 @@ final class ApiController extends Controller
         /** @var Tag $old */
         $old = clone TagMapper::get((int) $request->getData('id'));
         $new = $this->updateTagFromRequest($request);
-        $this->updateModel($request->getHeader()->getAccount(), $old, $new, TagMapper::class, 'tag', $request->getOrigin());
+        $this->updateModel($request->header->account, $old, $new, TagMapper::class, 'tag', $request->getOrigin());
         $this->fillJsonResponse($request, $response, NotificationLevel::OK, 'Tag', 'Tag successfully updated', $new);
     }
 
@@ -121,21 +121,21 @@ final class ApiController extends Controller
     {
         if (!empty($val = $this->validateTagCreate($request))) {
             $response->set('tag_create', new FormValidation($val));
-            $response->getHeader()->setStatusCode(RequestStatusCode::R_400);
+            $response->header->status = RequestStatusCode::R_400;
 
             return;
         }
 
         $tag = $this->createTagFromRequest($request);
-        $this->createModel($request->getHeader()->getAccount(), $tag, TagMapper::class, 'tag', $request->getOrigin());
+        $this->createModel($request->header->account, $tag, TagMapper::class, 'tag', $request->getOrigin());
 
-        $l11nRequest = new HttpRequest($request->getUri());
+        $l11nRequest = new HttpRequest($request->uri);
         $l11nRequest->setData('tag', $tag->getId());
         $l11nRequest->setData('title', $request->getData('title'));
         $l11nRequest->setData('language', $request->getData('language'));
 
         $l11nTag = $this->createTagL11nFromRequest($l11nRequest);
-        $this->createModel($request->getHeader()->getAccount(), $l11nTag, TagL11nMapper::class, 'tag_l11n', $request->getOrigin());
+        $this->createModel($request->header->account, $l11nTag, TagL11nMapper::class, 'tag_l11n', $request->getOrigin());
 
         $tag->setTitle($l11nTag);
 
@@ -180,13 +180,13 @@ final class ApiController extends Controller
     {
         if (!empty($val = $this->validateTagL11nCreate($request))) {
             $response->set('tag_l11n_create', new FormValidation($val));
-            $response->getHeader()->setStatusCode(RequestStatusCode::R_400);
+            $response->header->status = RequestStatusCode::R_400;
 
             return;
         }
 
         $l11nTag = $this->createTagL11nFromRequest($request);
-        $this->createModel($request->getHeader()->getAccount(), $l11nTag, TagL11nMapper::class, 'tag_l11n', $request->getOrigin());
+        $this->createModel($request->header->account, $l11nTag, TagL11nMapper::class, 'tag_l11n', $request->getOrigin());
 
         $this->fillJsonResponse($request, $response, NotificationLevel::OK, 'Localization', 'Tag localization successfully created', $l11nTag);
     }
@@ -224,7 +224,7 @@ final class ApiController extends Controller
         $tagL11n->setLanguage((string) (
             $request->getData('language') ?? $request->getLanguage()
         ));
-        $tagL11n->setTitle((string) ($request->getData('title') ?? ''));
+        $tagL11n->title = (string) ($request->getData('title') ?? '');
 
         return $tagL11n;
     }
@@ -266,7 +266,7 @@ final class ApiController extends Controller
     {
         /** @var Tag $tag */
         $tag = TagMapper::get((int) $request->getData('id'));
-        $this->deleteModel($request->getHeader()->getAccount(), $tag, TagMapper::class, 'tag', $request->getOrigin());
+        $this->deleteModel($request->header->account, $tag, TagMapper::class, 'tag', $request->getOrigin());
         $this->fillJsonResponse($request, $response, NotificationLevel::OK, 'Tag', 'Tag successfully deleted', $tag);
     }
 
@@ -285,9 +285,9 @@ final class ApiController extends Controller
      */
     public function apiTagFind(RequestAbstract $request, ResponseAbstract $response, $data = null) : void
     {
-        $response->getHeader()->set('Content-Type', MimeType::M_JSON, true);
+        $response->header->set('Content-Type', MimeType::M_JSON, true);
         $response->set(
-            $request->getUri()->__toString(),
+            $request->uri->__toString(),
             \array_values(
                 TagMapper::find((string) ($request->getData('search') ?? ''), 3)
             )

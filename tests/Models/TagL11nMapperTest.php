@@ -41,7 +41,7 @@ class TagL11nMapperTest extends \PHPUnit\Framework\TestCase
         self::assertEquals($id, $tag->getId());
 
         $l11n = new TagL11n();
-        $l11n->setTitle('TestTitle');
+        $l11n->title = 'TestTitle';
         $l11n->setLanguage(ISO639x1Enum::_EN);
         $l11n->setTag($id);
 
@@ -50,7 +50,7 @@ class TagL11nMapperTest extends \PHPUnit\Framework\TestCase
         self::assertEquals($id, $l11n->getId());
 
         $l11nR = TagL11nMapper::get($l11n->getId());
-        self::assertEquals($l11n->getTitle(), $l11nR->getTitle());
+        self::assertEquals($l11n->title, $l11nR->title);
         self::assertEquals($l11n->getLanguage(), $l11nR->getLanguage());
     }
 }

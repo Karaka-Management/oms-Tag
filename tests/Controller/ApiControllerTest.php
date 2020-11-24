@@ -92,7 +92,7 @@ class ApiControllerTest extends \PHPUnit\Framework\TestCase
         $response = new HttpResponse();
         $request  = new HttpRequest(new HttpUri(''));
 
-        $request->getHeader()->setAccount(1);
+        $request->header->account = 1;
         $request->setData('color', '#ff0000ff');
         $request->setData('title', 'ApiTagEN');
         $request->setData('language', ISO639x1Enum::_EN);
@@ -116,7 +116,7 @@ class ApiControllerTest extends \PHPUnit\Framework\TestCase
 
         $this->module->apiTagCreate($request, $response);
 
-        self::assertEquals(RequestStatusCode::R_400, $response->getHeader()->getStatusCode());
+        self::assertEquals(RequestStatusCode::R_400, $response->header->status);
     }
 
     /**
@@ -128,14 +128,14 @@ class ApiControllerTest extends \PHPUnit\Framework\TestCase
         $response = new HttpResponse();
         $request  = new HttpRequest(new HttpUri(''));
 
-        $request->getHeader()->setAccount(1);
+        $request->header->account = 1;
         $request->setData('tag', self::$tagId);
         $request->setData('title', 'ApiTagDE');
         $request->setData('language', ISO639x1Enum::_DE);
 
         $this->module->apiTagL11nCreate($request, $response);
 
-        self::assertEquals('ApiTagDE', $response->get('')['response']->getTitle());
+        self::assertEquals('ApiTagDE', $response->get('')['response']->title);
         self::assertGreaterThan(0, $response->get('')['response']->getId());
     }
 
@@ -150,7 +150,7 @@ class ApiControllerTest extends \PHPUnit\Framework\TestCase
 
         $this->module->apiTagL11nCreate($request, $response);
 
-        self::assertEquals(RequestStatusCode::R_400, $response->getHeader()->getStatusCode());
+        self::assertEquals(RequestStatusCode::R_400, $response->header->status);
     }
 
     /**
@@ -162,7 +162,7 @@ class ApiControllerTest extends \PHPUnit\Framework\TestCase
         $response = new HttpResponse();
         $request  = new HttpRequest(new HttpUri(''));
 
-        $request->getHeader()->setAccount(1);
+        $request->header->account = 1;
         $request->setData('id', self::$tagId);
 
         $this->module->apiTagGet($request, $response);
@@ -179,7 +179,7 @@ class ApiControllerTest extends \PHPUnit\Framework\TestCase
         $response = new HttpResponse();
         $request  = new HttpRequest(new HttpUri(''));
 
-        $request->getHeader()->setAccount(1);
+        $request->header->account = 1;
         $request->setData('id', self::$tagId);
         $request->setData('color', '#00ff00ff');
 
@@ -198,7 +198,7 @@ class ApiControllerTest extends \PHPUnit\Framework\TestCase
         $response = new HttpResponse();
         $request  = new HttpRequest(new HttpUri(''));
 
-        $request->getHeader()->setAccount(1);
+        $request->header->account = 1;
         $request->setData('search', 'ApiTag');
 
         $this->module->apiTagFind($request, $response);

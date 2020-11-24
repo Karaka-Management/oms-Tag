@@ -57,7 +57,7 @@ class TagL11n implements \JsonSerializable, ArrayableInterface
      * @var string
      * @since 1.0.0
      */
-    private string $title = '';
+    public string $title = '';
 
     /**
      * Constructor.
@@ -134,32 +134,6 @@ class TagL11n implements \JsonSerializable, ArrayableInterface
     public function setLanguage(string $language) : void
     {
         $this->language = $language;
-    }
-
-    /**
-     * Get tag title.
-     *
-     * @return string
-     *
-     * @since 1.0.0
-     */
-    public function getTitle() : string
-    {
-        return $this->title;
-    }
-
-    /**
-     * Set title
-     *
-     * @param string $title Title
-     *
-     * @return void
-     *
-     * @since 1.0.0
-     */
-    public function setTitle(string $title) : void
-    {
-        $this->title = $title;
     }
 
     /**
