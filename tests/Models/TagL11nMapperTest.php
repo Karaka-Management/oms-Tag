@@ -40,7 +40,7 @@ class TagL11nMapperTest extends \PHPUnit\Framework\TestCase
         self::assertGreaterThan(0, $tag->getId());
         self::assertEquals($id, $tag->getId());
 
-        $l11n = new TagL11n();
+        $l11n        = new TagL11n();
         $l11n->title = 'TestTitle';
         $l11n->setLanguage(ISO639x1Enum::_EN);
         $l11n->setTag($id);

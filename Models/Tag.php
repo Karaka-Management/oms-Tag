@@ -186,7 +186,7 @@ class Tag implements \JsonSerializable, ArrayableInterface
         } elseif ($this->title instanceof TagL11n && \is_string($title)) {
             $this->title->title = $title;
         } elseif (\is_string($title)) {
-            $this->title = new TagL11n();
+            $this->title        = new TagL11n();
             $this->title->title = $title;
             $this->title->setLanguage($lang);
         }
