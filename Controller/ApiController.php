@@ -33,10 +33,6 @@ use phpOMS\System\MimeType;
  * @license OMS License 1.0
  * @link    https://orange-management.org
  * @since   1.0.0
- *
- * @todo Orange-Management/Modules#153
- *  Create Module
- *  Create a badge module instead of letting modules create their own internal badge/tag system.
  */
 final class ApiController extends Controller
 {
