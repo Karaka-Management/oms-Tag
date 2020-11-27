@@ -15,7 +15,6 @@ declare(strict_types=1);
 namespace Modules\Tag\Models;
 
 use phpOMS\DataStorage\Database\DataMapperAbstract;
-use phpOMS\Localization\Defaults\LanguageMapper;
 
 /**
  * Tag mapper class.
