@@ -51,7 +51,15 @@ class Tag implements \JsonSerializable, ArrayableInterface
      * @var string
      * @since 1.0.0
      */
-    private string $color = '00000000';
+    public string $color = '00000000';
+
+    /**
+     * Icon.
+     *
+     * @var null|string
+     * @since 1.0.0
+     */
+    public ?string $icon = null;
 
     /**
      * Creator.
@@ -119,32 +127,6 @@ class Tag implements \JsonSerializable, ArrayableInterface
     public function setType(int $type = TagType::SINGLE) : void
     {
         $this->type = $type;
-    }
-
-    /**
-     * Get color
-     *
-     * @return string
-     *
-     * @since 1.0.0
-     */
-    public function getColor() : string
-    {
-        return $this->color;
-    }
-
-    /**
-     * Set color
-     *
-     * @param string $color Tag article color
-     *
-     * @return void
-     *
-     * @since 1.0.0
-     */
-    public function setColor(string $color) : void
-    {
-        $this->color = $color;
     }
 
     /**

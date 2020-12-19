@@ -40,7 +40,7 @@ class TagTest extends \PHPUnit\Framework\TestCase
         self::assertEquals(0, $this->tag->getId());
         self::assertInstanceOf(NullAccount::class, $this->tag->getOwner());
         self::assertEquals(TagType::SINGLE, $this->tag->getType());
-        self::assertEquals('00000000', $this->tag->getColor());
+        self::assertEquals('00000000', $this->tag->color);
         self::assertEquals('', $this->tag->getTitle());
     }
 
@@ -76,8 +76,8 @@ class TagTest extends \PHPUnit\Framework\TestCase
      */
     public function testColorInputOutput() : void
     {
-        $this->tag->setColor('ffffffff');
-        self::assertEquals('ffffffff', $this->tag->getColor());
+        $this->tag->color = 'ffffffff';
+        self::assertEquals('ffffffff', $this->tag->color);
     }
 
     /**
@@ -98,7 +98,7 @@ class TagTest extends \PHPUnit\Framework\TestCase
     {
         $this->tag->setTitle($t = new TagL11n('Test'));
         $this->tag->setOwner($a = new NullAccount(2));
-        $this->tag->setColor('ffffffff');
+        $this->tag->color = 'ffffffff';
         $this->tag->setType(TagType::SHARED);
 
         self::assertEquals(

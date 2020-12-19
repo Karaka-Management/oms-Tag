@@ -40,6 +40,7 @@ final class TagMapper extends DataMapperAbstract
     protected static array $columns = [
         'tag_id'    => ['name' => 'tag_id',    'type' => 'int',    'internal' => 'id'],
         'tag_color' => ['name' => 'tag_color', 'type' => 'string', 'internal' => 'color'],
+        'tag_icon'  => ['name' => 'tag_icon',  'type' => 'string', 'internal' => 'icon'],
         'tag_type'  => ['name' => 'tag_type',  'type' => 'int',    'internal' => 'type'],
         'tag_owner' => ['name' => 'tag_owner', 'type' => 'int',    'internal' => 'owner'],
     ];

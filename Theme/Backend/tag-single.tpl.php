@@ -31,7 +31,9 @@ echo $this->getData('nav')->render(); ?>
                         <tr><td><label for="iTitle"><?= $this->getHtml('Title'); ?></label>
                         <tr><td><input type="text" name="title" id="iTitle" placeholder="&#xf040; oms" value="<?= $this->printHtml($tag->getTitle()); ?>" required>
                         <tr><td><label for="iColor"><?= $this->getHtml('Color'); ?></label>
-                        <tr><td><input type="color" name="color" id="iColor" value="<?= $this->printHtml(\substr($tag->getColor(), 0, 7)); ?>" required>
+                        <tr><td><input type="color" name="color" id="iColor" value="<?= $this->printHtml(\substr($tag->color, 0, 7)); ?>" required>
+                        <tr><td><label for="iIcon"><?= $this->getHtml('Icon'); ?></label>
+                        <tr><td><input type="text" name="icon" id="iIcon" placeholder="&#xf040; oms" value="<?= $this->printHtml($tag->icon ?? ''); ?>">
                     </table>
                 </div>
                 <div class="portlet-foot">

@@ -14,6 +14,12 @@
                 "type": "VARCHAR(9)",
                 "null": false
             },
+            "tag_icon": {
+                "name": "tag_icon",
+                "type": "VARCHAR(255)",
+                "null": true,
+                "default": null
+            },
             "tag_type": {
                 "name": "tag_type",
                 "type": "TINYINT(1)",

@@ -31,7 +31,7 @@ class TagMapperTest extends \PHPUnit\Framework\TestCase
     {
         $tag = new Tag();
         $tag->setTitle('TestTag');
-        $tag->setColor('#ff0000ff');
+        $tag->color = '#ff0000ff';
         $tag->setType(TagType::SINGLE);
 
         $id = TagMapper::create($tag);
@@ -40,7 +40,7 @@ class TagMapperTest extends \PHPUnit\Framework\TestCase
 
         $tagR = TagMapper::get($tag->getId());
         self::assertEquals($tag->getTitle(), $tagR->getTitle());
-        self::assertEquals($tag->getColor(), $tagR->getColor());
+        self::assertEquals($tag->color, $tagR->color);
         self::assertEquals($tag->getType(), $tagR->getType());
     }
 }

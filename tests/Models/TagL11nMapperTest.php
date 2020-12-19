@@ -33,7 +33,7 @@ class TagL11nMapperTest extends \PHPUnit\Framework\TestCase
     public function testCR() : void
     {
         $tag = new Tag();
-        $tag->setColor('#ffffffff');
+        $tag->color = '#ffffffff';
         $tag->setType(TagType::SINGLE);
 
         $id = TagMapper::create($tag);
