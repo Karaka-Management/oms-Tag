@@ -185,7 +185,7 @@ class ApiControllerTest extends \PHPUnit\Framework\TestCase
 
         $this->module->apiTagUpdate($request, $response);
 
-        self::assertEquals('#00ff00ff', $response->get('')['response']->getColor());
+        self::assertEquals('#00ff00ff', $response->get('')['response']->color);
         self::assertEquals(self::$tagId, $response->get('')['response']->getId());
     }
 
