@@ -28,7 +28,7 @@ use phpOMS\Localization\ISO639x1Enum;
 class TagL11n implements \JsonSerializable, ArrayableInterface
 {
     /**
-     * Article ID.
+     * ID.
      *
      * @var int
      * @since 1.0.0

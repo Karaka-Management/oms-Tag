@@ -43,7 +43,7 @@ class Tag implements \JsonSerializable, ArrayableInterface
      * @var string|TagL11n
      * @since 1.0.0
      */
-    private $title = '';
+    protected $title = '';
 
     /**
      * Color RGBA.
@@ -75,7 +75,7 @@ class Tag implements \JsonSerializable, ArrayableInterface
      * @var int
      * @since 1.0.0
      */
-    private int $type = TagType::SINGLE;
+    protected int $type = TagType::SINGLE;
 
     /**
      * Get created by
