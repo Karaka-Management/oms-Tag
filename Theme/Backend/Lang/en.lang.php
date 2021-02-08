@@ -12,12 +12,12 @@
 declare(strict_types=1);
 
 return ['Tag' => [
-    'Color' => 'Color',
-    'Create' => 'Create',
-    'Icon' => 'Icon',
+    'Color'    => 'Color',
+    'Create'   => 'Create',
+    'Icon'     => 'Icon',
     'Language' => 'Language',
-    'List' => 'List',
-    'Tag' => 'Tag',
-    'Tags' => 'Tags',
-    'Title' => 'Title',
+    'List'     => 'List',
+    'Tag'      => 'Tag',
+    'Tags'     => 'Tags',
+    'Title'    => 'Title',
 ]];
