@@ -1,4 +1,4 @@
-<div class="ipt-wrap">
+<div class="ipt-wrap wf-100">
     <div class="ipt-first">
         <span class="input">
             <button type="button" id="<?= $this->getId(); ?>-book-button" data-action='[
@@ -13,7 +13,8 @@
                 }
             ]' formaction=""><i class="fa fa-book"></i></button>
             <div class="advancedInput wf-100" id="<?= $this->getId(); ?>">
-                <input autocomplete="off" class="input" type="text" id="i<?= $this->getId(); ?>" placeholder="&#xf007; Guest"
+                <input autocomplete="off" class="input" type="text" id="i<?= $this->getId(); ?>"
+                    placeholder="&#xf007; Guest"
                     data-emptyAfter="true"
                     data-autocomplete="off"
                     data-src="api/tag/find?search={!#i<?= $this->getId(); ?>}">
