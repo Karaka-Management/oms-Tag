@@ -15,7 +15,11 @@ declare(strict_types=1);
 namespace Modules\Tag\Admin;
 
 use phpOMS\Module\InstallerAbstract;
+use phpOMS\DataStorage\Database\DatabasePool;
+use phpOMS\Config\SettingsInterface;
+use phpOMS\Module\ModuleInfo;
 use Model\Setting;
+use Model\SettingMApper;
 
 /**
  * Installer class.
@@ -37,6 +41,14 @@ final class Installer extends InstallerAbstract
         self::installDefaultColors($info, $cfgHandler);
     }
 
+    /**
+     * Installing default tag colors
+     *
+     * @param ModuleInfo        $info       Module information
+     * @param SettingsInterface $cfgHandler Config handler
+     *
+     * @return void
+     */
     private static function installDefaultColors(ModuleInfo $info, SettingsInterface $cfgHandler) : void
     {
     	$setting = new Setting();
