@@ -15,6 +15,7 @@ declare(strict_types=1);
 namespace Modules\Tag\Admin;
 
 use phpOMS\Module\InstallerAbstract;
+use Model\Setting;
 
 /**
  * Installer class.
@@ -26,4 +27,19 @@ use phpOMS\Module\InstallerAbstract;
  */
 final class Installer extends InstallerAbstract
 {
+	/**
+     * {@inheritdoc}
+     */
+    public static function install(DatabasePool $dbPool, ModuleInfo $info, SettingsInterface $cfgHandler) : void
+    {
+        parent::install($dbPool, $info, $cfgHandler);
+
+        self::installDefaultColors($info, $cfgHandler);
+    }
+
+    private static function installDefaultColors(ModuleInfo $info, SettingsInterface $cfgHandler) : void
+    {
+    	$setting = new Setting();
+        SettingMapper::create($setting->with(0, '1007500001', '#ff000000;#ff00ff00;#ffffffff', 'Tasks'));
+    }
 }
