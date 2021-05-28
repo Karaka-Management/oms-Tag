@@ -14,8 +14,8 @@ declare(strict_types=1);
 
 namespace Modules\Tag\Admin;
 
-use phpOMS\Module\InstallerAbstract;
 use Model\Setting;
+use phpOMS\Module\InstallerAbstract;
 
 /**
  * Installer class.
@@ -27,7 +27,7 @@ use Model\Setting;
  */
 final class Installer extends InstallerAbstract
 {
-	/**
+    /**
      * {@inheritdoc}
      */
     public static function install(DatabasePool $dbPool, ModuleInfo $info, SettingsInterface $cfgHandler) : void
