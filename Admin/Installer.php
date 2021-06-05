@@ -19,7 +19,7 @@ use phpOMS\DataStorage\Database\DatabasePool;
 use phpOMS\Config\SettingsInterface;
 use phpOMS\Module\ModuleInfo;
 use Model\Setting;
-use Model\SettingMApper;
+use Model\SettingMapper;
 
 /**
  * Installer class.
@@ -52,6 +52,6 @@ final class Installer extends InstallerAbstract
     private static function installDefaultColors(ModuleInfo $info, SettingsInterface $cfgHandler) : void
     {
     	$setting = new Setting();
-        SettingMapper::create($setting->with(0, '1007500001', '#ff000000;#ff00ff00;#ffffffff', 'Tasks'));
+        SettingMapper::create($setting->with(0, '1007500001', '#ff000000;#ff00ff00;#ffffffff', 'Tag'));
     }
 }
