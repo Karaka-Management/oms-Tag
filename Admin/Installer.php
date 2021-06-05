@@ -31,7 +31,7 @@ use Model\SettingMapper;
  */
 final class Installer extends InstallerAbstract
 {
-	/**
+    /**
      * {@inheritdoc}
      */
     public static function install(DatabasePool $dbPool, ModuleInfo $info, SettingsInterface $cfgHandler) : void
