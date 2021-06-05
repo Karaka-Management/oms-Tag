@@ -14,12 +14,12 @@ declare(strict_types=1);
 
 namespace Modules\Tag\Admin;
 
-use phpOMS\Module\InstallerAbstract;
-use phpOMS\DataStorage\Database\DatabasePool;
-use phpOMS\Config\SettingsInterface;
-use phpOMS\Module\ModuleInfo;
 use Model\Setting;
 use Model\SettingMapper;
+use phpOMS\Config\SettingsInterface;
+use phpOMS\DataStorage\Database\DatabasePool;
+use phpOMS\Module\InstallerAbstract;
+use phpOMS\Module\ModuleInfo;
 
 /**
  * Installer class.
