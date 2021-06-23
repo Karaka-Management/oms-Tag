@@ -123,17 +123,8 @@ final class ApiController extends Controller
         }
 
         $tag = $this->createTagFromRequest($request);
+        $tag->setL11n($request->getData('title'), $request->getData('language'));
         $this->createModel($request->header->account, $tag, TagMapper::class, 'tag', $request->getOrigin());
-
-        $l11nRequest = new HttpRequest($request->uri);
-        $l11nRequest->setData('tag', $tag->getId());
-        $l11nRequest->setData('title', $request->getData('title'));
-        $l11nRequest->setData('language', $request->getData('language'));
-
-        $l11nTag = $this->createTagL11nFromRequest($l11nRequest);
-        $this->createModel($request->header->account, $l11nTag, TagL11nMapper::class, 'tag_l11n', $request->getOrigin());
-
-        $tag->setTitle($l11nTag);
 
         $this->fillJsonResponse($request, $response, NotificationLevel::OK, 'Tag', 'Tag successfully created', $tag);
     }

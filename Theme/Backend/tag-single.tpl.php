@@ -29,7 +29,7 @@ echo $this->getData('nav')->render(); ?>
                 <div class="portlet-body">
                     <table class="layout wf-100" style="table-layout: fixed">
                         <tr><td><label for="iTitle"><?= $this->getHtml('Title'); ?></label>
-                        <tr><td><input type="text" name="title" id="iTitle" placeholder="&#xf040; oms" value="<?= $this->printHtml($tag->getTitle()); ?>" required>
+                        <tr><td><input type="text" name="title" id="iTitle" placeholder="&#xf040; oms" value="<?= $this->printHtml($tag->getL11n()); ?>" required>
                         <tr><td><label for="iColor"><?= $this->getHtml('Color'); ?></label>
                         <tr><td><input type="color" name="color" id="iColor" value="<?= $this->printHtml(\substr($tag->color, 0, 7)); ?>" required>
                         <tr><td><label for="iIcon"><?= $this->getHtml('Icon'); ?></label>
