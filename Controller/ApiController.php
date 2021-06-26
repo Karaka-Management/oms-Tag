@@ -93,7 +93,7 @@ final class ApiController extends Controller
     {
         /** @var Tag $tag */
         $tag = TagMapper::get((int) $request->getData('id'));
-        $tag->setTitle((string) ($request->getData('title') ?? $tag->getTitle()));
+        $tag->setL11n((string) ($request->getData('title') ?? $tag->getL11n()));
         $tag->color = \str_pad($request->getData('color') ?? $tag->color, 9, 'ff', \STR_PAD_RIGHT);
 
         return $tag;

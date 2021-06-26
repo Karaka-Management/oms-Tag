@@ -51,7 +51,7 @@ final class Installer extends InstallerAbstract
      */
     private static function installDefaultColors(ModuleInfo $info, SettingsInterface $cfgHandler) : void
     {
-    	$setting = new Setting();
+        $setting = new Setting();
         SettingMapper::create($setting->with(0, '1007500001', '#ff000000;#ff00ff00;#ffffffff', 'Tag'));
     }
 }
