@@ -161,7 +161,7 @@ class Tag implements \JsonSerializable, ArrayableInterface
      *
      * @since 1.0.0
      */
-    public function setL11n(string|TagL11n $title, string $lang = ISO639x1Enum::_EN) : void
+    public function setL11n(string | TagL11n $title, string $lang = ISO639x1Enum::_EN) : void
     {
         if ($title instanceof TagL11n) {
             $this->title = $title;
