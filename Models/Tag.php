@@ -165,7 +165,7 @@ class Tag implements \JsonSerializable, ArrayableInterface
     {
         if ($title instanceof TagL11n) {
             $this->title = $title;
-        } elseif ($this->title instanceof TagL11n) {
+        } elseif (isset($this->title) && $this->title instanceof TagL11n) {
             $this->title->title = $title;
         } else {
             $this->title        = new TagL11n();
