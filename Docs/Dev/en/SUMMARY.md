@@ -1,3 +1,3 @@
-# User Content
+# Developer Content
 
-* [Search]({%}&page=Tag/search)
+* [Structure]({%}&page=Dev/structure)
