@@ -41,7 +41,7 @@ class TagTest extends \PHPUnit\Framework\TestCase
         self::assertInstanceOf(NullAccount::class, $this->tag->getOwner());
         self::assertEquals(TagType::SINGLE, $this->tag->getType());
         self::assertEquals('00000000', $this->tag->color);
-        self::assertEquals('', $this->tag->getTitle());
+        self::assertEquals('', $this->tag->getL11n());
     }
 
     /**
@@ -50,14 +50,14 @@ class TagTest extends \PHPUnit\Framework\TestCase
      */
     public function testTitleInputOutput() : void
     {
-        $this->tag->setTitle('Test');
-        self::assertEquals('Test', $this->tag->getTitle());
+        $this->tag->setL11n('Test');
+        self::assertEquals('Test', $this->tag->getL11n());
 
-        $this->tag->setTitle(new TagL11n('Test2'));
-        self::assertEquals('Test2', $this->tag->getTitle());
+        $this->tag->setL11n(new TagL11n('Test2'));
+        self::assertEquals('Test2', $this->tag->getL11n());
 
-        $this->tag->setTitle('Test3');
-        self::assertEquals('Test3', $this->tag->getTitle());
+        $this->tag->setL11n('Test3');
+        self::assertEquals('Test3', $this->tag->getL11n());
     }
 
     /**
@@ -96,7 +96,7 @@ class TagTest extends \PHPUnit\Framework\TestCase
      */
     public function testSerialize() : void
     {
-        $this->tag->setTitle($t = new TagL11n('Test'));
+        $this->tag->setL11n($t = new TagL11n('Test'));
         $this->tag->setOwner($a = new NullAccount(2));
         $this->tag->color = 'ffffffff';
         $this->tag->setType(TagType::SHARED);

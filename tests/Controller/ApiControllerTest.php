@@ -99,7 +99,7 @@ class ApiControllerTest extends \PHPUnit\Framework\TestCase
 
         $this->module->apiTagCreate($request, $response);
 
-        self::assertEquals('ApiTagEN', $response->get('')['response']->getTitle());
+        self::assertEquals('ApiTagEN', $response->get('')['response']->getL11n());
         self::assertGreaterThan(0, $response->get('')['response']->getId());
 
         self::$tagId = $response->get('')['response']->getId();
@@ -204,7 +204,7 @@ class ApiControllerTest extends \PHPUnit\Framework\TestCase
         $this->module->apiTagFind($request, $response);
 
         // @todo: I would actually expect ApiTagEN to be returned since the server language is english.
-        self::assertEquals('ApiTagDE', $response->get('')[0]->getTitle());
+        self::assertEquals('ApiTagDE', $response->get('')[0]->getL11n());
         self::assertEquals(self::$tagId, $response->get('')[0]->getId());
     }
 }

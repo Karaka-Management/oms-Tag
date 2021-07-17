@@ -30,7 +30,7 @@ class TagMapperTest extends \PHPUnit\Framework\TestCase
     public function testCR() : void
     {
         $tag = new Tag();
-        $tag->setTitle('TestTag');
+        $tag->setL11n('TestTag');
         $tag->color = '#ff0000ff';
         $tag->setType(TagType::SINGLE);
 
@@ -39,7 +39,7 @@ class TagMapperTest extends \PHPUnit\Framework\TestCase
         self::assertEquals($id, $tag->getId());
 
         $tagR = TagMapper::get($tag->getId());
-        self::assertEquals($tag->getTitle(), $tagR->getTitle());
+        self::assertEquals($tag->getL11n(), $tagR->getL11n());
         self::assertEquals($tag->color, $tagR->color);
         self::assertEquals($tag->getType(), $tagR->getType());
     }
