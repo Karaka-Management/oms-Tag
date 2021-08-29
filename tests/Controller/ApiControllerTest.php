@@ -41,6 +41,9 @@ class ApiControllerTest extends \PHPUnit\Framework\TestCase
     /** @var \Modules\Tag\Controller\ApiController $module */
     protected $module = null;
 
+    /**
+     * {@inheritdoc}
+     */
     protected function setUp() : void
     {
         $this->app = new class() extends ApplicationAbstract
@@ -81,6 +84,11 @@ class ApiControllerTest extends \PHPUnit\Framework\TestCase
         TestUtils::setMember($this->module, 'app', $this->app);
     }
 
+    /**
+     * Tag id of the last tag created
+     * @var int
+     * @since 1.0.0
+     **/
     private static int $tagId = 0;
 
     /**

@@ -24,6 +24,9 @@ class TagL11nTest extends \PHPUnit\Framework\TestCase
 {
     private TagL11n $l11n;
 
+    /**
+     * {@inheritdoc}
+     */
     protected function setUp() : void
     {
         $this->l11n = new TagL11n();

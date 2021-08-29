@@ -26,6 +26,9 @@ class TagTest extends \PHPUnit\Framework\TestCase
 {
     private Tag $tag;
 
+    /**
+     * {@inheritdoc}
+     */
     protected function setUp() : void
     {
         $this->tag = new Tag();
