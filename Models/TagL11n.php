@@ -41,7 +41,7 @@ class TagL11n implements \JsonSerializable, ArrayableInterface
      * @var int
      * @since 1.0.0
      */
-    protected int $tag = 0;
+    public int $tag = 0;
 
     /**
      * Language.
@@ -82,32 +82,6 @@ class TagL11n implements \JsonSerializable, ArrayableInterface
     public function getId() : int
     {
         return $this->id;
-    }
-
-    /**
-     * Set tag.
-     *
-     * @param int $tag Tag id
-     *
-     * @return void
-     *
-     * @since 1.0.0
-     */
-    public function setTag(int $tag) : void
-    {
-        $this->tag = $tag;
-    }
-
-    /**
-     * Get tag
-     *
-     * @return int
-     *
-     * @since 1.0.0
-     */
-    public function getTag() : int
-    {
-        return $this->tag;
     }
 
     /**

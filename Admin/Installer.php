@@ -49,6 +49,6 @@ final class Installer extends InstallerAbstract
     private static function installDefaultColors() : void
     {
         $setting = new Setting();
-        SettingMapper::create($setting->with(0, '1007500001', '#ff000000;#ff00ff00;#ffffffff', 'Tag'));
+        SettingMapper::create($setting->with(0, '1007500001', '#ff000000;#ff00ff00;#ffffffff', '(#[a-fA-F0-9]{8};)*(#[a-fA-F0-9]{8})', 'Tag'));
     }
 }
