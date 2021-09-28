@@ -39,7 +39,7 @@ class TagL11nTest extends \PHPUnit\Framework\TestCase
     public function testDefault() : void
     {
         self::assertEquals(0, $this->l11n->getId());
-        self::assertEquals(0, $this->l11n->getTag());
+        self::assertEquals(0, $this->l11n->tag);
         self::assertEquals('', $this->l11n->title);
         self::assertEquals(ISO639x1Enum::_EN, $this->l11n->getLanguage());
     }
@@ -50,8 +50,8 @@ class TagL11nTest extends \PHPUnit\Framework\TestCase
      */
     public function testTagInputOutput() : void
     {
-        $this->l11n->setTag(2);
-        self::assertEquals(2, $this->l11n->getTag());
+        $this->l11n->tag = 2;
+        self::assertEquals(2, $this->l11n->tag);
     }
 
     /**
@@ -81,7 +81,7 @@ class TagL11nTest extends \PHPUnit\Framework\TestCase
     public function testSerialize() : void
     {
         $this->l11n->title = 'Title';
-        $this->l11n->setTag(2);
+        $this->l11n->tag = 2;
         $this->l11n->setLanguage(ISO639x1Enum::_DE);
 
         self::assertEquals(
