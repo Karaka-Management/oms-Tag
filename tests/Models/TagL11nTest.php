@@ -81,7 +81,7 @@ class TagL11nTest extends \PHPUnit\Framework\TestCase
     public function testSerialize() : void
     {
         $this->l11n->title = 'Title';
-        $this->l11n->tag = 2;
+        $this->l11n->tag   = 2;
         $this->l11n->setLanguage(ISO639x1Enum::_DE);
 
         self::assertEquals(
