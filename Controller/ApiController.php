@@ -206,7 +206,7 @@ final class ApiController extends Controller
      */
     private function createTagL11nFromRequest(RequestAbstract $request) : TagL11n
     {
-        $tagL11n = new TagL11n();
+        $tagL11n      = new TagL11n();
         $tagL11n->tag = (int) ($request->getData('tag') ?? 0);
         $tagL11n->setLanguage((string) (
             $request->getData('language') ?? $request->getLanguage()
