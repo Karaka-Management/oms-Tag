@@ -19,7 +19,7 @@ namespace Modules\Tag\tests\Admin;
  */
 class AdminTest extends \PHPUnit\Framework\TestCase
 {
-    protected const MODULE_NAME = 'Tag';
+    protected const NAME = 'Tag';
 
     protected const URI_LOAD = '';
 

@@ -23,7 +23,7 @@ return [
             'dest'       => '\Modules\Tag\Controller\BackendController:viewTagCreate',
             'verb'       => RouteVerb::GET,
             'permission' => [
-                'module' => BackendController::MODULE_NAME,
+                'module' => BackendController::NAME,
                 'type'   => PermissionType::CREATE,
                 'state'  => PermissionState::TAG,
             ],
@@ -34,7 +34,7 @@ return [
             'dest'       => '\Modules\Tag\Controller\BackendController:viewTagList',
             'verb'       => RouteVerb::GET,
             'permission' => [
-                'module' => BackendController::MODULE_NAME,
+                'module' => BackendController::NAME,
                 'type'   => PermissionType::READ,
                 'state'  => PermissionState::TAG,
             ],
@@ -45,7 +45,7 @@ return [
             'dest'       => '\Modules\Tag\Controller\BackendController:viewTagSingle',
             'verb'       => RouteVerb::GET,
             'permission' => [
-                'module' => BackendController::MODULE_NAME,
+                'module' => BackendController::NAME,
                 'type'   => PermissionType::READ,
                 'state'  => PermissionState::TAG,
             ],

@@ -23,7 +23,7 @@ return [
             'dest'       => '\Modules\Tag\Controller\ApiController:apiTagCreate',
             'verb'       => RouteVerb::PUT,
             'permission' => [
-                'module' => ApiController::MODULE_NAME,
+                'module' => ApiController::NAME,
                 'type'   => PermissionType::CREATE,
                 'state'  => PermissionState::TAG,
             ],
@@ -32,7 +32,7 @@ return [
             'dest'       => '\Modules\Tag\Controller\ApiController:apiTagUpdate',
             'verb'       => RouteVerb::SET,
             'permission' => [
-                'module' => ApiController::MODULE_NAME,
+                'module' => ApiController::NAME,
                 'type'   => PermissionType::MODIFY,
                 'state'  => PermissionState::TAG,
             ],
@@ -41,7 +41,7 @@ return [
             'dest'       => '\Modules\Tag\Controller\ApiController:apiTagDelete',
             'verb'       => RouteVerb::DELETE,
             'permission' => [
-                'module' => ApiController::MODULE_NAME,
+                'module' => ApiController::NAME,
                 'type'   => PermissionType::DELETE,
                 'state'  => PermissionState::TAG,
             ],
@@ -52,7 +52,7 @@ return [
             'dest'       => '\Modules\Tag\Controller\ApiController:apiTagFind',
             'verb'       => RouteVerb::GET,
             'permission' => [
-                'module' => ApiController::MODULE_NAME,
+                'module' => ApiController::NAME,
                 'type'   => PermissionType::READ,
                 'state'  => PermissionState::TAG,
             ],
