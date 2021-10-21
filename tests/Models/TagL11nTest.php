@@ -20,7 +20,7 @@ use phpOMS\Localization\ISO639x1Enum;
 /**
  * @internal
  */
-class TagL11nTest extends \PHPUnit\Framework\TestCase
+final class TagL11nTest extends \PHPUnit\Framework\TestCase
 {
     private TagL11n $l11n;
 

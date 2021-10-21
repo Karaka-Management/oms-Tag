@@ -21,7 +21,7 @@ use Modules\Tag\Models\TagType;
 /**
  * @internal
  */
-class TagMapperTest extends \PHPUnit\Framework\TestCase
+final class TagMapperTest extends \PHPUnit\Framework\TestCase
 {
     /**
      * @covers Modules\Tag\Models\TagMapper

@@ -22,7 +22,7 @@ use Modules\Tag\Models\TagType;
 /**
  * @internal
  */
-class TagTest extends \PHPUnit\Framework\TestCase
+final class TagTest extends \PHPUnit\Framework\TestCase
 {
     private Tag $tag;
 
