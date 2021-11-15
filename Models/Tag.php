@@ -15,7 +15,6 @@ declare(strict_types=1);
 namespace Modules\Tag\Models;
 
 use Modules\Admin\Models\Account;
-use Modules\Admin\Models\NullAccount;
 use phpOMS\Contract\ArrayableInterface;
 use phpOMS\Localization\ISO639x1Enum;
 
@@ -67,7 +66,7 @@ class Tag implements \JsonSerializable, ArrayableInterface
      * @var null|Account
      * @since 1.0.0
      */
-    protected ?Account $owner = null;
+    public ?Account $owner = null;
 
     /**
      * Tag type.
@@ -76,32 +75,6 @@ class Tag implements \JsonSerializable, ArrayableInterface
      * @since 1.0.0
      */
     protected int $type = TagType::SINGLE;
-
-    /**
-     * Get created by
-     *
-     * @return Account
-     *
-     * @since 1.0.0
-     */
-    public function getOwner() : Account
-    {
-        return $this->owner ?? new NullAccount();
-    }
-
-    /**
-     * Set created by
-     *
-     * @param Account $id Created by
-     *
-     * @return void
-     *
-     * @since 1.0.0
-     */
-    public function setOwner(Account $id) : void
-    {
-        $this->owner = $id;
-    }
 
     /**
      * Get type.

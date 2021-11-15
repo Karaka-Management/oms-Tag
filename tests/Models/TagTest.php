@@ -41,7 +41,7 @@ final class TagTest extends \PHPUnit\Framework\TestCase
     public function testDefault() : void
     {
         self::assertEquals(0, $this->tag->getId());
-        self::assertInstanceOf(NullAccount::class, $this->tag->getOwner());
+        self::assertInstanceOf(NullAccount::class, $this->tag->owner);
         self::assertEquals(TagType::SINGLE, $this->tag->getType());
         self::assertEquals('00000000', $this->tag->color);
         self::assertEquals('', $this->tag->getL11n());
@@ -69,8 +69,8 @@ final class TagTest extends \PHPUnit\Framework\TestCase
      */
     public function testOwnerInputOutput() : void
     {
-        $this->tag->setOwner(new NullAccount(2));
-        self::assertEquals(2, $this->tag->getOwner()->getId());
+        $this->tag->owner = new NullAccount(2);
+        self::assertEquals(2, $this->tag->owner->getId());
     }
 
     /**
@@ -100,7 +100,7 @@ final class TagTest extends \PHPUnit\Framework\TestCase
     public function testSerialize() : void
     {
         $this->tag->setL11n($t = new TagL11n('Test'));
-        $this->tag->setOwner($a = new NullAccount(2));
+        $this->tag->owner = new NullAccount(2);
         $this->tag->color = 'ffffffff';
         $this->tag->setType(TagType::SHARED);
 
@@ -110,7 +110,7 @@ final class TagTest extends \PHPUnit\Framework\TestCase
                 'title' => $t,
                 'color' => 'ffffffff',
                 'type'  => TagType::SHARED,
-                'owner' => $a,
+                'owner' => $this->tag->owner,
             ],
             $this->tag->jsonSerialize()
         );
