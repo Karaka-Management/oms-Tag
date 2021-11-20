@@ -41,7 +41,7 @@ final class TagTest extends \PHPUnit\Framework\TestCase
     public function testDefault() : void
     {
         self::assertEquals(0, $this->tag->getId());
-        self::assertInstanceOf(NullAccount::class, $this->tag->owner);
+        self::assertEquals(null, $this->tag->owner);
         self::assertEquals(TagType::SINGLE, $this->tag->getType());
         self::assertEquals('00000000', $this->tag->color);
         self::assertEquals('', $this->tag->getL11n());
