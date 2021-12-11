@@ -14,7 +14,7 @@ declare(strict_types=1);
 
 namespace Modules\Tag\Models;
 
-use phpOMS\DataStorage\Database\DataMapperAbstract;
+use phpOMS\DataStorage\Database\Mapper\DataMapperFactory;
 
 /**
  * Tag mapper class.
@@ -24,7 +24,7 @@ use phpOMS\DataStorage\Database\DataMapperAbstract;
  * @link    https://orange-management.org
  * @since   1.0.0
  */
-final class TagMapper extends DataMapperAbstract
+final class TagMapper extends DataMapperFactory
 {
     /**
      * Columns.
@@ -32,7 +32,7 @@ final class TagMapper extends DataMapperAbstract
      * @var array<string, array{name:string, type:string, internal:string, autocomplete?:bool, readonly?:bool, writeonly?:bool, annotations?:array}>
      * @since 1.0.0
      */
-    protected static array $columns = [
+    public const COLUMNS = [
         'tag_id'    => ['name' => 'tag_id',    'type' => 'int',    'internal' => 'id'],
         'tag_color' => ['name' => 'tag_color', 'type' => 'string', 'internal' => 'color'],
         'tag_icon'  => ['name' => 'tag_icon',  'type' => 'string', 'internal' => 'icon'],
@@ -46,13 +46,12 @@ final class TagMapper extends DataMapperAbstract
      * @var array<string, array{mapper:string, table:string, self?:?string, external?:?string, column?:string}>
      * @since 1.0.0
      */
-    protected static array $hasMany = [
+    public const HAS_MANY = [
         'title' => [
             'mapper'            => TagL11nMapper::class,
             'table'             => 'tag_l11n',
             'self'              => 'tag_l11n_tag',
             'column'            => 'title',
-            'conditional'       => true,
             'external'          => null,
         ],
     ];
@@ -64,7 +63,7 @@ final class TagMapper extends DataMapperAbstract
      * @since 1.0.0
      */
     /*
-    protected static array $belongsTo = [
+    public const BELONGS_TO = [
         'owner' => [
             'mapper' => AccountMapper::class,
             'external'   => 'tag_owner',
@@ -78,7 +77,7 @@ final class TagMapper extends DataMapperAbstract
      * @var string
      * @since 1.0.0
      */
-    protected static string $model = Tag::class;
+    public const MODEL = Tag::class;
 
     /**
      * Primary table.
@@ -86,7 +85,7 @@ final class TagMapper extends DataMapperAbstract
      * @var string
      * @since 1.0.0
      */
-    protected static string $table = 'tag';
+    public const TABLE = 'tag';
 
     /**
      * Primary field name.
@@ -94,5 +93,5 @@ final class TagMapper extends DataMapperAbstract
      * @var string
      * @since 1.0.0
      */
-    protected static string $primaryField = 'tag_id';
+    public const PRIMARYFIELD ='tag_id';
 }

@@ -74,7 +74,7 @@ final class ApiController extends Controller
     public function apiTagUpdate(RequestAbstract $request, ResponseAbstract $response, $data = null) : void
     {
         /** @var Tag $old */
-        $old = clone TagMapper::get((int) $request->getData('id'));
+        $old = clone TagMapper::get()->where('id', (int) $request->getData('id'))->execute();
         $new = $this->updateTagFromRequest($request);
         $this->updateModel($request->header->account, $old, $new, TagMapper::class, 'tag', $request->getOrigin());
         $this->fillJsonResponse($request, $response, NotificationLevel::OK, 'Tag', 'Tag successfully updated', $new);
@@ -92,7 +92,7 @@ final class ApiController extends Controller
     private function updateTagFromRequest(RequestAbstract $request) : Tag
     {
         /** @var Tag $tag */
-        $tag = TagMapper::get((int) $request->getData('id'));
+        $tag = TagMapper::get()->where('id', (int) $request->getData('id'))->execute();
         $tag->setL11n((string) ($request->getData('title') ?? $tag->getL11n()));
         $tag->color = \str_pad($request->getData('color') ?? $tag->color, 9, 'ff', \STR_PAD_RIGHT);
 
@@ -232,7 +232,7 @@ final class ApiController extends Controller
     public function apiTagGet(RequestAbstract $request, ResponseAbstract $response, $data = null) : void
     {
         /** @var Tag $tag */
-        $tag = TagMapper::get((int) $request->getData('id'));
+        $tag = TagMapper::get()->where('id', (int) $request->getData('id'))->execute();
         $this->fillJsonResponse($request, $response, NotificationLevel::OK, 'Tag', 'Tag successfully returned', $tag);
     }
 
@@ -252,7 +252,7 @@ final class ApiController extends Controller
     public function apiTagDelete(RequestAbstract $request, ResponseAbstract $response, $data = null) : void
     {
         /** @var Tag $tag */
-        $tag = TagMapper::get((int) $request->getData('id'));
+        $tag = TagMapper::get()->where('id', (int) $request->getData('id'))->execute();
         $this->deleteModel($request->header->account, $tag, TagMapper::class, 'tag', $request->getOrigin());
         $this->fillJsonResponse($request, $response, NotificationLevel::OK, 'Tag', 'Tag successfully deleted', $tag);
     }
@@ -276,7 +276,7 @@ final class ApiController extends Controller
         $response->set(
             $request->uri->__toString(),
             \array_values(
-                TagMapper::find((string) ($request->getData('search') ?? ''), 3)
+                TagMapper::getAll()->with('title')->where('title/language', $request->getLanguage())->where('title/title', '%' . ($request->getData('search') ?? '') . '%', 'LIKE')->execute()
             )
         );
     }
