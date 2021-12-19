@@ -48,11 +48,11 @@ final class TagMapper extends DataMapperFactory
      */
     public const HAS_MANY = [
         'title' => [
-            'mapper'            => TagL11nMapper::class,
-            'table'             => 'tag_l11n',
-            'self'              => 'tag_l11n_tag',
-            'column'            => 'title',
-            'external'          => null,
+            'mapper'   => TagL11nMapper::class,
+            'table'    => 'tag_l11n',
+            'self'     => 'tag_l11n_tag',
+            'column'   => 'title',
+            'external' => null,
         ],
     ];
 
