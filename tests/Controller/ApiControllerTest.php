@@ -211,7 +211,6 @@ final class ApiControllerTest extends \PHPUnit\Framework\TestCase
 
         $this->module->apiTagFind($request, $response);
 
-        // @todo: I would actually expect ApiTagEN to be returned since the server language is english.
         self::assertEquals('ApiTagEN', $response->get('')[0]->getL11n());
         self::assertEquals(self::$tagId, $response->get('')[0]->getId());
     }
