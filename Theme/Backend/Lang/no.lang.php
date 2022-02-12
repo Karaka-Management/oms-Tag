@@ -19,6 +19,6 @@ return ['Tag' => [
     'Language' => 'Språk',
     'List'     => 'Liste',
     'Tag'      => 'stikkord',
-    'Tags'     => 'Tags',
+    'Tags'     => 'Tags.',
     'Title'    => 'Tittel',
 ]];

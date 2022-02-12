@@ -14,11 +14,11 @@ declare(strict_types=1);
 
 return ['Tag' => [
     'Color'    => 'اللون',
-    'Create'   => 'خلق',
+    'Create'   => 'يخلق',
     'Icon'     => 'أيقونة',
     'Language' => 'لغة',
     'List'     => 'قائمة',
     'Tag'      => 'بطاقة شعار',
-    'Tags'     => 'الكلمات',
-    'Title'    => 'لقب',
+    'Tags'     => 'كذا',
+    'Title'    => 'عنوان',
 ]];

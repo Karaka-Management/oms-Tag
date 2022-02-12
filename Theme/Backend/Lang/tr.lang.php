@@ -14,9 +14,9 @@ declare(strict_types=1);
 
 return ['Tag' => [
     'Color'    => 'Renk',
-    'Create'   => 'Oluşturmak',
-    'Icon'     => 'ikon',
-    'Language' => 'Dil',
+    'Create'   => 'Yaratmak',
+    'Icon'     => 'Simge',
+    'Language' => 'Dilim',
     'List'     => 'Liste',
     'Tag'      => 'Etiket',
     'Tags'     => 'Etiketler',

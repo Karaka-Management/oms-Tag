@@ -15,10 +15,10 @@ declare(strict_types=1);
 return ['Tag' => [
     'Color'    => 'Farve',
     'Create'   => 'skab',
-    'Icon'     => 'Ikon',
+    'Icon'     => 'Ikon.',
     'Language' => 'Sprog',
     'List'     => 'Liste',
-    'Tag'      => 'tag',
-    'Tags'     => 'Tags',
+    'Tag'      => 'Tag.',
+    'Tags'     => 'Tags.',
     'Title'    => 'Titel',
 ]];

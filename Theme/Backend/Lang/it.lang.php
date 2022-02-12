@@ -16,9 +16,9 @@ return ['Tag' => [
     'Color'    => 'Colore',
     'Create'   => 'Creare',
     'Icon'     => 'Icona',
-    'Language' => 'linguaggio',
+    'Language' => 'Lingua',
     'List'     => 'Elenco',
     'Tag'      => 'Etichetta',
-    'Tags'     => 'tag',
+    'Tags'     => 'Tags.',
     'Title'    => 'Titolo',
 ]];

@@ -14,11 +14,11 @@ declare(strict_types=1);
 
 return ['Tag' => [
     'Color'    => 'Kolor',
-    'Create'   => 'Stwórz',
+    'Create'   => 'Tworzyć',
     'Icon'     => 'Ikona',
     'Language' => 'Język',
     'List'     => 'Lista',
     'Tag'      => 'Etykietka',
-    'Tags'     => 'tagi',
+    'Tags'     => 'Tagi.',
     'Title'    => 'Tytuł',
 ]];

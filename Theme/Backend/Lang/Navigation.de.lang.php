@@ -4,7 +4,7 @@
  *
  * PHP Version 8.0
  *
- * @package   Modules\Tag
+ * @package   Modules\Localization
  * @copyright Dennis Eichhorn
  * @license   OMS License 1.0
  * @version   1.0.0
@@ -14,6 +14,6 @@ declare(strict_types=1);
 
 return ['Navigation' => [
     'Create' => 'Erstellen',
-    'List'   => 'Liste',
-    'Tag'    => 'Tag',
+    'List'   => 'Aufführen',
+    'Tag'    => 'Schild',
 ]];

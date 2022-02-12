@@ -12,13 +12,8 @@
  */
 declare(strict_types=1);
 
-return ['Tag' => [
-    'Color'    => 'Väri',
-    'Create'   => 'Luoda',
-    'Icon'     => 'Kuvake',
-    'Language' => 'Kieli',
-    'List'     => 'Lista',
-    'Tag'      => 'Tag',
-    'Tags'     => 'Tunnisteet',
-    'Title'    => 'Otsikko',
+return ['Navigation' => [
+    'Create' => 'skab',
+    'List'   => 'Liste',
+    'Tag'    => 'Tag.',
 ]];

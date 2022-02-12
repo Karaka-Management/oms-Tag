@@ -13,12 +13,12 @@
 declare(strict_types=1);
 
 return ['Tag' => [
-    'Color'    => '색깔',
-    'Create'   => '창조하다',
+    'Color'    => '색상',
+    'Create'   => '만들다',
     'Icon'     => '상',
     'Language' => '언어',
-    'List'     => '명부',
+    'List'     => '목록',
     'Tag'      => '꼬리표',
     'Tags'     => '태그',
-    'Title'    => '표제',
+    'Title'    => '제목',
 ]];
