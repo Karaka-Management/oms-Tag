@@ -13,7 +13,7 @@
 declare(strict_types=1);
 
 use Modules\Tag\Controller\ApiController;
-use Modules\Tag\Models\PermissionState;
+use Modules\Tag\Models\PermissionCategory;
 use phpOMS\Account\PermissionType;
 use phpOMS\Router\RouteVerb;
 
@@ -25,7 +25,7 @@ return [
             'permission' => [
                 'module' => ApiController::NAME,
                 'type'   => PermissionType::CREATE,
-                'state'  => PermissionState::TAG,
+                'state'  => PermissionCategory::TAG,
             ],
         ],
         [
@@ -34,7 +34,7 @@ return [
             'permission' => [
                 'module' => ApiController::NAME,
                 'type'   => PermissionType::MODIFY,
-                'state'  => PermissionState::TAG,
+                'state'  => PermissionCategory::TAG,
             ],
         ],
         [
@@ -43,7 +43,7 @@ return [
             'permission' => [
                 'module' => ApiController::NAME,
                 'type'   => PermissionType::DELETE,
-                'state'  => PermissionState::TAG,
+                'state'  => PermissionCategory::TAG,
             ],
         ],
     ],
@@ -54,7 +54,7 @@ return [
             'permission' => [
                 'module' => ApiController::NAME,
                 'type'   => PermissionType::READ,
-                'state'  => PermissionState::TAG,
+                'state'  => PermissionCategory::TAG,
             ],
         ],
     ],
