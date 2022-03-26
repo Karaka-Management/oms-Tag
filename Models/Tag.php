@@ -15,7 +15,6 @@ declare(strict_types=1);
 namespace Modules\Tag\Models;
 
 use Modules\Admin\Models\Account;
-use phpOMS\Contract\ArrayableInterface;
 use phpOMS\Localization\ISO639x1Enum;
 
 /**
@@ -26,7 +25,7 @@ use phpOMS\Localization\ISO639x1Enum;
  * @link    https://karaka.app
  * @since   1.0.0
  */
-class Tag implements \JsonSerializable, ArrayableInterface
+class Tag implements \JsonSerializable
 {
     /**
      * Article ID.
