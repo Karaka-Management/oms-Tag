@@ -2,7 +2,7 @@
 /**
  * Karaka
  *
- * PHP Version 8.0
+ * PHP Version 8.1
  *
  * @package   Modules\Tag
  * @copyright Dennis Eichhorn
@@ -49,8 +49,8 @@ final class ApiController extends Controller
         $val = [];
         if (($val['title'] = empty($request->getData('title')))
             || ($val['color'] = (!empty($request->getData('color'))
-                && (!\ctype_xdigit(\ltrim($request->getData('color'), '#'))
-                    || \stripos($request->getData('color'), '#') !== 0)))
+                && (!\ctype_xdigit(\ltrim($request->getData('color') ?? '', '#'))
+                    || \stripos($request->getData('color') ?? '', '#') !== 0)))
         ) {
             return $val;
         }
