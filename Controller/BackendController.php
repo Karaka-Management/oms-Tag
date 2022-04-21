@@ -44,7 +44,7 @@ final class BackendController extends Controller
      * @since 1.0.0
      * @codeCoverageIgnore
      */
-    public function viewTagCreate(RequestAbstract $request, ResponseAbstract $response, $data = null) : RenderableInterface
+    public function viewTagCreate(RequestAbstract $request, ResponseAbstract $response, mixed $data = null) : RenderableInterface
     {
         $view = new View($this->app->l11nManager, $request, $response);
 
@@ -66,7 +66,7 @@ final class BackendController extends Controller
      * @since 1.0.0
      * @codeCoverageIgnore
      */
-    public function viewTagList(RequestAbstract $request, ResponseAbstract $response, $data = null) : RenderableInterface
+    public function viewTagList(RequestAbstract $request, ResponseAbstract $response, mixed $data = null) : RenderableInterface
     {
         $view = new View($this->app->l11nManager, $request, $response);
 
@@ -102,15 +102,18 @@ final class BackendController extends Controller
      * @since 1.0.0
      * @codeCoverageIgnore
      */
-    public function viewTagSingle(RequestAbstract $request, ResponseAbstract $response, $data = null) : RenderableInterface
+    public function viewTagSingle(RequestAbstract $request, ResponseAbstract $response, mixed $data = null) : RenderableInterface
     {
         $view = new View($this->app->l11nManager, $request, $response);
-        $tag  = TagMapper::get()->with('title')->where('id', (int) $request->getData('id'))->where('title/language', $response->getLanguage())->execute();
+
+        /** @var \Modules\Tag\Models\Tag $tag */
+        $tag = TagMapper::get()->with('title')->where('id', (int) $request->getData('id'))->where('title/language', $response->getLanguage())->execute();
 
         $view->setTemplate('/Modules/Tag/Theme/Backend/tag-single');
         $view->addData('nav', $this->app->moduleManager->get('Navigation')->createNavigationMid(1007501001, $request, $response));
         $view->addData('tag', $tag);
 
+        /** @var \Modules\Tag\Models\TagL11n[] $l11n */
         $l11n = TagL11nMapper::getAll()->where('tag', $tag->getId())->execute();
         $view->addData('l11n', $l11n);
 

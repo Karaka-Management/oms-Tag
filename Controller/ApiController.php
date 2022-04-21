@@ -49,8 +49,8 @@ final class ApiController extends Controller
         $val = [];
         if (($val['title'] = empty($request->getData('title')))
             || ($val['color'] = (!empty($request->getData('color'))
-                && (!\ctype_xdigit(\ltrim($request->getData('color') ?? '', '#'))
-                    || \stripos($request->getData('color') ?? '', '#') !== 0)))
+                && (!\ctype_xdigit(\ltrim($request->getData('color'), '#'))
+                    || \stripos($request->getData('color'), '#') !== 0)))
         ) {
             return $val;
         }
@@ -71,7 +71,7 @@ final class ApiController extends Controller
      *
      * @since 1.0.0
      */
-    public function apiTagUpdate(RequestAbstract $request, ResponseAbstract $response, $data = null) : void
+    public function apiTagUpdate(RequestAbstract $request, ResponseAbstract $response, mixed $data = null) : void
     {
         /** @var Tag $old */
         $old = clone TagMapper::get()->where('id', (int) $request->getData('id'))->execute();
@@ -112,7 +112,7 @@ final class ApiController extends Controller
      *
      * @since 1.0.0
      */
-    public function apiTagCreate(RequestAbstract $request, ResponseAbstract $response, $data = null) : void
+    public function apiTagCreate(RequestAbstract $request, ResponseAbstract $response, mixed $data = null) : void
     {
         if (!empty($val = $this->validateTagCreate($request))) {
             $response->set('tag_create', new FormValidation($val));
@@ -162,7 +162,7 @@ final class ApiController extends Controller
      *
      * @since 1.0.0
      */
-    public function apiTagL11nCreate(RequestAbstract $request, ResponseAbstract $response, $data = null) : void
+    public function apiTagL11nCreate(RequestAbstract $request, ResponseAbstract $response, mixed $data = null) : void
     {
         if (!empty($val = $this->validateTagL11nCreate($request))) {
             $response->set('tag_l11n_create', new FormValidation($val));
@@ -229,7 +229,7 @@ final class ApiController extends Controller
      *
      * @since 1.0.0
      */
-    public function apiTagGet(RequestAbstract $request, ResponseAbstract $response, $data = null) : void
+    public function apiTagGet(RequestAbstract $request, ResponseAbstract $response, mixed $data = null) : void
     {
         /** @var Tag $tag */
         $tag = TagMapper::get()->where('id', (int) $request->getData('id'))->execute();
@@ -249,7 +249,7 @@ final class ApiController extends Controller
      *
      * @since 1.0.0
      */
-    public function apiTagDelete(RequestAbstract $request, ResponseAbstract $response, $data = null) : void
+    public function apiTagDelete(RequestAbstract $request, ResponseAbstract $response, mixed $data = null) : void
     {
         /** @var Tag $tag */
         $tag = TagMapper::get()->where('id', (int) $request->getData('id'))->execute();
@@ -270,7 +270,7 @@ final class ApiController extends Controller
      *
      * @since 1.0.0
      */
-    public function apiTagFind(RequestAbstract $request, ResponseAbstract $response, $data = null) : void
+    public function apiTagFind(RequestAbstract $request, ResponseAbstract $response, mixed $data = null) : void
     {
         $response->header->set('Content-Type', MimeType::M_JSON, true);
         $response->set(
