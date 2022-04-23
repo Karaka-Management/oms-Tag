@@ -272,12 +272,14 @@ final class ApiController extends Controller
      */
     public function apiTagFind(RequestAbstract $request, ResponseAbstract $response, mixed $data = null) : void
     {
+        /** @var \Modules\Tag\Models\Tag[] $tags */
+        $tags = TagMapper::getAll()
+            ->with('title')
+            ->where('title/language', $request->getLanguage())
+            ->where('title/title', '%' . ($request->getData('search') ?? '') . '%', 'LIKE')
+            ->execute();
+
         $response->header->set('Content-Type', MimeType::M_JSON, true);
-        $response->set(
-            $request->uri->__toString(),
-            \array_values(
-                TagMapper::getAll()->with('title')->where('title/language', $request->getLanguage())->where('title/title', '%' . ($request->getData('search') ?? '') . '%', 'LIKE')->execute()
-            )
-        );
+        $response->set($request->uri->__toString(), \array_values($tags));
     }
 }
