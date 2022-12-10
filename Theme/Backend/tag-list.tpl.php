@@ -20,8 +20,8 @@ use phpOMS\Uri\UriFactory;
  */
 $tags = $this->getData('tags');
 
-$previous = empty($tags) ? 'tag/list' : 'tag/list?{?}&id=' . \reset($tags)->getId() . '&ptype=p';
-$next     = empty($tags) ? 'tag/list' : 'tag/list?{?}&id=' . \end($tags)->getId() . '&ptype=n';
+$previous = empty($tags) ? '{/lang}/{/app}/tag/list' : '{/lang}/{/app}/tag/list?{?}&id=' . \reset($tags)->getId() . '&ptype=p';
+$next     = empty($tags) ? '{/lang}/{/app}/tag/list' : '{/lang}/{/app}/tag/list?{?}&id=' . \end($tags)->getId() . '&ptype=n';
 
 echo $this->getData('nav')->render(); ?>
 <div class="row">
@@ -36,7 +36,7 @@ echo $this->getData('nav')->render(); ?>
                 <td class="wf-100"><?= $this->getHtml('Title'); ?>
             <tbody>
             <?php $count = 0; foreach ($tags as $key => $value) : ++$count;
-            $url         = UriFactory::build('tag/single?{?}&id=' . $value->getId()); ?>
+            $url         = UriFactory::build('{/lang}/{/app}/tag/single?{?}&id=' . $value->getId()); ?>
                 <tr tabindex="0" data-href="<?= $url; ?>">
                     <td data-label="<?= $this->getHtml('Title'); ?>"><a href="<?= $url; ?>"><span class="tag" style="background: <?= $this->printHtml(\substr($value->color, 0, 7)); ?>">&nbsp;&nbsp;&nbsp;<?= $value->icon !== null ? '<i class="' . $this->printHtml($value->icon ?? '') . '"></i>' : '&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;'; ?>&nbsp;</span></a>
                     <td data-label="<?= $this->getHtml('Title'); ?>"><a href="<?= $url; ?>"><?= $this->printHtml($value->getL11n()); ?></a>
