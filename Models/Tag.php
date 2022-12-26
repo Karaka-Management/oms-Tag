@@ -54,10 +54,10 @@ class Tag implements \JsonSerializable
     /**
      * Icon.
      *
-     * @var null|string
+     * @var string
      * @since 1.0.0
      */
-    public ?string $icon = null;
+    public string $icon = '';
 
     /**
      * Creator.

@@ -112,6 +112,7 @@ class BaseView extends View
      */
     public function render(mixed ...$data) : string
     {
+        /** @var array{0:string, 1:string, 2:string, 3:null|bool} $data */
         $this->id         = $data[0];
         $this->name       = $data[1];
         $this->form       = $data[2];

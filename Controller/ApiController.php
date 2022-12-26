@@ -74,7 +74,8 @@ final class ApiController extends Controller
     public function apiTagUpdate(RequestAbstract $request, ResponseAbstract $response, mixed $data = null) : void
     {
         /** @var Tag $old */
-        $old = clone TagMapper::get()->where('id', (int) $request->getData('id'))->execute();
+        $old = TagMapper::get()->where('id', (int) $request->getData('id'))->execute();
+        $old = clone $old;
         $new = $this->updateTagFromRequest($request);
         $this->updateModel($request->header->account, $old, $new, TagMapper::class, 'tag', $request->getOrigin());
         $this->fillJsonResponse($request, $response, NotificationLevel::OK, 'Tag', 'Tag successfully updated', $new);
@@ -190,7 +191,7 @@ final class ApiController extends Controller
     {
         $tag        = new Tag();
         $tag->color = \str_pad($request->getData('color') ?? '#000000ff', 9, 'f');
-        $tag->icon  = $request->getData('icon');
+        $tag->icon  = (string) ($request->getData('icon') ?? '');
 
         return $tag;
     }

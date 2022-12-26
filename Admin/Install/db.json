@@ -17,8 +17,7 @@
             "tag_icon": {
                 "name": "tag_icon",
                 "type": "VARCHAR(255)",
-                "null": true,
-                "default": null
+                "null": false
             },
             "tag_type": {
                 "name": "tag_type",
