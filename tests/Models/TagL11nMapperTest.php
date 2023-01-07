@@ -15,10 +15,10 @@ declare(strict_types=1);
 namespace Modules\Tag\tests\Models;
 
 use Modules\Tag\Models\Tag;
-use phpOMS\Localization\BaseStringL11n;
 use Modules\Tag\Models\TagL11nMapper;
 use Modules\Tag\Models\TagMapper;
 use Modules\Tag\Models\TagType;
+use phpOMS\Localization\BaseStringL11n;
 use phpOMS\Localization\ISO639x1Enum;
 
 /**
@@ -40,7 +40,7 @@ final class TagL11nMapperTest extends \PHPUnit\Framework\TestCase
         self::assertGreaterThan(0, $tag->getId());
         self::assertEquals($id, $tag->getId());
 
-        $l11n        = new BaseStringL11n();
+        $l11n          = new BaseStringL11n();
         $l11n->content = 'TestTitle';
         $l11n->setLanguage(ISO639x1Enum::_EN);
         $l11n->ref = $id;

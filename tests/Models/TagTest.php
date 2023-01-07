@@ -16,8 +16,8 @@ namespace Modules\Tag\tests\Models;
 
 use Modules\Admin\Models\NullAccount;
 use Modules\Tag\Models\Tag;
-use phpOMS\Localization\BaseStringL11n;
 use Modules\Tag\Models\TagType;
+use phpOMS\Localization\BaseStringL11n;
 
 /**
  * @internal

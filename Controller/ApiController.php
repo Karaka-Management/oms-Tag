@@ -15,9 +15,9 @@ declare(strict_types=1);
 namespace Modules\Tag\Controller;
 
 use Modules\Tag\Models\Tag;
-use phpOMS\Localization\BaseStringL11n;
 use Modules\Tag\Models\TagL11nMapper;
 use Modules\Tag\Models\TagMapper;
+use phpOMS\Localization\BaseStringL11n;
 use phpOMS\Message\Http\RequestStatusCode;
 use phpOMS\Message\NotificationLevel;
 use phpOMS\Message\RequestAbstract;
