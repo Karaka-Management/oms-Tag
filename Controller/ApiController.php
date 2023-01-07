@@ -15,7 +15,7 @@ declare(strict_types=1);
 namespace Modules\Tag\Controller;
 
 use Modules\Tag\Models\Tag;
-use Modules\Tag\Models\TagL11n;
+use phpOMS\Localization\BaseStringL11n;
 use Modules\Tag\Models\TagL11nMapper;
 use Modules\Tag\Models\TagMapper;
 use phpOMS\Message\Http\RequestStatusCode;
@@ -201,18 +201,18 @@ final class ApiController extends Controller
      *
      * @param RequestAbstract $request Request
      *
-     * @return TagL11n
+     * @return BaseStringL11n
      *
      * @since 1.0.0
      */
-    private function createTagL11nFromRequest(RequestAbstract $request) : TagL11n
+    private function createTagL11nFromRequest(RequestAbstract $request) : BaseStringL11n
     {
-        $tagL11n      = new TagL11n();
-        $tagL11n->tag = (int) ($request->getData('tag') ?? 0);
+        $tagL11n      = new BaseStringL11n();
+        $tagL11n->ref = (int) ($request->getData('tag') ?? 0);
         $tagL11n->setLanguage((string) (
             $request->getData('language') ?? $request->getLanguage()
         ));
-        $tagL11n->title = (string) ($request->getData('title') ?? '');
+        $tagL11n->content = (string) ($request->getData('title') ?? '');
 
         return $tagL11n;
     }
@@ -277,7 +277,7 @@ final class ApiController extends Controller
         $tags = TagMapper::getAll()
             ->with('title')
             ->where('title/language', $request->getLanguage())
-            ->where('title/title', '%' . ($request->getData('search') ?? '') . '%', 'LIKE')
+            ->where('title/content', '%' . ($request->getData('search') ?? '') . '%', 'LIKE')
             ->execute();
 
         $response->header->set('Content-Type', MimeType::M_JSON, true);

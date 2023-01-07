@@ -16,7 +16,7 @@ namespace Modules\Tag\tests\Models;
 
 use Modules\Admin\Models\NullAccount;
 use Modules\Tag\Models\Tag;
-use Modules\Tag\Models\TagL11n;
+use phpOMS\Localization\BaseStringL11n;
 use Modules\Tag\Models\TagType;
 
 /**
@@ -56,7 +56,7 @@ final class TagTest extends \PHPUnit\Framework\TestCase
         $this->tag->setL11n('Test');
         self::assertEquals('Test', $this->tag->getL11n());
 
-        $this->tag->setL11n(new TagL11n('Test2'));
+        $this->tag->setL11n(new BaseStringL11n('Test2'));
         self::assertEquals('Test2', $this->tag->getL11n());
 
         $this->tag->setL11n('Test3');
@@ -99,7 +99,7 @@ final class TagTest extends \PHPUnit\Framework\TestCase
      */
     public function testSerialize() : void
     {
-        $this->tag->setL11n($t = new TagL11n('Test'));
+        $this->tag->setL11n($t = new BaseStringL11n('Test'));
         $this->tag->owner      = new NullAccount(2);
         $this->tag->color      = 'ffffffff';
         $this->tag->setType(TagType::SHARED);

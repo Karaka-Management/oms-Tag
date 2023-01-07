@@ -16,6 +16,7 @@ namespace Modules\Tag\Models;
 
 use Modules\Admin\Models\Account;
 use phpOMS\Localization\ISO639x1Enum;
+use phpOMS\Localization\BaseStringL11n;
 
 /**
  * Tag class.
@@ -38,10 +39,10 @@ class Tag implements \JsonSerializable
     /**
      * Title.
      *
-     * @var string|TagL11n
+     * @var string|BaseStringL11n
      * @since 1.0.0
      */
-    protected string | TagL11n $title = '';
+    protected string | BaseStringL11n $title = '';
 
     /**
      * Color RGBA.
@@ -120,28 +121,28 @@ class Tag implements \JsonSerializable
      */
     public function getL11n() : string
     {
-        return $this->title instanceof TagL11n ? $this->title->title : $this->title;
+        return $this->title instanceof BaseStringL11n ? $this->title->content : $this->title;
     }
 
     /**
      * Set title
      *
-     * @param string|TagL11n $title Tag article title
-     * @param string         $lang  Language
+     * @param string|BaseStringL11n $title Tag article title
+     * @param string                $lang  Language
      *
      * @return void
      *
      * @since 1.0.0
      */
-    public function setL11n(string | TagL11n $title, string $lang = ISO639x1Enum::_EN) : void
+    public function setL11n(string | BaseStringL11n $title, string $lang = ISO639x1Enum::_EN) : void
     {
-        if ($title instanceof TagL11n) {
+        if ($title instanceof BaseStringL11n) {
             $this->title = $title;
-        } elseif (isset($this->title) && $this->title instanceof TagL11n) {
-            $this->title->title = $title;
+        } elseif (isset($this->title) && $this->title instanceof BaseStringL11n) {
+            $this->title->content = $title;
         } else {
-            $this->title        = new TagL11n();
-            $this->title->title = $title;
+            $this->title          = new BaseStringL11n();
+            $this->title->content = $title;
             $this->title->setLanguage($lang);
         }
     }

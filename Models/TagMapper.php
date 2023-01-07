@@ -51,7 +51,7 @@ final class TagMapper extends DataMapperFactory
             'mapper'   => TagL11nMapper::class,
             'table'    => 'tag_l11n',
             'self'     => 'tag_l11n_tag',
-            'column'   => 'title',
+            'column'   => 'content',
             'external' => null,
         ],
     ];

@@ -143,7 +143,7 @@ final class ApiControllerTest extends \PHPUnit\Framework\TestCase
 
         $this->module->apiTagL11nCreate($request, $response);
 
-        self::assertEquals('ApiTagDE', $response->get('')['response']->title);
+        self::assertEquals('ApiTagDE', $response->get('')['response']->content);
         self::assertGreaterThan(0, $response->get('')['response']->getId());
     }
 

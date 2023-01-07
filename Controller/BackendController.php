@@ -113,7 +113,7 @@ final class BackendController extends Controller
         $view->addData('nav', $this->app->moduleManager->get('Navigation')->createNavigationMid(1007501001, $request, $response));
         $view->addData('tag', $tag);
 
-        /** @var \Modules\Tag\Models\TagL11n[] $l11n */
+        /** @var \phpOMS\Localization\BaseStringL11n[] $l11n */
         $l11n = TagL11nMapper::getAll()->where('tag', $tag->getId())->execute();
         $view->addData('l11n', $l11n);
 
