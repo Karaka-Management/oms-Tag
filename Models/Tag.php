@@ -15,8 +15,8 @@ declare(strict_types=1);
 namespace Modules\Tag\Models;
 
 use Modules\Admin\Models\Account;
-use phpOMS\Localization\ISO639x1Enum;
 use phpOMS\Localization\BaseStringL11n;
+use phpOMS\Localization\ISO639x1Enum;
 
 /**
  * Tag class.
