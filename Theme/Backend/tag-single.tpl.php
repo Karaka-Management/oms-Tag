@@ -60,7 +60,7 @@ echo $this->getData('nav')->render(); ?>
                         <td><a href="#"><i class="fa fa-times"></i></a>
                         <td><a href="#"><i class="fa fa-cogs"></i></a>
                         <td><?= ISO639Enum::getByName('_' . \strtoupper($value->getLanguage())); ?>
-                        <td><?= $value->title; ?>
+                        <td><?= $value->content; ?>
                     <?php endforeach; ?>
                     <?php if ($c === 0) : ?>
                     <tr><td colspan="3" class="empty"><?= $this->getHtml('Empty', '0', '0'); ?>
