@@ -175,7 +175,7 @@ final class ApiController extends Controller
         $l11nTag = $this->createTagL11nFromRequest($request);
         $this->createModel($request->header->account, $l11nTag, TagL11nMapper::class, 'tag_l11n', $request->getOrigin());
 
-        $this->fillJsonResponse($request, $response, NotificationLevel::OK, 'Localization', 'Tag localization successfully created', $l11nTag);
+        $this->fillJsonResponse($request, $response, NotificationLevel::OK, 'Localization', 'Localization successfully created', $l11nTag);
     }
 
     /**

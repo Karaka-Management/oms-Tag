@@ -93,5 +93,5 @@ final class TagMapper extends DataMapperFactory
      * @var string
      * @since 1.0.0
      */
-    public const PRIMARYFIELD ='tag_id';
+    public const PRIMARYFIELD = 'tag_id';
 }
