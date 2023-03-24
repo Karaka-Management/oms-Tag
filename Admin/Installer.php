@@ -6,7 +6,7 @@
  *
  * @package   Modules\Tag\Admin
  * @copyright Dennis Eichhorn
- * @license   OMS License 1.0
+ * @license   OMS License 2.0
  * @version   1.0.0
  * @link      https://jingga.app
  */
@@ -25,7 +25,7 @@ use phpOMS\Module\ModuleInfo;
  * Installer class.
  *
  * @package Modules\Tag\Admin
- * @license OMS License 1.0
+ * @license OMS License 2.0
  * @link    https://jingga.app
  * @since   1.0.0
  */
@@ -56,9 +56,10 @@ final class Installer extends InstallerAbstract
      */
     private static function installDefaultColors() : void
     {
+        // @todo: move to Admin.install.json file where it belongs and make this module providing for Admin
         $setting = new Setting();
         SettingMapper::create()->execute(
-            $setting->with(0, '1007500001', '#ff000000;#ff00ff00;#ffffffff', '(#[a-fA-F0-9]{8};)*(#[a-fA-F0-9]{8})', module: 'Tag')
+            $setting->with(0, '1007500001', '#ff000000;#ff00ff00;#ffffffff', '/(#[a-fA-F0-9]{8};)*(#[a-fA-F0-9]{8})/', module: 'Tag')
         );
     }
 }

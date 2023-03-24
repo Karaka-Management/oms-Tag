@@ -6,7 +6,7 @@
  *
  * @package   Modules\Tag
  * @copyright Dennis Eichhorn
- * @license   OMS License 1.0
+ * @license   OMS License 2.0
  * @version   1.0.0
  * @link      https://jingga.app
  */
@@ -29,7 +29,7 @@ use phpOMS\System\MimeType;
  * Tag controller class.
  *
  * @package Modules\Tag
- * @license OMS License 1.0
+ * @license OMS License 2.0
  * @link    https://jingga.app
  * @since   1.0.0
  */
@@ -49,8 +49,8 @@ final class ApiController extends Controller
         $val = [];
         if (($val['title'] = empty($request->getData('title')))
             || ($val['color'] = (!empty($request->getData('color'))
-                && (!\ctype_xdigit(\ltrim($request->getData('color'), '#'))
-                    || \stripos($request->getData('color'), '#') !== 0)))
+                && (!\ctype_xdigit(\ltrim((string) $request->getData('color'), '#'))
+                    || \stripos((string) $request->getData('color'), '#') !== 0)))
         ) {
             return $val;
         }
@@ -94,8 +94,8 @@ final class ApiController extends Controller
     {
         /** @var Tag $tag */
         $tag = TagMapper::get()->where('id', (int) $request->getData('id'))->execute();
-        $tag->setL11n((string) ($request->getData('title') ?? $tag->getL11n()));
-        $tag->color = \str_pad($request->getData('color') ?? $tag->color, 9, 'ff', \STR_PAD_RIGHT);
+        $tag->setL11n($request->getDataString('title') ?? $tag->getL11n());
+        $tag->color = \str_pad($request->getDataString('color') ?? $tag->color, 9, 'ff', \STR_PAD_RIGHT);
 
         return $tag;
     }
@@ -123,7 +123,7 @@ final class ApiController extends Controller
         }
 
         $tag = $this->createTagFromRequest($request);
-        $tag->setL11n($request->getData('title'), $request->getData('language'));
+        $tag->setL11n($request->getDataString('title') ?? '', $request->getDataString('language') ?? $request->getLanguage());
         $this->createModel($request->header->account, $tag, TagMapper::class, 'tag', $request->getOrigin());
 
         $this->fillJsonResponse($request, $response, NotificationLevel::OK, 'Tag', 'Tag successfully created', $tag);
@@ -190,8 +190,8 @@ final class ApiController extends Controller
     private function createTagFromRequest(RequestAbstract $request) : Tag
     {
         $tag        = new Tag();
-        $tag->color = \str_pad($request->getData('color') ?? '#000000ff', 9, 'f');
-        $tag->icon  = (string) ($request->getData('icon') ?? '');
+        $tag->color = \str_pad($request->getDataString('color') ?? '#000000ff', 9, 'f');
+        $tag->icon  = $request->getDataString('icon') ?? '';
 
         return $tag;
     }
@@ -208,11 +208,11 @@ final class ApiController extends Controller
     private function createTagL11nFromRequest(RequestAbstract $request) : BaseStringL11n
     {
         $tagL11n      = new BaseStringL11n();
-        $tagL11n->ref = (int) ($request->getData('tag') ?? 0);
-        $tagL11n->setLanguage((string) (
-            $request->getData('language') ?? $request->getLanguage()
-        ));
-        $tagL11n->content = (string) ($request->getData('title') ?? '');
+        $tagL11n->ref = $request->getDataInt('tag') ?? 0;
+        $tagL11n->setLanguage(
+            $request->getDataString('language') ?? $request->getLanguage()
+        );
+        $tagL11n->content = $request->getDataString('title') ?? '';
 
         return $tagL11n;
     }
@@ -277,7 +277,7 @@ final class ApiController extends Controller
         $tags = TagMapper::getAll()
             ->with('title')
             ->where('title/language', $request->getLanguage())
-            ->where('title/content', '%' . ($request->getData('search') ?? '') . '%', 'LIKE')
+            ->where('title/content', '%' . ($request->getDataString('search') ?? '') . '%', 'LIKE')
             ->execute();
 
         $response->header->set('Content-Type', MimeType::M_JSON, true);
