@@ -47,8 +47,8 @@ final class ApiController extends Controller
     private function validateTagCreate(RequestAbstract $request) : array
     {
         $val = [];
-        if (($val['title'] = empty($request->getData('title')))
-            || ($val['color'] = (!empty($request->getData('color'))
+        if (($val['title'] = !$request->hasData('title'))
+            || ($val['color'] = ($request->hasData('color')
                 && (!\ctype_xdigit(\ltrim((string) $request->getData('color'), '#'))
                     || \stripos((string) $request->getData('color'), '#') !== 0)))
         ) {
@@ -141,8 +141,8 @@ final class ApiController extends Controller
     private function validateTagL11nCreate(RequestAbstract $request) : array
     {
         $val = [];
-        if (($val['title'] = empty($request->getData('title')))
-            || ($val['tag'] = empty($request->getData('tag')))
+        if (($val['title'] = !$request->hasData('title'))
+            || ($val['tag'] = !$request->hasData('tag'))
         ) {
             return $val;
         }

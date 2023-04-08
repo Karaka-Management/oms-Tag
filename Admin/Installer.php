@@ -45,21 +45,5 @@ final class Installer extends InstallerAbstract
     public static function install(ApplicationAbstract $app, ModuleInfo $info, SettingsInterface $cfgHandler) : void
     {
         parent::install($app, $info, $cfgHandler);
-
-        self::installDefaultColors();
-    }
-
-    /**
-     * Installing default tag colors
-     *
-     * @return void
-     */
-    private static function installDefaultColors() : void
-    {
-        // @todo: move to Admin.install.json file where it belongs and make this module providing for Admin
-        $setting = new Setting();
-        SettingMapper::create()->execute(
-            $setting->with(0, '1007500001', '#ff000000;#ff00ff00;#ffffffff', '/(#[a-fA-F0-9]{8};)*(#[a-fA-F0-9]{8})/', module: 'Tag')
-        );
     }
 }

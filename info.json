@@ -21,6 +21,7 @@
         "Home": "1.0.0"
     },
     "providing": {
+        "Admin": "*",
         "Navigation": "*"
     },
     "load": [
