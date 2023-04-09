@@ -38,12 +38,4 @@ final class Installer extends InstallerAbstract
      * @since 1.0.0
      */
     public const PATH = __DIR__;
-
-    /**
-     * {@inheritdoc}
-     */
-    public static function install(ApplicationAbstract $app, ModuleInfo $info, SettingsInterface $cfgHandler) : void
-    {
-        parent::install($app, $info, $cfgHandler);
-    }
 }
