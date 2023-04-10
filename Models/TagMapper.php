@@ -23,6 +23,9 @@ use phpOMS\DataStorage\Database\Mapper\DataMapperFactory;
  * @license OMS License 2.0
  * @link    https://jingga.app
  * @since   1.0.0
+ *
+ * @template T of Tag
+ * @extends DataMapperFactory<T>
  */
 final class TagMapper extends DataMapperFactory
 {
@@ -74,7 +77,7 @@ final class TagMapper extends DataMapperFactory
     /**
      * Model to use by the mapper.
      *
-     * @var class-string
+     * @var class-string<T>
      * @since 1.0.0
      */
     public const MODEL = Tag::class;
