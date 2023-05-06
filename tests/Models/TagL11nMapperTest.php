@@ -37,8 +37,8 @@ final class TagL11nMapperTest extends \PHPUnit\Framework\TestCase
         $tag->setType(TagType::SINGLE);
 
         $id = TagMapper::create()->execute($tag);
-        self::assertGreaterThan(0, $tag->getId());
-        self::assertEquals($id, $tag->getId());
+        self::assertGreaterThan(0, $tag->id);
+        self::assertEquals($id, $tag->id);
 
         $l11n          = new BaseStringL11n();
         $l11n->content = 'TestTitle';
@@ -46,10 +46,10 @@ final class TagL11nMapperTest extends \PHPUnit\Framework\TestCase
         $l11n->ref = $id;
 
         $id = TagL11nMapper::create()->execute($l11n);
-        self::assertGreaterThan(0, $l11n->getId());
-        self::assertEquals($id, $l11n->getId());
+        self::assertGreaterThan(0, $l11n->id);
+        self::assertEquals($id, $l11n->id);
 
-        $l11nR = TagL11nMapper::get()->where('id', $l11n->getId())->execute();
+        $l11nR = TagL11nMapper::get()->where('id', $l11n->id)->execute();
         self::assertEquals($l11n->content, $l11nR->content);
         self::assertEquals($l11n->getLanguage(), $l11nR->getLanguage());
     }

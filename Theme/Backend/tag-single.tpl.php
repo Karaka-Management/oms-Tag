@@ -36,8 +36,9 @@ echo $this->getData('nav')->render(); ?>
                         <tr><td><input type="text" name="icon" id="iIcon" placeholder="&#xf040; oms" value="<?= $this->printHtml($tag->icon); ?>">
                     </table>
                 </div>
+
                 <div class="portlet-foot">
-                    <input type="hidden" name="id" value="<?= $tag->getId(); ?>">
+                    <input type="hidden" name="id" value="<?= $tag->id; ?>">
                     <input id="iSubmit" name="submit" type="submit" value="<?= $this->getHtml('Save', '0', '0'); ?>">
                 </div>
             </form>
@@ -67,4 +68,5 @@ echo $this->getData('nav')->render(); ?>
                     <?php endif; ?>
             </table>
         </div>
+    </div>
 </div>

@@ -134,7 +134,7 @@ final class BackendController extends Controller
 
         /** @var \phpOMS\Localization\BaseStringL11n[] $l11n */
         $l11n = TagL11nMapper::getAll()
-            ->where('ref', $tag->getId())
+            ->where('ref', $tag->id)
             ->execute();
 
         $view->addData('l11n', $l11n);

@@ -110,9 +110,9 @@ final class ApiControllerTest extends \PHPUnit\Framework\TestCase
         $this->module->apiTagCreate($request, $response);
 
         self::assertEquals('ApiTagEN', $response->get('')['response']->getL11n());
-        self::assertGreaterThan(0, $response->get('')['response']->getId());
+        self::assertGreaterThan(0, $response->get('')['response']->id);
 
-        self::$tagId = $response->get('')['response']->getId();
+        self::$tagId = $response->get('')['response']->id;
     }
 
     /**
@@ -146,7 +146,7 @@ final class ApiControllerTest extends \PHPUnit\Framework\TestCase
         $this->module->apiTagL11nCreate($request, $response);
 
         self::assertEquals('ApiTagDE', $response->get('')['response']->content);
-        self::assertGreaterThan(0, $response->get('')['response']->getId());
+        self::assertGreaterThan(0, $response->get('')['response']->id);
     }
 
     /**
@@ -177,7 +177,7 @@ final class ApiControllerTest extends \PHPUnit\Framework\TestCase
 
         $this->module->apiTagGet($request, $response);
 
-        self::assertEquals(self::$tagId, $response->get('')['response']->getId());
+        self::assertEquals(self::$tagId, $response->get('')['response']->id);
     }
 
     /**
@@ -196,7 +196,7 @@ final class ApiControllerTest extends \PHPUnit\Framework\TestCase
         $this->module->apiTagUpdate($request, $response);
 
         self::assertEquals('#00ff00ff', $response->get('')['response']->color);
-        self::assertEquals(self::$tagId, $response->get('')['response']->getId());
+        self::assertEquals(self::$tagId, $response->get('')['response']->id);
     }
 
     /**
@@ -214,6 +214,6 @@ final class ApiControllerTest extends \PHPUnit\Framework\TestCase
         $this->module->apiTagFind($request, $response);
 
         self::assertEquals('ApiTagEN', $response->get('')[0]->getL11n());
-        self::assertEquals(self::$tagId, $response->get('')[0]->getId());
+        self::assertEquals(self::$tagId, $response->get('')[0]->id);
     }
 }

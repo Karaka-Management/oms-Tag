@@ -40,7 +40,7 @@ final class TagTest extends \PHPUnit\Framework\TestCase
      */
     public function testDefault() : void
     {
-        self::assertEquals(0, $this->tag->getId());
+        self::assertEquals(0, $this->tag->id);
         self::assertNull($this->tag->owner);
         self::assertEquals(TagType::SINGLE, $this->tag->getType());
         self::assertEquals('00000000', $this->tag->color);
@@ -70,7 +70,7 @@ final class TagTest extends \PHPUnit\Framework\TestCase
     public function testOwnerInputOutput() : void
     {
         $this->tag->owner = new NullAccount(2);
-        self::assertEquals(2, $this->tag->owner->getId());
+        self::assertEquals(2, $this->tag->owner->id);
     }
 
     /**

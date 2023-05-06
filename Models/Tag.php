@@ -34,7 +34,7 @@ class Tag implements \JsonSerializable
      * @var int
      * @since 1.0.0
      */
-    protected int $id = 0;
+    public int $id = 0;
 
     /**
      * Title.
@@ -74,7 +74,7 @@ class Tag implements \JsonSerializable
      * @var int
      * @since 1.0.0
      */
-    protected int $type = TagType::SINGLE;
+    public int $type = TagType::SINGLE;
 
     /**
      * Get type.

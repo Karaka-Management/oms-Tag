@@ -36,10 +36,10 @@ final class TagMapperTest extends \PHPUnit\Framework\TestCase
         $tag->setType(TagType::SINGLE);
 
         $id = TagMapper::create()->execute($tag);
-        self::assertGreaterThan(0, $tag->getId());
-        self::assertEquals($id, $tag->getId());
+        self::assertGreaterThan(0, $tag->id);
+        self::assertEquals($id, $tag->id);
 
-        $tagR = TagMapper::get()->with('title')->where('id', $tag->getId())->where('title/language', ISO639x1Enum::_EN)->execute();
+        $tagR = TagMapper::get()->with('title')->where('id', $tag->id)->where('title/language', ISO639x1Enum::_EN)->execute();
         self::assertEquals($tag->getL11n(), $tagR->getL11n());
         self::assertEquals($tag->color, $tagR->color);
         self::assertEquals($tag->getType(), $tagR->getType());
