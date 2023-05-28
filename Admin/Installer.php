@@ -14,12 +14,7 @@ declare(strict_types=1);
 
 namespace Modules\Tag\Admin;
 
-use Model\Setting;
-use Model\SettingMapper;
-use phpOMS\Application\ApplicationAbstract;
-use phpOMS\Config\SettingsInterface;
 use phpOMS\Module\InstallerAbstract;
-use phpOMS\Module\ModuleInfo;
 
 /**
  * Installer class.
