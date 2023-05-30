@@ -116,7 +116,7 @@ final class ApiController extends Controller
     public function apiTagCreate(RequestAbstract $request, ResponseAbstract $response, mixed $data = null) : void
     {
         if (!empty($val = $this->validateTagCreate($request))) {
-            $response->set('tag_create', new FormValidation($val));
+            $response->data['tag_create'] = new FormValidation($val);
             $response->header->status = RequestStatusCode::R_400;
 
             return;
@@ -166,7 +166,7 @@ final class ApiController extends Controller
     public function apiTagL11nCreate(RequestAbstract $request, ResponseAbstract $response, mixed $data = null) : void
     {
         if (!empty($val = $this->validateTagL11nCreate($request))) {
-            $response->set('tag_l11n_create', new FormValidation($val));
+            $response->data['tag_l11n_create'] = new FormValidation($val);
             $response->header->status = RequestStatusCode::R_400;
 
             return;
