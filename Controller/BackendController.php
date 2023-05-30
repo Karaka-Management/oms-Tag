@@ -78,7 +78,7 @@ final class BackendController extends Controller
                 TagMapper::getAll()
                     ->with('title')
                     ->where('id', $request->getDataInt('id') ?? 0, '<')
-                    ->where('title/language', $request->getLanguage())
+                    ->where('title/language', $request->header->l11n->language)
                     ->limit(25)
                     ->execute()
             );
@@ -87,7 +87,7 @@ final class BackendController extends Controller
                 TagMapper::getAll()
                     ->with('title')
                     ->where('id', $request->getDataInt('id') ?? 0, '>')
-                    ->where('title/language', $request->getLanguage())
+                    ->where('title/language', $request->header->l11n->language)
                     ->limit(25)
                     ->execute()
             );
@@ -96,7 +96,7 @@ final class BackendController extends Controller
                 TagMapper::getAll()
                     ->with('title')
                     ->where('id', 0, '>')
-                    ->where('title/language', $request->getLanguage())
+                    ->where('title/language', $request->header->l11n->language)
                     ->limit(25)
                     ->execute()
             );
@@ -125,7 +125,7 @@ final class BackendController extends Controller
         $tag = TagMapper::get()
             ->with('title')
             ->where('id', (int) $request->getData('id'))
-            ->where('title/language', $response->getLanguage())
+            ->where('title/language', $response->header->l11n->language)
             ->execute();
 
         $view->setTemplate('/Modules/Tag/Theme/Backend/tag-single');
