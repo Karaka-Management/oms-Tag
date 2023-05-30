@@ -18,12 +18,12 @@ use phpOMS\Uri\UriFactory;
  * @var \phpOMS\Views\View        $this
  * @var \Modules\Tag\Models\Tag[] $tags
  */
-$tags = $this->getData('tags');
+$tags = $this->data['tags'];
 
 $previous = empty($tags) ? '{/base}/tag/list' : '{/base}/tag/list?{?}&id=' . \reset($tags)->id . '&ptype=p';
 $next     = empty($tags) ? '{/base}/tag/list' : '{/base}/tag/list?{?}&id=' . \end($tags)->id . '&ptype=n';
 
-echo $this->getData('nav')->render(); ?>
+echo $this->data['nav']->render(); ?>
 <div class="row">
     <div class="col-xs-12">
         <div class="portlet">

@@ -51,6 +51,6 @@ final class TagL11nMapperTest extends \PHPUnit\Framework\TestCase
 
         $l11nR = TagL11nMapper::get()->where('id', $l11n->id)->execute();
         self::assertEquals($l11n->content, $l11nR->content);
-        self::assertEquals($l11n->getLanguage(), $l11nR->getLanguage());
+        self::assertEquals($l11n->language, $l11nR->getLanguage());
     }
 }

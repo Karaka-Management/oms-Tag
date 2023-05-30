@@ -116,14 +116,14 @@ final class ApiController extends Controller
     public function apiTagCreate(RequestAbstract $request, ResponseAbstract $response, mixed $data = null) : void
     {
         if (!empty($val = $this->validateTagCreate($request))) {
-            $response->set('tag_create', new FormValidation($val));
+            $response->data['tag_create'] = new FormValidation($val);
             $response->header->status = RequestStatusCode::R_400;
 
             return;
         }
 
         $tag = $this->createTagFromRequest($request);
-        $tag->setL11n($request->getDataString('title') ?? '', $request->getDataString('language') ?? $request->getLanguage());
+        $tag->setL11n($request->getDataString('title') ?? '', $request->getDataString('language') ?? $request->header->l11n->language);
         $this->createModel($request->header->account, $tag, TagMapper::class, 'tag', $request->getOrigin());
 
         $this->fillJsonResponse($request, $response, NotificationLevel::OK, 'Tag', 'Tag successfully created', $tag);
@@ -166,7 +166,7 @@ final class ApiController extends Controller
     public function apiTagL11nCreate(RequestAbstract $request, ResponseAbstract $response, mixed $data = null) : void
     {
         if (!empty($val = $this->validateTagL11nCreate($request))) {
-            $response->set('tag_l11n_create', new FormValidation($val));
+            $response->data['tag_l11n_create'] = new FormValidation($val);
             $response->header->status = RequestStatusCode::R_400;
 
             return;
@@ -210,7 +210,7 @@ final class ApiController extends Controller
         $tagL11n      = new BaseStringL11n();
         $tagL11n->ref = $request->getDataInt('tag') ?? 0;
         $tagL11n->setLanguage(
-            $request->getDataString('language') ?? $request->getLanguage()
+            $request->getDataString('language') ?? $request->header->l11n->language
         );
         $tagL11n->content = $request->getDataString('title') ?? '';
 
@@ -276,7 +276,7 @@ final class ApiController extends Controller
         /** @var \Modules\Tag\Models\Tag[] $tags */
         $tags = TagMapper::getAll()
             ->with('title')
-            ->where('title/language', $request->getLanguage())
+            ->where('title/language', $request->header->l11n->language)
             ->where('title/content', '%' . ($request->getDataString('search') ?? '') . '%', 'LIKE')
             ->execute();
 

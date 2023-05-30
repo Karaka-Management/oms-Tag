@@ -49,7 +49,7 @@ final class BackendController extends Controller
         $view = new View($this->app->l11nManager, $request, $response);
 
         $view->setTemplate('/Modules/Tag/Theme/Backend/tag-create');
-        $view->addData('nav', $this->app->moduleManager->get('Navigation')->createNavigationMid(1007501001, $request, $response));
+        $view->data['nav'] = $this->app->moduleManager->get('Navigation')->createNavigationMid(1007501001, $request, $response);
 
         return $view;
     }
@@ -71,35 +71,29 @@ final class BackendController extends Controller
         $view = new View($this->app->l11nManager, $request, $response);
 
         $view->setTemplate('/Modules/Tag/Theme/Backend/tag-list');
-        $view->addData('nav', $this->app->moduleManager->get('Navigation')->createNavigationMid(1007501001, $request, $response));
+        $view->data['nav'] = $this->app->moduleManager->get('Navigation')->createNavigationMid(1007501001, $request, $response);
 
         if ($request->getData('ptype') === 'p') {
-            $view->setData('tags',
-                TagMapper::getAll()
+            $view->data['tags'] = TagMapper::getAll()
                     ->with('title')
                     ->where('id', $request->getDataInt('id') ?? 0, '<')
-                    ->where('title/language', $request->getLanguage())
+                    ->where('title/language', $request->header->l11n->language)
                     ->limit(25)
-                    ->execute()
-            );
+                    ->execute();
         } elseif ($request->getData('ptype') === 'n') {
-            $view->setData('tags',
-                TagMapper::getAll()
+            $view->data['tags'] = TagMapper::getAll()
                     ->with('title')
                     ->where('id', $request->getDataInt('id') ?? 0, '>')
-                    ->where('title/language', $request->getLanguage())
+                    ->where('title/language', $request->header->l11n->language)
                     ->limit(25)
-                    ->execute()
-            );
+                    ->execute();
         } else {
-            $view->setData('tags',
-                TagMapper::getAll()
+            $view->data['tags'] = TagMapper::getAll()
                     ->with('title')
                     ->where('id', 0, '>')
-                    ->where('title/language', $request->getLanguage())
+                    ->where('title/language', $request->header->l11n->language)
                     ->limit(25)
-                    ->execute()
-            );
+                    ->execute();
         }
 
         return $view;
@@ -125,19 +119,19 @@ final class BackendController extends Controller
         $tag = TagMapper::get()
             ->with('title')
             ->where('id', (int) $request->getData('id'))
-            ->where('title/language', $response->getLanguage())
+            ->where('title/language', $response->header->l11n->language)
             ->execute();
 
         $view->setTemplate('/Modules/Tag/Theme/Backend/tag-single');
-        $view->addData('nav', $this->app->moduleManager->get('Navigation')->createNavigationMid(1007501001, $request, $response));
-        $view->addData('tag', $tag);
+        $view->data['nav'] = $this->app->moduleManager->get('Navigation')->createNavigationMid(1007501001, $request, $response);
+        $view->data['tag'] = $tag;
 
         /** @var \phpOMS\Localization\BaseStringL11n[] $l11n */
         $l11n = TagL11nMapper::getAll()
             ->where('ref', $tag->id)
             ->execute();
 
-        $view->addData('l11n', $l11n);
+        $view->data['l11n'] = $l11n;
 
         return $view;
     }
