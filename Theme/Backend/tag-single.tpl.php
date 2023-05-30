@@ -16,11 +16,11 @@ use phpOMS\Localization\ISO639Enum;
 use phpOMS\Uri\UriFactory;
 
 /** @var \Modules\Tag\Models\Tag */
-$tag  = $this->getData('tag');
-$l11n = $this->getData('l11n') ?? [];
+$tag  = $this->data['tag'];
+$l11n = $this->data['l11n'] ?? [];
 
 /** @var \phpOMS\Views\View $this */
-echo $this->getData('nav')->render(); ?>
+echo $this->data['nav']->render(); ?>
 <div class="row">
     <div class="col-xs-12 col-md-6">
         <div class="portlet">
