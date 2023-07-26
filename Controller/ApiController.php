@@ -19,10 +19,8 @@ use Modules\Tag\Models\TagL11nMapper;
 use Modules\Tag\Models\TagMapper;
 use phpOMS\Localization\BaseStringL11n;
 use phpOMS\Message\Http\RequestStatusCode;
-use phpOMS\Message\NotificationLevel;
 use phpOMS\Message\RequestAbstract;
 use phpOMS\Message\ResponseAbstract;
-use phpOMS\Model\Message\FormValidation;
 use phpOMS\System\MimeType;
 
 /**
@@ -75,10 +73,10 @@ final class ApiController extends Controller
     {
         /** @var Tag $old */
         $old = TagMapper::get()->where('id', (int) $request->getData('id'))->execute();
-        $old = clone $old;
-        $new = $this->updateTagFromRequest($request);
+        $new = $this->updateTagFromRequest($request, clone $old);
+
         $this->updateModel($request->header->account, $old, $new, TagMapper::class, 'tag', $request->getOrigin());
-        $this->fillJsonResponse($request, $response, NotificationLevel::OK, 'Tag', 'Tag successfully updated', $new);
+        $this->createStandardUpdateResponse($request, $response, $new);
     }
 
     /**
@@ -90,14 +88,12 @@ final class ApiController extends Controller
      *
      * @since 1.0.0
      */
-    private function updateTagFromRequest(RequestAbstract $request) : Tag
+    private function updateTagFromRequest(RequestAbstract $request, Tag $new) : Tag
     {
-        /** @var Tag $tag */
-        $tag = TagMapper::get()->where('id', (int) $request->getData('id'))->execute();
-        $tag->setL11n($request->getDataString('title') ?? $tag->getL11n());
-        $tag->color = \str_pad($request->getDataString('color') ?? $tag->color, 9, 'ff', \STR_PAD_RIGHT);
+        $new->setL11n($request->getDataString('title') ?? $new->getL11n());
+        $new->color = \str_pad($request->getDataString('color') ?? $new->color, 9, 'ff', \STR_PAD_RIGHT);
 
-        return $tag;
+        return $new;
     }
 
     /**
@@ -116,17 +112,15 @@ final class ApiController extends Controller
     public function apiTagCreate(RequestAbstract $request, ResponseAbstract $response, mixed $data = null) : void
     {
         if (!empty($val = $this->validateTagCreate($request))) {
-            $response->data['tag_create'] = new FormValidation($val);
-            $response->header->status     = RequestStatusCode::R_400;
+            $response->header->status = RequestStatusCode::R_400;
+            $this->createInvalidCreateResponse($request, $response, $val);
 
             return;
         }
 
         $tag = $this->createTagFromRequest($request);
-        $tag->setL11n($request->getDataString('title') ?? '', $request->getDataString('language') ?? $request->header->l11n->language);
         $this->createModel($request->header->account, $tag, TagMapper::class, 'tag', $request->getOrigin());
-
-        $this->fillJsonResponse($request, $response, NotificationLevel::OK, 'Tag', 'Tag successfully created', $tag);
+        $this->createStandardCreateResponse($request, $response, $tag);
     }
 
     /**
@@ -166,16 +160,15 @@ final class ApiController extends Controller
     public function apiTagL11nCreate(RequestAbstract $request, ResponseAbstract $response, mixed $data = null) : void
     {
         if (!empty($val = $this->validateTagL11nCreate($request))) {
-            $response->data['tag_l11n_create'] = new FormValidation($val);
-            $response->header->status          = RequestStatusCode::R_400;
+            $response->header->status = RequestStatusCode::R_400;
+            $this->createInvalidCreateResponse($request, $response, $val);
 
             return;
         }
 
         $l11nTag = $this->createTagL11nFromRequest($request);
         $this->createModel($request->header->account, $l11nTag, TagL11nMapper::class, 'tag_l11n', $request->getOrigin());
-
-        $this->fillJsonResponse($request, $response, NotificationLevel::OK, 'Localization', 'Localization successfully created', $l11nTag);
+        $this->createStandardCreateResponse($request, $response, $l11nTag);
     }
 
     /**
@@ -192,6 +185,11 @@ final class ApiController extends Controller
         $tag        = new Tag();
         $tag->color = \str_pad($request->getDataString('color') ?? '#000000ff', 9, 'f');
         $tag->icon  = $request->getDataString('icon') ?? '';
+
+        $tag->setL11n(
+            $request->getDataString('title') ?? '',
+            $request->getDataString('language') ?? $request->header->l11n->language
+        );
 
         return $tag;
     }
@@ -234,7 +232,7 @@ final class ApiController extends Controller
     {
         /** @var Tag $tag */
         $tag = TagMapper::get()->where('id', (int) $request->getData('id'))->execute();
-        $this->fillJsonResponse($request, $response, NotificationLevel::OK, 'Tag', 'Tag successfully returned', $tag);
+        $this->createStandardReturnResponse($request, $response, $tag);
     }
 
     /**
@@ -255,7 +253,7 @@ final class ApiController extends Controller
         /** @var Tag $tag */
         $tag = TagMapper::get()->where('id', (int) $request->getData('id'))->execute();
         $this->deleteModel($request->header->account, $tag, TagMapper::class, 'tag', $request->getOrigin());
-        $this->fillJsonResponse($request, $response, NotificationLevel::OK, 'Tag', 'Tag successfully deleted', $tag);
+        $this->createStandardDeleteResponse($request, $response, $tag);
     }
 
     /**
