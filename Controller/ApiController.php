@@ -281,4 +281,126 @@ final class ApiController extends Controller
         $response->header->set('Content-Type', MimeType::M_JSON, true);
         $response->set($request->uri->__toString(), \array_values($tags));
     }
+
+    /**
+     * Api method to update TagL11n
+     *
+     * @param RequestAbstract  $request  Request
+     * @param ResponseAbstract $response Response
+     * @param mixed            $data     Generic data
+     *
+     * @return void
+     *
+     * @api
+     *
+     * @since 1.0.0
+     */
+    public function apiTagL11nUpdate(RequestAbstract $request, ResponseAbstract $response, mixed $data = null) : void
+    {
+        if (!empty($val = $this->validateTagL11nUpdate($request))) {
+            $response->header->status = RequestStatusCode::R_400;
+            $this->createInvalidUpdateResponse($request, $response, $val);
+
+            return;
+        }
+
+        /** @var BaseStringL11n $old */
+        $old = TagL11nMapper::get()->where('id', (int) $request->getData('id'))->execute();
+        $new = $this->updateTagL11nFromRequest($request, clone $old);
+
+        $this->updateModel($request->header->account, $old, $new, TagL11nMapper::class, 'tag_l11n', $request->getOrigin());
+        $this->createStandardUpdateResponse($request, $response, $new);
+    }
+
+    /**
+     * Method to update TagL11n from request.
+     *
+     * @param RequestAbstract  $request Request
+     * @param BaseStringL11n     $new     Model to modify
+     *
+     * @return BaseStringL11n
+     *
+     * @todo: implement
+     *
+     * @since 1.0.0
+     */
+    public function updateTagL11nFromRequest(RequestAbstract $request, BaseStringL11n $new) : BaseStringL11n
+    {
+        $new->setLanguage(
+            $request->getDataString('language') ?? $new->language
+        );
+        $new->content = $request->getDataString('title') ?? $new->content;
+
+        return $new;
+    }
+
+    /**
+     * Validate TagL11n update request
+     *
+     * @param RequestAbstract $request Request
+     *
+     * @return array<string, bool>
+     *
+     * @todo: implement
+     *
+     * @since 1.0.0
+     */
+    private function validateTagL11nUpdate(RequestAbstract $request) : array
+    {
+        $val = [];
+        if (($val['id'] = !$request->hasData('id'))) {
+            return $val;
+        }
+
+        return [];
+    }
+
+    /**
+     * Api method to delete TagL11n
+     *
+     * @param RequestAbstract  $request  Request
+     * @param ResponseAbstract $response Response
+     * @param mixed            $data     Generic data
+     *
+     * @return void
+     *
+     * @api
+     *
+     * @since 1.0.0
+     */
+    public function apiTagL11nDelete(RequestAbstract $request, ResponseAbstract $response, mixed $data = null) : void
+    {
+        if (!empty($val = $this->validateTagL11nDelete($request))) {
+            $response->header->status = RequestStatusCode::R_400;
+            $this->createInvalidDeleteResponse($request, $response, $val);
+
+            return;
+        }
+
+        /** @var \Modules\Tag\Models\TagL11n $tagL11n */
+        $tagL11n = TagL11nMapper::get()->where('id', (int) $request->getData('id'))->execute();
+        $this->deleteModel($request->header->account, $tagL11n, TagL11nMapper::class, 'tag_l11n', $request->getOrigin());
+        $this->createStandardDeleteResponse($request, $response, $tagL11n);
+    }
+
+    /**
+     * Validate TagL11n delete request
+     *
+     * @param RequestAbstract $request Request
+     *
+     * @return array<string, bool>
+     *
+     * @todo: implement
+     *
+     * @since 1.0.0
+     */
+    private function validateTagL11nDelete(RequestAbstract $request) : array
+    {
+        $val = [];
+        if (($val['id'] = !$request->hasData('id'))) {
+            return $val;
+        }
+
+        return [];
+    }
 }
