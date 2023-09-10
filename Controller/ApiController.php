@@ -377,7 +377,7 @@ final class ApiController extends Controller
             return;
         }
 
-        /** @var \Modules\Tag\Models\TagL11n $tagL11n */
+        /** @var BaseStringL11n $tagL11n */
         $tagL11n = TagL11nMapper::get()->where('id', (int) $request->getData('id'))->execute();
         $this->deleteModel($request->header->account, $tagL11n, TagL11nMapper::class, 'tag_l11n', $request->getOrigin());
         $this->createStandardDeleteResponse($request, $response, $tagL11n);
