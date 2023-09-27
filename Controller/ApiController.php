@@ -61,7 +61,7 @@ final class ApiController extends Controller
      *
      * @param RequestAbstract  $request  Request
      * @param ResponseAbstract $response Response
-     * @param mixed            $data     Generic data
+     * @param array            $data     Generic data
      *
      * @return void
      *
@@ -69,7 +69,7 @@ final class ApiController extends Controller
      *
      * @since 1.0.0
      */
-    public function apiTagUpdate(RequestAbstract $request, ResponseAbstract $response, mixed $data = null) : void
+    public function apiTagUpdate(RequestAbstract $request, ResponseAbstract $response, array $data = []) : void
     {
         /** @var Tag $old */
         $old = TagMapper::get()->where('id', (int) $request->getData('id'))->execute();
@@ -101,7 +101,7 @@ final class ApiController extends Controller
      *
      * @param RequestAbstract  $request  Request
      * @param ResponseAbstract $response Response
-     * @param mixed            $data     Generic data
+     * @param array            $data     Generic data
      *
      * @return void
      *
@@ -109,7 +109,7 @@ final class ApiController extends Controller
      *
      * @since 1.0.0
      */
-    public function apiTagCreate(RequestAbstract $request, ResponseAbstract $response, mixed $data = null) : void
+    public function apiTagCreate(RequestAbstract $request, ResponseAbstract $response, array $data = []) : void
     {
         if (!empty($val = $this->validateTagCreate($request))) {
             $response->header->status = RequestStatusCode::R_400;
@@ -149,7 +149,7 @@ final class ApiController extends Controller
      *
      * @param RequestAbstract  $request  Request
      * @param ResponseAbstract $response Response
-     * @param mixed            $data     Generic data
+     * @param array            $data     Generic data
      *
      * @return void
      *
@@ -157,7 +157,7 @@ final class ApiController extends Controller
      *
      * @since 1.0.0
      */
-    public function apiTagL11nCreate(RequestAbstract $request, ResponseAbstract $response, mixed $data = null) : void
+    public function apiTagL11nCreate(RequestAbstract $request, ResponseAbstract $response, array $data = []) : void
     {
         if (!empty($val = $this->validateTagL11nCreate($request))) {
             $response->header->status = RequestStatusCode::R_400;
@@ -220,7 +220,7 @@ final class ApiController extends Controller
      *
      * @param RequestAbstract  $request  Request
      * @param ResponseAbstract $response Response
-     * @param mixed            $data     Generic data
+     * @param array            $data     Generic data
      *
      * @return void
      *
@@ -228,7 +228,7 @@ final class ApiController extends Controller
      *
      * @since 1.0.0
      */
-    public function apiTagGet(RequestAbstract $request, ResponseAbstract $response, mixed $data = null) : void
+    public function apiTagGet(RequestAbstract $request, ResponseAbstract $response, array $data = []) : void
     {
         /** @var Tag $tag */
         $tag = TagMapper::get()->where('id', (int) $request->getData('id'))->execute();
@@ -240,7 +240,7 @@ final class ApiController extends Controller
      *
      * @param RequestAbstract  $request  Request
      * @param ResponseAbstract $response Response
-     * @param mixed            $data     Generic data
+     * @param array            $data     Generic data
      *
      * @return void
      *
@@ -248,7 +248,7 @@ final class ApiController extends Controller
      *
      * @since 1.0.0
      */
-    public function apiTagDelete(RequestAbstract $request, ResponseAbstract $response, mixed $data = null) : void
+    public function apiTagDelete(RequestAbstract $request, ResponseAbstract $response, array $data = []) : void
     {
         /** @var Tag $tag */
         $tag = TagMapper::get()->where('id', (int) $request->getData('id'))->execute();
@@ -261,7 +261,7 @@ final class ApiController extends Controller
      *
      * @param RequestAbstract  $request  Request
      * @param ResponseAbstract $response Response
-     * @param mixed            $data     Generic data
+     * @param array            $data     Generic data
      *
      * @return void
      *
@@ -269,7 +269,7 @@ final class ApiController extends Controller
      *
      * @since 1.0.0
      */
-    public function apiTagFind(RequestAbstract $request, ResponseAbstract $response, mixed $data = null) : void
+    public function apiTagFind(RequestAbstract $request, ResponseAbstract $response, array $data = []) : void
     {
         /** @var \Modules\Tag\Models\Tag[] $tags */
         $tags = TagMapper::getAll()
@@ -287,7 +287,7 @@ final class ApiController extends Controller
      *
      * @param RequestAbstract  $request  Request
      * @param ResponseAbstract $response Response
-     * @param mixed            $data     Generic data
+     * @param array            $data     Generic data
      *
      * @return void
      *
@@ -295,7 +295,7 @@ final class ApiController extends Controller
      *
      * @since 1.0.0
      */
-    public function apiTagL11nUpdate(RequestAbstract $request, ResponseAbstract $response, mixed $data = null) : void
+    public function apiTagL11nUpdate(RequestAbstract $request, ResponseAbstract $response, array $data = []) : void
     {
         if (!empty($val = $this->validateTagL11nUpdate($request))) {
             $response->header->status = RequestStatusCode::R_400;
@@ -360,7 +360,7 @@ final class ApiController extends Controller
      *
      * @param RequestAbstract  $request  Request
      * @param ResponseAbstract $response Response
-     * @param mixed            $data     Generic data
+     * @param array            $data     Generic data
      *
      * @return void
      *
@@ -368,7 +368,7 @@ final class ApiController extends Controller
      *
      * @since 1.0.0
      */
-    public function apiTagL11nDelete(RequestAbstract $request, ResponseAbstract $response, mixed $data = null) : void
+    public function apiTagL11nDelete(RequestAbstract $request, ResponseAbstract $response, array $data = []) : void
     {
         if (!empty($val = $this->validateTagL11nDelete($request))) {
             $response->header->status = RequestStatusCode::R_400;
