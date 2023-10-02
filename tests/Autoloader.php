@@ -36,7 +36,6 @@ final class Autoloader
         __DIR__ . '/../',
         __DIR__ . '/../MainRepository/',
         __DIR__ . '/../../',
-        __DIR__ . '/../../Karaka/',
     ];
 
     /**
@@ -80,7 +79,7 @@ final class Autoloader
         $class  = \strtr($class, '_\\', '//');
 
         if (\stripos($class, 'Web/Backend') !== false || \stripos($class, 'Web/Api') !== false) {
-            $class = \is_dir(__DIR__ . '/Web') ? $class : \str_replace('Web/', 'Karaka/Web/', $class);
+            $class = \is_dir(__DIR__ . '/Web') ? $class : \str_replace('Web/', 'MainRepository/Web/', $class);
         }
 
         $class2 = $class;
@@ -100,10 +99,12 @@ final class Autoloader
         foreach (self::$paths as $path) {
             if (($file = \realpath($path . $class2 . '.php')) !== false && \stripos($file, $class3) !== false) {
                 include_once $file;
+                echo $file . "\n";
 
                 return;
             } elseif (\is_file($file = $path . $class . '.php')) {
                 include_once $file;
+                echo $file . "\n";
 
                 return;
             }
