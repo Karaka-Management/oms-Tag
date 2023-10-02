@@ -99,12 +99,10 @@ final class Autoloader
         foreach (self::$paths as $path) {
             if (($file = \realpath($path . $class2 . '.php')) !== false && \stripos($file, $class3) !== false) {
                 include_once $file;
-                echo $file . "\n";
 
                 return;
             } elseif (\is_file($file = $path . $class . '.php')) {
                 include_once $file;
-                echo $file . "\n";
 
                 return;
             }
