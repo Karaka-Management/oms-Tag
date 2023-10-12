@@ -17,8 +17,8 @@ return ['Tag' => [
     'Create'   => 'Erstellen',
     'Icon'     => 'Symbol',
     'Language' => 'Sprache',
-    'List'     => 'Aufführen',
-    'Tag'      => 'Schild',
+    'List'     => 'Liste',
+    'Tag'      => 'Stichwort',
     'Tags'     => 'Stichworte',
     'Title'    => 'Titel',
 ]];
