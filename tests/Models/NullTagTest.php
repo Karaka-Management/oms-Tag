@@ -39,4 +39,14 @@ final class NullTagTest extends \PHPUnit\Framework\TestCase
         $null = new NullTag(2);
         self::assertEquals(2, $null->id);
     }
+
+    /**
+     * @covers Modules\Tag\Models\NullTag
+     * @group module
+     */
+    public function testJsonSerialize() : void
+    {
+        $null = new NullTag(2);
+        self::assertEquals(['id' => 2], $null);
+    }
 }
