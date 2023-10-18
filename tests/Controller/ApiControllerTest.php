@@ -216,4 +216,14 @@ final class ApiControllerTest extends \PHPUnit\Framework\TestCase
         self::assertEquals('ApiTagEN', $response->getData('')[0]->getL11n());
         self::assertEquals(self::$tagId, $response->getData('')[0]->id);
     }
+
+    public function testInvalidapiTagL11nDelete() : void
+    {
+        $response = new HttpResponse();
+        $request  = new HttpRequest(new HttpUri(''));
+
+        $request->header->account = 1;
+        $this->module->apiTagL11nDelete($request, $response);
+        self::assertEquals(RequestStatusCode::R_400, $response->header->status);
+    }
 }
