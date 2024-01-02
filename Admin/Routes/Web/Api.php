@@ -58,4 +58,24 @@ return [
             ],
         ],
     ],
+    '^.*/tag/l11n$' => [
+        [
+            'dest'       => '\Modules\Tag\Controller\ApiController:apiTagL11nCreate',
+            'verb'       => RouteVerb::PUT,
+            'permission' => [
+                'module' => ApiController::NAME,
+                'type'   => PermissionType::READ,
+                'state'  => PermissionCategory::TAG,
+            ],
+        ],
+        [
+            'dest'       => '\Modules\Tag\Controller\ApiController:apiTagL11nUpdate',
+            'verb'       => RouteVerb::SET,
+            'permission' => [
+                'module' => ApiController::NAME,
+                'type'   => PermissionType::READ,
+                'state'  => PermissionCategory::TAG,
+            ],
+        ],
+    ],
 ];

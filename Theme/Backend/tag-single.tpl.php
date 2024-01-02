@@ -4,7 +4,7 @@
  *
  * PHP Version 8.1
  *
- * @package   Modules\Editor
+ * @package   Modules\Tag
  * @copyright Dennis Eichhorn
  * @license   OMS License 2.0
  * @version   1.0.0
@@ -12,29 +12,31 @@
  */
 declare(strict_types=1);
 
-use phpOMS\Localization\ISO639Enum;
 use phpOMS\Uri\UriFactory;
 
 /** @var \Modules\Tag\Models\Tag */
 $tag  = $this->data['tag'];
-$l11n = $this->data['l11n'] ?? [];
 
 /** @var \phpOMS\Views\View $this */
 echo $this->data['nav']->render(); ?>
 <div class="row">
     <div class="col-xs-12 col-md-6">
         <div class="portlet">
-            <form id="fTagUpdate" method="post" action="<?= UriFactory::build('{/api}tag'); ?>">
+            <form id="tagForm" method="POST" action="<?= UriFactory::build('{/api}tag'); ?>"
+                data-ui-container="#tagTable tbody"
+                data-add-form="tagForm"
+                data-add-tpl="#tagTable tbody .oms-add-tpl-tag">
                 <div class="portlet-head"><?= $this->getHtml('Tag'); ?></div>
                 <div class="portlet-body">
-                    <table class="layout wf-100" style="table-layout: fixed">
-                        <tr><td><label for="iTitle"><?= $this->getHtml('Title'); ?></label>
-                        <tr><td><input type="text" name="title" id="iTitle" placeholder="&#xf040; oms" value="<?= $this->printHtml($tag->getL11n()); ?>" required>
-                        <tr><td><label for="iColor"><?= $this->getHtml('Color'); ?></label>
-                        <tr><td><input type="color" name="color" id="iColor" value="<?= $this->printHtml(\substr($tag->color, 0, 7)); ?>" required>
-                        <tr><td><label for="iIcon"><?= $this->getHtml('Icon'); ?></label>
-                        <tr><td><input type="text" name="icon" id="iIcon" placeholder="&#xf040; oms" value="<?= $this->printHtml($tag->icon); ?>">
-                    </table>
+                    <div class="form-group">
+                        <label for="iColor"><?= $this->getHtml('Color'); ?></label>
+                        <input type="color" name="color" id="iColor" value="<?= $this->printHtml(\substr($tag->color, 0, 7)); ?>" required>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="iIcon"><?= $this->getHtml('Icon'); ?></label>
+                        <input type="text" name="icon" id="iIcon" placeholder="" value="<?= $this->printHtml($tag->icon); ?>">
+                    </div>
                 </div>
 
                 <div class="portlet-foot">
@@ -44,29 +46,13 @@ echo $this->data['nav']->render(); ?>
             </form>
         </div>
     </div>
+</div>
 
-    <div class="col-xs-12 col-md-6">
-        <div class="portlet">
-            <div class="portlet-head"><?= $this->getHtml('Language', '0', '0'); ?><i class="g-icon download btn end-xs">download</i></div>
-            <table class="default">
-                <thead>
-                    <tr>
-                        <td>
-                        <td>
-                        <td><?= $this->getHtml('Language', '0', '0'); ?>
-                        <td class="wf-100"><?= $this->getHtml('Title'); ?>
-                <tbody>
-                    <?php $c = 0; foreach ($l11n as $key => $value) : ++$c; ?>
-                    <tr>
-                        <td><a href="#"><i class="g-icon">close</i></a>
-                        <td><a href="#"><i class="g-icon">settings</i></a>
-                        <td><?= ISO639Enum::getByName('_' . \strtoupper($value->getLanguage())); ?>
-                        <td><?= $value->content; ?>
-                    <?php endforeach; ?>
-                    <?php if ($c === 0) : ?>
-                    <tr><td colspan="3" class="empty"><?= $this->getHtml('Empty', '0', '0'); ?>
-                    <?php endif; ?>
-            </table>
-        </div>
-    </div>
+<div class="row">
+    <?= $this->data['l11nView']->render(
+        $this->data['l11nValues'],
+        [],
+        '{/api}tag/l11n'
+    );
+    ?>
 </div>

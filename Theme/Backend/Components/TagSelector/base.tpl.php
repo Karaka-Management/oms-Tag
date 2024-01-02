@@ -14,12 +14,12 @@
             ]' formaction=""><i class="g-icon">book</i></button>
             <div class="advancedInput wf-100" id="<?= $this->id; ?>">
                 <input autocomplete="off" class="input" type="text" id="i<?= $this->id; ?>"
-                    placeholder="&#xf007; Guest"
+                    placeholder="Guest"
                     data-emptyAfter="true"
                     data-autocomplete="off"
                     data-src="api/tag/find?search={!#i<?= $this->id; ?>}">
                 <div id="<?= $this->id; ?>-popup" class="popup" data-active="true">
-                    <table class="default">
+                    <table class="default sticky">
                         <thead>
                             <tr>
                                 <td>ID<i class="sort-asc g-icon">expand_less</i><i class="sort-desc g-icon">expand_more</i>

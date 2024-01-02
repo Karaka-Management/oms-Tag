@@ -33,7 +33,7 @@ use phpOMS\Views\View;
 final class BackendController extends Controller
 {
     /**
-     * Routing end-point for application behaviour.
+     * Routing end-point for application behavior.
      *
      * @param RequestAbstract  $request  Request
      * @param ResponseAbstract $response Response
@@ -55,7 +55,7 @@ final class BackendController extends Controller
     }
 
     /**
-     * Routing end-point for application behaviour.
+     * Routing end-point for application behavior.
      *
      * @param RequestAbstract  $request  Request
      * @param ResponseAbstract $response Response
@@ -73,34 +73,27 @@ final class BackendController extends Controller
         $view->setTemplate('/Modules/Tag/Theme/Backend/tag-list');
         $view->data['nav'] = $this->app->moduleManager->get('Navigation')->createNavigationMid(1007501001, $request, $response);
 
+        $mapper = TagMapper::getAll()
+            ->with('title')
+            ->where('title/language', $request->header->l11n->language)
+            ->limit(25);
+
         if ($request->getData('ptype') === 'p') {
-            $view->data['tags'] = TagMapper::getAll()
-                    ->with('title')
-                    ->where('id', $request->getDataInt('id') ?? 0, '<')
-                    ->where('title/language', $request->header->l11n->language)
-                    ->limit(25)
-                    ->execute();
+            $view->data['tags'] = $mapper->where('id', $request->getDataInt('id') ?? 0, '<')
+                ->execute();
         } elseif ($request->getData('ptype') === 'n') {
-            $view->data['tags'] = TagMapper::getAll()
-                    ->with('title')
-                    ->where('id', $request->getDataInt('id') ?? 0, '>')
-                    ->where('title/language', $request->header->l11n->language)
-                    ->limit(25)
-                    ->execute();
+            $view->data['tags'] = $mapper->where('id', $request->getDataInt('id') ?? 0, '>')
+                ->execute();
         } else {
-            $view->data['tags'] = TagMapper::getAll()
-                    ->with('title')
-                    ->where('id', 0, '>')
-                    ->where('title/language', $request->header->l11n->language)
-                    ->limit(25)
-                    ->execute();
+            $view->data['tags'] = $mapper->where('id', 0, '>')
+                ->execute();
         }
 
         return $view;
     }
 
     /**
-     * Routing end-point for application behaviour.
+     * Routing end-point for application behavior.
      *
      * @param RequestAbstract  $request  Request
      * @param ResponseAbstract $response Response
@@ -126,12 +119,14 @@ final class BackendController extends Controller
         $view->data['nav'] = $this->app->moduleManager->get('Navigation')->createNavigationMid(1007501001, $request, $response);
         $view->data['tag'] = $tag;
 
-        /** @var \phpOMS\Localization\BaseStringL11n[] $l11n */
-        $l11n = TagL11nMapper::getAll()
+        $view->data['l11nView'] = new \Web\Backend\Views\L11nView($this->app->l11nManager, $request, $response);
+
+        /** @var \phpOMS\Localization\BaseStringL11n[] $l11nValues */
+        $l11nValues = TagL11nMapper::getAll()
             ->where('ref', $tag->id)
             ->execute();
 
-        $view->data['l11n'] = $l11n;
+        $view->data['l11nValues'] = $l11nValues;
 
         return $view;
     }
