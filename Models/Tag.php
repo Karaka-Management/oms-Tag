@@ -77,32 +77,6 @@ class Tag implements \JsonSerializable
     public int $type = TagType::SINGLE;
 
     /**
-     * Get type.
-     *
-     * @return int
-     *
-     * @since 1.0.0
-     */
-    public function getType() : int
-    {
-        return $this->type;
-    }
-
-    /**
-     * Set type.
-     *
-     * @param int $type Tag type
-     *
-     * @return void
-     *
-     * @since 1.0.0
-     */
-    public function setType(int $type = TagType::SINGLE) : void
-    {
-        $this->type = $type;
-    }
-
-    /**
      * @return string
      *
      * @since 1.0.0
@@ -129,9 +103,9 @@ class Tag implements \JsonSerializable
         } elseif (isset($this->title) && $this->title instanceof BaseStringL11n) {
             $this->title->content = $title;
         } else {
-            $this->title          = new BaseStringL11n();
-            $this->title->content = $title;
-            $this->title->setLanguage($lang);
+            $this->title           = new BaseStringL11n();
+            $this->title->content  = $title;
+            $this->title->language = $lang;
         }
     }
 

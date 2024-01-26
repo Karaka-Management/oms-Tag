@@ -29,7 +29,6 @@ use phpOMS\Message\Http\HttpResponse;
 use phpOMS\Message\Http\RequestStatusCode;
 use phpOMS\Module\ModuleManager;
 use phpOMS\Router\WebRouter;
-use phpOMS\Uri\HttpUri;
 use phpOMS\Utils\TestUtils;
 
 /**
@@ -52,14 +51,14 @@ final class ApiControllerTest extends \PHPUnit\Framework\TestCase
             protected string $appName = 'Api';
         };
 
-        $this->app->dbPool          = $GLOBALS['dbpool'];
-        $this->app->unitId          = 1;
-        $this->app->accountManager  = new AccountManager($GLOBALS['session']);
-        $this->app->appSettings     = new CoreSettings();
-        $this->app->moduleManager   = new ModuleManager($this->app, __DIR__ . '/../../../Modules/');
-        $this->app->dispatcher      = new Dispatcher($this->app);
-        $this->app->eventManager    = new EventManager($this->app->dispatcher);
-        $this->app->l11nManager     = new L11nManager();
+        $this->app->dbPool         = $GLOBALS['dbpool'];
+        $this->app->unitId         = 1;
+        $this->app->accountManager = new AccountManager($GLOBALS['session']);
+        $this->app->appSettings    = new CoreSettings();
+        $this->app->moduleManager  = new ModuleManager($this->app, __DIR__ . '/../../../Modules/');
+        $this->app->dispatcher     = new Dispatcher($this->app);
+        $this->app->eventManager   = new EventManager($this->app->dispatcher);
+        $this->app->l11nManager    = new L11nManager();
         $this->app->eventManager->importFromFile(__DIR__ . '/../../../Web/Api/Hooks.php');
 
         $account = new Account();
@@ -100,7 +99,7 @@ final class ApiControllerTest extends \PHPUnit\Framework\TestCase
     public function testApiTagCreate() : void
     {
         $response = new HttpResponse();
-        $request  = new HttpRequest(new HttpUri(''));
+        $request  = new HttpRequest();
 
         $request->header->account = 1;
         $request->setData('color', '#ff0000ff');
@@ -122,7 +121,7 @@ final class ApiControllerTest extends \PHPUnit\Framework\TestCase
     public function testApiTagCreateInvalid() : void
     {
         $response = new HttpResponse();
-        $request  = new HttpRequest(new HttpUri(''));
+        $request  = new HttpRequest();
 
         $this->module->apiTagCreate($request, $response);
 
@@ -136,7 +135,7 @@ final class ApiControllerTest extends \PHPUnit\Framework\TestCase
     public function testApiTagL11nCreate() : void
     {
         $response = new HttpResponse();
-        $request  = new HttpRequest(new HttpUri(''));
+        $request  = new HttpRequest();
 
         $request->header->account = 1;
         $request->setData('tag', self::$tagId);
@@ -156,7 +155,7 @@ final class ApiControllerTest extends \PHPUnit\Framework\TestCase
     public function testApiTagL11nCreateInvalid() : void
     {
         $response = new HttpResponse();
-        $request  = new HttpRequest(new HttpUri(''));
+        $request  = new HttpRequest();
 
         $this->module->apiTagL11nCreate($request, $response);
 
@@ -170,7 +169,7 @@ final class ApiControllerTest extends \PHPUnit\Framework\TestCase
     public function testApiTagGet() : void
     {
         $response = new HttpResponse();
-        $request  = new HttpRequest(new HttpUri(''));
+        $request  = new HttpRequest();
 
         $request->header->account = 1;
         $request->setData('id', self::$tagId);
@@ -187,7 +186,7 @@ final class ApiControllerTest extends \PHPUnit\Framework\TestCase
     public function testApiTagUpdate() : void
     {
         $response = new HttpResponse();
-        $request  = new HttpRequest(new HttpUri(''));
+        $request  = new HttpRequest();
 
         $request->header->account = 1;
         $request->setData('id', self::$tagId);
@@ -206,7 +205,7 @@ final class ApiControllerTest extends \PHPUnit\Framework\TestCase
     public function testApiUnitFind() : void
     {
         $response = new HttpResponse();
-        $request  = new HttpRequest(new HttpUri(''));
+        $request  = new HttpRequest();
 
         $request->header->account = 1;
         $request->setData('search', 'ApiTag');
@@ -220,7 +219,7 @@ final class ApiControllerTest extends \PHPUnit\Framework\TestCase
     public function testInvalidapiTagL11nDelete() : void
     {
         $response = new HttpResponse();
-        $request  = new HttpRequest(new HttpUri(''));
+        $request  = new HttpRequest();
 
         $request->header->account = 1;
         $this->module->apiTagL11nDelete($request, $response);

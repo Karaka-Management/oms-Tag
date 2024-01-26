@@ -47,7 +47,7 @@ return [
             ],
         ],
     ],
-    '^.*/tag/find.*$' => [
+    '^.*/tag/find(\?.*$|$)' => [
         [
             'dest'       => '\Modules\Tag\Controller\ApiController:apiTagFind',
             'verb'       => RouteVerb::GET,

@@ -14,10 +14,13 @@ declare(strict_types=1);
 
 namespace Modules\Tag\Controller;
 
+use Modules\Tag\Models\NullTag;
 use Modules\Tag\Models\Tag;
 use Modules\Tag\Models\TagL11nMapper;
 use Modules\Tag\Models\TagMapper;
 use phpOMS\Localization\BaseStringL11n;
+use phpOMS\Localization\ISO639x1Enum;
+use phpOMS\Message\Http\HttpResponse;
 use phpOMS\Message\Http\RequestStatusCode;
 use phpOMS\Message\RequestAbstract;
 use phpOMS\Message\ResponseAbstract;
@@ -171,6 +174,34 @@ final class ApiController extends Controller
         $this->createStandardCreateResponse($request, $response, $l11nTag);
     }
 
+    public function createTagsFromRequest(RequestAbstract $request) : array
+    {
+        $tagJsonArray = $request->getDataJson('tags');
+        $tags         = [];
+
+        foreach ($tagJsonArray as $tag) {
+            if (isset($tag['id'])) {
+                $tags[] = new NullTag((int) $tag['id']);
+            } else {
+                $request->setData('title', $tag['title'], true);
+                $request->setData('color', $tag['color'], true);
+                $request->setData('icon', $tag['icon'] ?? null, true);
+                $request->setData('language', $tag['language'], true);
+
+                $internalResponse = new HttpResponse();
+                $this->app->moduleManager->get('Tag')->apiTagCreate($request, $internalResponse);
+
+                if (!\is_array($data = $internalResponse->getDataArray($request->uri->__toString()))) {
+                    continue;
+                }
+
+                $tags[] = $data['response'];
+            }
+        }
+
+        return $tags;
+    }
+
     /**
      * Method to create tag from request.
      *
@@ -188,7 +219,7 @@ final class ApiController extends Controller
 
         $tag->setL11n(
             $request->getDataString('title') ?? '',
-            $request->getDataString('language') ?? $request->header->l11n->language
+            ISO639x1Enum::tryFromValue($request->getDataString('language')) ?? $request->header->l11n->language
         );
 
         return $tag;
@@ -205,12 +236,10 @@ final class ApiController extends Controller
      */
     private function createTagL11nFromRequest(RequestAbstract $request) : BaseStringL11n
     {
-        $tagL11n      = new BaseStringL11n();
-        $tagL11n->ref = $request->getDataInt('tag') ?? 0;
-        $tagL11n->setLanguage(
-            $request->getDataString('language') ?? $request->header->l11n->language
-        );
-        $tagL11n->content = $request->getDataString('title') ?? '';
+        $tagL11n           = new BaseStringL11n();
+        $tagL11n->ref      = $request->getDataInt('tag') ?? 0;
+        $tagL11n->language = ISO639x1Enum::tryFromValue($request->getDataString('language')) ?? $request->header->l11n->language;
+        $tagL11n->content  = $request->getDataString('title') ?? '';
 
         return $tagL11n;
     }
@@ -326,10 +355,8 @@ final class ApiController extends Controller
      */
     public function updateTagL11nFromRequest(RequestAbstract $request, BaseStringL11n $new) : BaseStringL11n
     {
-        $new->setLanguage(
-            $request->getDataString('language') ?? $new->language
-        );
-        $new->content = $request->getDataString('title') ?? $new->content;
+        $new->language = ISO639x1Enum::tryFromValue($request->getDataString('language')) ?? $new->language;
+        $new->content  = $request->getDataString('title') ?? $new->content;
 
         return $new;
     }

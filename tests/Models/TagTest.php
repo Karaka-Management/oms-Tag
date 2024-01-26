@@ -42,7 +42,7 @@ final class TagTest extends \PHPUnit\Framework\TestCase
     {
         self::assertEquals(0, $this->tag->id);
         self::assertNull($this->tag->owner);
-        self::assertEquals(TagType::SINGLE, $this->tag->getType());
+        self::assertEquals(TagType::SINGLE, $this->tag->type);
         self::assertEquals('00000000', $this->tag->color);
         self::assertEquals('', $this->tag->getL11n());
     }
@@ -87,22 +87,12 @@ final class TagTest extends \PHPUnit\Framework\TestCase
      * @covers Modules\Tag\Models\Tag
      * @group module
      */
-    public function testTypeInputOutput() : void
-    {
-        $this->tag->setType(TagType::SHARED);
-        self::assertEquals(TagType::SHARED, $this->tag->getType());
-    }
-
-    /**
-     * @covers Modules\Tag\Models\Tag
-     * @group module
-     */
     public function testSerialize() : void
     {
         $this->tag->setL11n($t = new BaseStringL11n('Test'));
-        $this->tag->owner      = new NullAccount(2);
-        $this->tag->color      = 'ffffffff';
-        $this->tag->setType(TagType::SHARED);
+        $this->tag->owner = new NullAccount(2);
+        $this->tag->color = 'ffffffff';
+        $this->tag->type  = TagType::SHARED;
 
         self::assertEquals(
             [

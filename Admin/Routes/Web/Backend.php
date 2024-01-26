@@ -18,7 +18,7 @@ use phpOMS\Account\PermissionType;
 use phpOMS\Router\RouteVerb;
 
 return [
-    '^.*/tag/create.*$' => [
+    '^.*/tag/create(\?.*$|$)' => [
         [
             'dest'       => '\Modules\Tag\Controller\BackendController:viewTagCreate',
             'verb'       => RouteVerb::GET,
@@ -29,7 +29,7 @@ return [
             ],
         ],
     ],
-    '^.*/tag/list.*$' => [
+    '^.*/tag/list(\?.*$|$)' => [
         [
             'dest'       => '\Modules\Tag\Controller\BackendController:viewTagList',
             'verb'       => RouteVerb::GET,
@@ -40,9 +40,9 @@ return [
             ],
         ],
     ],
-    '^.*/tag/single.*$' => [
+    '^.*/tag/view(\?.*$|$)' => [
         [
-            'dest'       => '\Modules\Tag\Controller\BackendController:viewTagSingle',
+            'dest'       => '\Modules\Tag\Controller\BackendController:viewTagView',
             'verb'       => RouteVerb::GET,
             'permission' => [
                 'module' => BackendController::NAME,

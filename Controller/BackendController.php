@@ -104,10 +104,10 @@ final class BackendController extends Controller
      * @since 1.0.0
      * @codeCoverageIgnore
      */
-    public function viewTagSingle(RequestAbstract $request, ResponseAbstract $response, array $data = []) : RenderableInterface
+    public function viewTagView(RequestAbstract $request, ResponseAbstract $response, array $data = []) : RenderableInterface
     {
         $view = new View($this->app->l11nManager, $request, $response);
-        $view->setTemplate('/Modules/Tag/Theme/Backend/tag-single');
+        $view->setTemplate('/Modules/Tag/Theme/Backend/tag-view');
         $view->data['nav'] = $this->app->moduleManager->get('Navigation')->createNavigationMid(1007501001, $request, $response);
 
         /** @var \Modules\Tag\Models\Tag $tag */
@@ -117,7 +117,7 @@ final class BackendController extends Controller
             ->where('title/language', $response->header->l11n->language)
             ->execute();
 
-        $view->data['tag'] = $tag;
+        $view->data['tag']      = $tag;
         $view->data['l11nView'] = new \Web\Backend\Views\L11nView($this->app->l11nManager, $request, $response);
 
         /** @var \phpOMS\Localization\BaseStringL11n[] $l11nValues */
