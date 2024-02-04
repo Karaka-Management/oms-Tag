@@ -417,8 +417,6 @@ final class ApiController extends Controller
      *
      * @return array<string, bool>
      *
-     * @todo Implement API validation function
-     *
      * @since 1.0.0
      */
     private function validateTagL11nDelete(RequestAbstract $request) : array
