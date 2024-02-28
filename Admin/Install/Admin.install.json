@@ -1,9 +1,0 @@
-[
-    {
-        "type": "setting",
-        "name": "1007500001",
-        "content": "#ff000000;#ff00ff00;#ffffffff",
-        "pattern": "/(#[a-fA-F0-9]{8};)*(#[a-fA-F0-9]{8})/",
-        "module": "Tag"
-    }
-]
