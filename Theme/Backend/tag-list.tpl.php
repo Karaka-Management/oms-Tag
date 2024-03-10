@@ -36,7 +36,7 @@ echo $this->data['nav']->render(); ?>
             <?php $count = 0; foreach ($this->data['tags'] as $key => $value) : ++$count;
             $url         = UriFactory::build('{/base}/tag/view?{?}&id=' . $value->id); ?>
                 <tr tabindex="0" data-href="<?= $url; ?>">
-                    <td data-label="<?= $this->getHtml('Title'); ?>"><a href="<?= $url; ?>"><span class="tag" style="background: <?= $this->printHtml(\substr($value->color, 0, 7)); ?>">&nbsp;&nbsp;&nbsp;<?= $value->icon !== null ? '<i class="' . $this->printHtml($value->icon ?? '') . '"></i>' : '&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;'; ?>&nbsp;</span></a>
+                    <td data-label="<?= $this->getHtml('Title'); ?>"><a href="<?= $url; ?>"><span class="tag" style="background: <?= $this->printHtml(\substr($value->color, 0, 7)); ?>">&nbsp;&nbsp;&nbsp;<?= $value->icon !== null ? '<i class="g-icon">' . $this->printHtml($value->icon ?? '') . '</i>' : '&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;'; ?>&nbsp;</span></a>
                     <td data-label="<?= $this->getHtml('Title'); ?>"><a href="<?= $url; ?>"><?= $this->printHtml($value->getL11n()); ?></a>
 
             <?php endforeach; ?>

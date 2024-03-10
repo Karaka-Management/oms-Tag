@@ -22,14 +22,20 @@ echo $this->data['nav']->render(); ?>
             <form id="fUnitCreate" method="put" action="<?= UriFactory::build('{/api}tag'); ?>">
                 <div class="portlet-head"><?= $this->getHtml('Tag'); ?></div>
                 <div class="portlet-body">
-                    <table class="layout wf-100" style="table-layout: fixed">
-                        <tr><td><label for="iTitle"><?= $this->getHtml('Title'); ?></label>
-                        <tr><td><input type="text" name="title" id="iTitle" placeholder="oms" required>
-                        <tr><td><label for="iColor"><?= $this->getHtml('Color'); ?></label>
-                        <tr><td><input type="color" name="color" id="iColor"required>
-                        <tr><td><label for="iIcon"><?= $this->getHtml('Icon'); ?></label>
-                        <tr><td><input type="text" name="icon" id="iIcon" placeholder="oms" value="<?= $this->printHtml($tag->icon); ?>">
-                    </table>
+                    <div class="form-group">
+                        <label for="iTitle"><?= $this->getHtml('Title'); ?></label>
+                       <input type="text" name="title" id="iTitle" placeholder="oms" required>
+                    </div>
+
+                    <div class="form-group">
+                       <label for="iColor"><?= $this->getHtml('Color'); ?></label>
+                       <input type="color" name="color" id="iColor"required>
+                    </div>
+
+                    <div class="form-group">
+                       <label for="iIcon"><?= $this->getHtml('Icon'); ?></label>
+                       <input type="text" name="icon" id="iIcon" placeholder="oms" value="<?= $this->printHtml($tag->icon); ?>">
+                    </div>
                 </div>
                 <div class="portlet-foot">
                     <input id="iSubmit" name="submit" type="submit" value="<?= $this->getHtml('Create', '0', '0'); ?>">
