@@ -174,6 +174,15 @@ final class ApiController extends Controller
         $this->createStandardCreateResponse($request, $response, $l11nTag);
     }
 
+    /**
+     * Create tags from request
+     *
+     * @param RequestAbstract $request Request
+     *
+     * @return Tag[]
+     *
+     * @since 1.0.0
+     */
     public function createTagsFromRequest(RequestAbstract $request) : array
     {
         $tagJsonArray = $request->getDataJson('tags');
@@ -189,7 +198,7 @@ final class ApiController extends Controller
                 $request->setData('language', $tag['language'], true);
 
                 $internalResponse = new HttpResponse();
-                $this->app->moduleManager->get('Tag')->apiTagCreate($request, $internalResponse);
+                $this->apiTagCreate($request, $internalResponse);
 
                 if (!\is_array($data = $internalResponse->getDataArray($request->uri->__toString()))) {
                     continue;
