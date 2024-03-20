@@ -22,6 +22,7 @@ use phpOMS\Localization\BaseStringL11n;
 /**
  * @internal
  */
+#[\PHPUnit\Framework\Attributes\CoversClass(\Modules\Tag\Models\Tag::class)]
 final class TagTest extends \PHPUnit\Framework\TestCase
 {
     private Tag $tag;
@@ -34,10 +35,7 @@ final class TagTest extends \PHPUnit\Framework\TestCase
         $this->tag = new Tag();
     }
 
-    /**
-     * @covers \Modules\Tag\Models\Tag
-     * @group module
-     */
+    #[\PHPUnit\Framework\Attributes\Group('module')]
     public function testDefault() : void
     {
         self::assertEquals(0, $this->tag->id);
@@ -47,10 +45,7 @@ final class TagTest extends \PHPUnit\Framework\TestCase
         self::assertEquals('', $this->tag->getL11n());
     }
 
-    /**
-     * @covers \Modules\Tag\Models\Tag
-     * @group module
-     */
+    #[\PHPUnit\Framework\Attributes\Group('module')]
     public function testTitleInputOutput() : void
     {
         $this->tag->setL11n('Test');
@@ -63,30 +58,21 @@ final class TagTest extends \PHPUnit\Framework\TestCase
         self::assertEquals('Test3', $this->tag->getL11n());
     }
 
-    /**
-     * @covers \Modules\Tag\Models\Tag
-     * @group module
-     */
+    #[\PHPUnit\Framework\Attributes\Group('module')]
     public function testOwnerInputOutput() : void
     {
         $this->tag->owner = new NullAccount(2);
         self::assertEquals(2, $this->tag->owner->id);
     }
 
-    /**
-     * @covers \Modules\Tag\Models\Tag
-     * @group module
-     */
+    #[\PHPUnit\Framework\Attributes\Group('module')]
     public function testColorInputOutput() : void
     {
         $this->tag->color = 'ffffffff';
         self::assertEquals('ffffffff', $this->tag->color);
     }
 
-    /**
-     * @covers \Modules\Tag\Models\Tag
-     * @group module
-     */
+    #[\PHPUnit\Framework\Attributes\Group('module')]
     public function testSerialize() : void
     {
         $this->tag->setL11n($t = new BaseStringL11n('Test'));

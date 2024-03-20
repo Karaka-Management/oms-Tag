@@ -19,31 +19,23 @@ use Modules\Tag\Models\NullTag;
 /**
  * @internal
  */
+#[\PHPUnit\Framework\Attributes\CoversClass(\Modules\Tag\Models\NullTag::class)]
 final class NullTagTest extends \PHPUnit\Framework\TestCase
 {
-    /**
-     * @covers \Modules\Tag\Models\NullTag
-     * @group module
-     */
+    #[\PHPUnit\Framework\Attributes\Group('module')]
     public function testNull() : void
     {
         self::assertInstanceOf('\Modules\Tag\Models\Tag', new NullTag());
     }
 
-    /**
-     * @covers \Modules\Tag\Models\NullTag
-     * @group module
-     */
+    #[\PHPUnit\Framework\Attributes\Group('module')]
     public function testId() : void
     {
         $null = new NullTag(2);
         self::assertEquals(2, $null->id);
     }
 
-    /**
-     * @covers \Modules\Tag\Models\NullTag
-     * @group module
-     */
+    #[\PHPUnit\Framework\Attributes\Group('module')]
     public function testJsonSerialize() : void
     {
         $null = new NullTag(2);

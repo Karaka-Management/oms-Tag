@@ -34,6 +34,7 @@ use phpOMS\Utils\TestUtils;
 /**
  * @internal
  */
+#[\PHPUnit\Framework\Attributes\CoversClass(\Modules\Tag\Controller\ApiController::class)]
 final class ApiControllerTest extends \PHPUnit\Framework\TestCase
 {
     protected $app = null;
@@ -92,10 +93,7 @@ final class ApiControllerTest extends \PHPUnit\Framework\TestCase
      **/
     private static int $tagId = 0;
 
-    /**
-     * @covers \Modules\Tag\Controller\ApiController
-     * @group module
-     */
+    #[\PHPUnit\Framework\Attributes\Group('module')]
     public function testApiTagCreate() : void
     {
         $response = new HttpResponse();
@@ -114,10 +112,7 @@ final class ApiControllerTest extends \PHPUnit\Framework\TestCase
         self::$tagId = $response->getDataArray('')['response']->id;
     }
 
-    /**
-     * @covers \Modules\Tag\Controller\ApiController
-     * @group module
-     */
+    #[\PHPUnit\Framework\Attributes\Group('module')]
     public function testApiTagCreateInvalid() : void
     {
         $response = new HttpResponse();
@@ -128,10 +123,7 @@ final class ApiControllerTest extends \PHPUnit\Framework\TestCase
         self::assertEquals(RequestStatusCode::R_400, $response->header->status);
     }
 
-    /**
-     * @covers \Modules\Tag\Controller\ApiController
-     * @group module
-     */
+    #[\PHPUnit\Framework\Attributes\Group('module')]
     public function testApiTagL11nCreate() : void
     {
         $response = new HttpResponse();
@@ -148,10 +140,7 @@ final class ApiControllerTest extends \PHPUnit\Framework\TestCase
         self::assertGreaterThan(0, $response->getDataArray('')['response']->id);
     }
 
-    /**
-     * @covers \Modules\Tag\Controller\ApiController
-     * @group module
-     */
+    #[\PHPUnit\Framework\Attributes\Group('module')]
     public function testApiTagL11nCreateInvalid() : void
     {
         $response = new HttpResponse();
@@ -162,10 +151,7 @@ final class ApiControllerTest extends \PHPUnit\Framework\TestCase
         self::assertEquals(RequestStatusCode::R_400, $response->header->status);
     }
 
-    /**
-     * @covers \Modules\Tag\Controller\ApiController
-     * @group module
-     */
+    #[\PHPUnit\Framework\Attributes\Group('module')]
     public function testApiTagGet() : void
     {
         $response = new HttpResponse();
@@ -179,10 +165,7 @@ final class ApiControllerTest extends \PHPUnit\Framework\TestCase
         self::assertEquals(self::$tagId, $response->getDataArray('')['response']->id);
     }
 
-    /**
-     * @covers \Modules\Tag\Controller\ApiController
-     * @group module
-     */
+    #[\PHPUnit\Framework\Attributes\Group('module')]
     public function testApiTagUpdate() : void
     {
         $response = new HttpResponse();
@@ -198,10 +181,7 @@ final class ApiControllerTest extends \PHPUnit\Framework\TestCase
         self::assertEquals(self::$tagId, $response->getDataArray('')['response']->id);
     }
 
-    /**
-     * @covers \Modules\Tag\Controller\ApiController
-     * @group module
-     */
+    #[\PHPUnit\Framework\Attributes\Group('module')]
     public function testApiUnitFind() : void
     {
         $response = new HttpResponse();
