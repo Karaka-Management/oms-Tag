@@ -93,7 +93,7 @@ final class ApiControllerTest extends \PHPUnit\Framework\TestCase
     private static int $tagId = 0;
 
     /**
-     * @covers Modules\Tag\Controller\ApiController
+     * @covers \Modules\Tag\Controller\ApiController
      * @group module
      */
     public function testApiTagCreate() : void
@@ -115,7 +115,7 @@ final class ApiControllerTest extends \PHPUnit\Framework\TestCase
     }
 
     /**
-     * @covers Modules\Tag\Controller\ApiController
+     * @covers \Modules\Tag\Controller\ApiController
      * @group module
      */
     public function testApiTagCreateInvalid() : void
@@ -129,7 +129,7 @@ final class ApiControllerTest extends \PHPUnit\Framework\TestCase
     }
 
     /**
-     * @covers Modules\Tag\Controller\ApiController
+     * @covers \Modules\Tag\Controller\ApiController
      * @group module
      */
     public function testApiTagL11nCreate() : void
@@ -149,7 +149,7 @@ final class ApiControllerTest extends \PHPUnit\Framework\TestCase
     }
 
     /**
-     * @covers Modules\Tag\Controller\ApiController
+     * @covers \Modules\Tag\Controller\ApiController
      * @group module
      */
     public function testApiTagL11nCreateInvalid() : void
@@ -163,7 +163,7 @@ final class ApiControllerTest extends \PHPUnit\Framework\TestCase
     }
 
     /**
-     * @covers Modules\Tag\Controller\ApiController
+     * @covers \Modules\Tag\Controller\ApiController
      * @group module
      */
     public function testApiTagGet() : void
@@ -180,7 +180,7 @@ final class ApiControllerTest extends \PHPUnit\Framework\TestCase
     }
 
     /**
-     * @covers Modules\Tag\Controller\ApiController
+     * @covers \Modules\Tag\Controller\ApiController
      * @group module
      */
     public function testApiTagUpdate() : void
@@ -199,7 +199,7 @@ final class ApiControllerTest extends \PHPUnit\Framework\TestCase
     }
 
     /**
-     * @covers Modules\Tag\Controller\ApiController
+     * @covers \Modules\Tag\Controller\ApiController
      * @group module
      */
     public function testApiUnitFind() : void

@@ -22,7 +22,7 @@ use Modules\Tag\Models\NullTag;
 final class NullTagTest extends \PHPUnit\Framework\TestCase
 {
     /**
-     * @covers Modules\Tag\Models\NullTag
+     * @covers \Modules\Tag\Models\NullTag
      * @group module
      */
     public function testNull() : void
@@ -31,7 +31,7 @@ final class NullTagTest extends \PHPUnit\Framework\TestCase
     }
 
     /**
-     * @covers Modules\Tag\Models\NullTag
+     * @covers \Modules\Tag\Models\NullTag
      * @group module
      */
     public function testId() : void
@@ -41,7 +41,7 @@ final class NullTagTest extends \PHPUnit\Framework\TestCase
     }
 
     /**
-     * @covers Modules\Tag\Models\NullTag
+     * @covers \Modules\Tag\Models\NullTag
      * @group module
      */
     public function testJsonSerialize() : void

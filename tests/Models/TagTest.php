@@ -35,7 +35,7 @@ final class TagTest extends \PHPUnit\Framework\TestCase
     }
 
     /**
-     * @covers Modules\Tag\Models\Tag
+     * @covers \Modules\Tag\Models\Tag
      * @group module
      */
     public function testDefault() : void
@@ -48,7 +48,7 @@ final class TagTest extends \PHPUnit\Framework\TestCase
     }
 
     /**
-     * @covers Modules\Tag\Models\Tag
+     * @covers \Modules\Tag\Models\Tag
      * @group module
      */
     public function testTitleInputOutput() : void
@@ -64,7 +64,7 @@ final class TagTest extends \PHPUnit\Framework\TestCase
     }
 
     /**
-     * @covers Modules\Tag\Models\Tag
+     * @covers \Modules\Tag\Models\Tag
      * @group module
      */
     public function testOwnerInputOutput() : void
@@ -74,7 +74,7 @@ final class TagTest extends \PHPUnit\Framework\TestCase
     }
 
     /**
-     * @covers Modules\Tag\Models\Tag
+     * @covers \Modules\Tag\Models\Tag
      * @group module
      */
     public function testColorInputOutput() : void
@@ -84,7 +84,7 @@ final class TagTest extends \PHPUnit\Framework\TestCase
     }
 
     /**
-     * @covers Modules\Tag\Models\Tag
+     * @covers \Modules\Tag\Models\Tag
      * @group module
      */
     public function testSerialize() : void

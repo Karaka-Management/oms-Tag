@@ -25,7 +25,7 @@ use phpOMS\Localization\ISO639x1Enum;
 final class TagMapperTest extends \PHPUnit\Framework\TestCase
 {
     /**
-     * @covers Modules\Tag\Models\TagMapper
+     * @covers \Modules\Tag\Models\TagMapper
      * @group module
      */
     public function testCR() : void
