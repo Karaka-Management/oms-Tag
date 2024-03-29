@@ -14,7 +14,6 @@
             ]' formaction=""><i class="g-icon">book</i></button>
             <div class="advIpt wf-100" id="<?= $this->id; ?>">
                 <input autocomplete="off" class="input" type="text" id="i<?= $this->id; ?>"
-                    placeholder="Guest"
                     data-emptyAfter="true"
                     data-autocomplete="off"
                     data-src="api/tag/find?search={!#i<?= $this->id; ?>}">

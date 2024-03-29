@@ -22,7 +22,7 @@ echo $this->data['nav']->render(); ?>
 <div class="row">
     <div class="col-xs-12 col-md-6">
         <div class="portlet">
-            <form id="tagForm" method="POST" action="<?= UriFactory::build('{/api}tag'); ?>"
+            <form id="tagForm" method="POST" action="<?= UriFactory::build('{/api}tag?csrf={$CSRF}'); ?>"
                 data-ui-container="#tagTable tbody"
                 data-add-form="tagForm"
                 data-add-tpl="#tagTable tbody .oms-add-tpl-tag">
@@ -35,7 +35,7 @@ echo $this->data['nav']->render(); ?>
 
                     <div class="form-group">
                         <label for="iIcon"><?= $this->getHtml('Icon'); ?></label>
-                        <input type="text" name="icon" id="iIcon" placeholder="" value="<?= $this->printHtml($tag->icon); ?>">
+                        <input type="text" name="icon" id="iIcon" value="<?= $this->printHtml($tag->icon); ?>">
                     </div>
                 </div>
 
@@ -52,7 +52,7 @@ echo $this->data['nav']->render(); ?>
     <?= $this->data['l11nView']->render(
         $this->data['l11nValues'],
         [],
-        '{/api}tag/l11n'
+        '{/api}tag/l11n?csrf={$CSRF}'
     );
     ?>
 </div>
