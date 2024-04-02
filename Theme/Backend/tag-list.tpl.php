@@ -18,8 +18,8 @@ use phpOMS\Uri\UriFactory;
  * @var \phpOMS\Views\View        $this
  * @var \Modules\Tag\Models\Tag[] $tags
  */
-$previous = empty($tags) ? '{/base}/tag/list' : '{/base}/tag/list?{?}&id=' . \reset($tags)->id . '&ptype=p';
-$next     = empty($tags) ? '{/base}/tag/list' : '{/base}/tag/list?{?}&id=' . \end($tags)->id . '&ptype=n';
+$previous = empty($tags) ? '{/base}/tag/list' : '{/base}/tag/list?{?}&offset=' . \reset($tags)->id . '&ptype=p';
+$next     = empty($tags) ? '{/base}/tag/list' : '{/base}/tag/list?{?}&offset=' . \end($tags)->id . '&ptype=n';
 
 echo $this->data['nav']->render(); ?>
 <div class="row">

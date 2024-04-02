@@ -12,17 +12,20 @@
  */
 declare(strict_types=1);
 
+use Modules\Tag\Models\NullTag;
 use phpOMS\Uri\UriFactory;
 
 /** @var \Modules\Tag\Models\Tag */
-$tag = $this->data['tag'];
+$tag = $this->data['tag'] ?? new NullTag();
+
+$isNew = $tag->id === 0;
 
 /** @var \phpOMS\Views\View $this */
 echo $this->data['nav']->render(); ?>
 <div class="row">
     <div class="col-xs-12 col-md-6">
         <div class="portlet">
-            <form id="tagForm" method="POST" action="<?= UriFactory::build('{/api}tag?csrf={$CSRF}'); ?>"
+            <form id="tagForm" method="<?= $isNew ? 'PUT' : 'POST'; ?>" action="<?= UriFactory::build('{/api}tag?csrf={$CSRF}'); ?>"
                 data-ui-container="#tagTable tbody"
                 data-add-form="tagForm"
                 data-add-tpl="#tagTable tbody .oms-add-tpl-tag">
@@ -31,6 +34,11 @@ echo $this->data['nav']->render(); ?>
                     <div class="form-group">
                         <label for="iColor"><?= $this->getHtml('Color'); ?></label>
                         <input type="color" name="color" id="iColor" value="<?= $this->printHtml(\substr($tag->color, 0, 7)); ?>" required>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="iTitle"><?= $this->getHtml('Title'); ?></label>
+                        <input type="text" id="iTitle" name="title" value="<?= $this->printHtml($tag->getL11n()); ?>"<?= $isNew ? ' required' : ' disabled'; ?>>
                     </div>
 
                     <div class="form-group">
@@ -48,6 +56,7 @@ echo $this->data['nav']->render(); ?>
     </div>
 </div>
 
+<?php if (!$isNew) : ?>
 <div class="row">
     <?= $this->data['l11nView']->render(
         $this->data['l11nValues'],
@@ -56,3 +65,4 @@ echo $this->data['nav']->render(); ?>
     );
     ?>
 </div>
+<?php endif; ?>

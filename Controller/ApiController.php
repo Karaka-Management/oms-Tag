@@ -314,7 +314,7 @@ final class ApiController extends Controller
             ->with('title')
             ->where('title/language', $request->header->l11n->language)
             ->where('title/content', '%' . ($request->getDataString('search') ?? '') . '%', 'LIKE')
-            ->execute();
+            ->executeGetArray();
 
         $response->header->set('Content-Type', MimeType::M_JSON, true);
         $response->set($request->uri->__toString(), \array_values($tags));

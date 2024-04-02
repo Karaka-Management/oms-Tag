@@ -48,7 +48,7 @@ final class BackendController extends Controller
     {
         $view = new View($this->app->l11nManager, $request, $response);
 
-        $view->setTemplate('/Modules/Tag/Theme/Backend/tag-create');
+        $view->setTemplate('/Modules/Tag/Theme/Backend/tag-view');
         $view->data['nav'] = $this->app->moduleManager->get('Navigation')->createNavigationMid(1007501001, $request, $response);
 
         return $view;
@@ -79,14 +79,14 @@ final class BackendController extends Controller
             ->limit(25);
 
         if ($request->getData('ptype') === 'p') {
-            $view->data['tags'] = $mapper->where('id', $request->getDataInt('id') ?? 0, '<')
-                ->execute();
+            $view->data['tags'] = $mapper->where('id', $request->getDataInt('offset') ?? 0, '<')
+                ->executeGetArray();
         } elseif ($request->getData('ptype') === 'n') {
-            $view->data['tags'] = $mapper->where('id', $request->getDataInt('id') ?? 0, '>')
-                ->execute();
+            $view->data['tags'] = $mapper->where('id', $request->getDataInt('offset') ?? 0, '>')
+                ->executeGetArray();
         } else {
             $view->data['tags'] = $mapper->where('id', 0, '>')
-                ->execute();
+                ->executeGetArray();
         }
 
         return $view;
@@ -123,7 +123,7 @@ final class BackendController extends Controller
         /** @var \phpOMS\Localization\BaseStringL11n[] $l11nValues */
         $l11nValues = TagL11nMapper::getAll()
             ->where('ref', $tag->id)
-            ->execute();
+            ->executeGetArray();
 
         $view->data['l11nValues'] = $l11nValues;
 
