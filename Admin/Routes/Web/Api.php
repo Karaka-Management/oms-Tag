@@ -23,7 +23,7 @@ return [
             'dest'       => '\Modules\Tag\Controller\ApiController:apiTagCreate',
             'verb'       => RouteVerb::PUT,
             'csrf'       => true,
-            'active' => true,
+            'active'     => true,
             'permission' => [
                 'module' => ApiController::NAME,
                 'type'   => PermissionType::CREATE,
@@ -34,7 +34,7 @@ return [
             'dest'       => '\Modules\Tag\Controller\ApiController:apiTagUpdate',
             'verb'       => RouteVerb::SET,
             'csrf'       => true,
-            'active' => true,
+            'active'     => true,
             'permission' => [
                 'module' => ApiController::NAME,
                 'type'   => PermissionType::MODIFY,
@@ -45,7 +45,7 @@ return [
             'dest'       => '\Modules\Tag\Controller\ApiController:apiTagDelete',
             'verb'       => RouteVerb::DELETE,
             'csrf'       => true,
-            'active' => true,
+            'active'     => true,
             'permission' => [
                 'module' => ApiController::NAME,
                 'type'   => PermissionType::DELETE,
@@ -58,7 +58,7 @@ return [
             'dest'       => '\Modules\Tag\Controller\ApiController:apiTagFind',
             'verb'       => RouteVerb::GET,
             'csrf'       => true,
-            'active' => true,
+            'active'     => true,
             'permission' => [
                 'module' => ApiController::NAME,
                 'type'   => PermissionType::READ,
@@ -71,7 +71,7 @@ return [
             'dest'       => '\Modules\Tag\Controller\ApiController:apiTagL11nCreate',
             'verb'       => RouteVerb::PUT,
             'csrf'       => true,
-            'active' => true,
+            'active'     => true,
             'permission' => [
                 'module' => ApiController::NAME,
                 'type'   => PermissionType::READ,
@@ -82,7 +82,7 @@ return [
             'dest'       => '\Modules\Tag\Controller\ApiController:apiTagL11nUpdate',
             'verb'       => RouteVerb::SET,
             'csrf'       => true,
-            'active' => true,
+            'active'     => true,
             'permission' => [
                 'module' => ApiController::NAME,
                 'type'   => PermissionType::READ,
