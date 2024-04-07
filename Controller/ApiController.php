@@ -60,7 +60,7 @@ final class ApiController extends Controller
     }
 
     /**
-     * Api method to create tag
+     * Api method to update tag
      *
      * @param RequestAbstract  $request  Request
      * @param ResponseAbstract $response Response
