@@ -53,10 +53,13 @@ echo $this->data['nav']->render(); ?>
 <div class="row">
     <div class="col-xs-12 col-md-6">
         <div class="portlet">
-            <form id="tagForm" method="<?= $isNew ? 'PUT' : 'POST'; ?>" action="<?= UriFactory::build('{/api}tag?csrf={$CSRF}'); ?>"
+            <form id="tagForm"
+                method="<?= $isNew ? 'PUT' : 'POST'; ?>"
+                action="<?= UriFactory::build('{/api}tag?csrf={$CSRF}'); ?>"
                 data-ui-container="#tagTable tbody"
                 data-add-form="tagForm"
-                data-add-tpl="#tagTable tbody .oms-add-tpl-tag">
+                data-add-tpl="#tagTable tbody .oms-add-tpl-tag"
+                <?= $isNew ? 'data-redirect="' . UriFactory::build('{/base}/tag/view') . '?id={/0/response/id}"' : ''; ?>>
                 <div class="portlet-head"><?= $this->getHtml('Tag'); ?></div>
                 <div class="portlet-body">
                     <div class="form-group">

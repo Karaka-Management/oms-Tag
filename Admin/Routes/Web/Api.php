@@ -18,7 +18,7 @@ use phpOMS\Account\PermissionType;
 use phpOMS\Router\RouteVerb;
 
 return [
-    '^.*/tag$' => [
+    '^.*/tag(\?.*|$)$' => [
         [
             'dest'       => '\Modules\Tag\Controller\ApiController:apiTagCreate',
             'verb'       => RouteVerb::PUT,
@@ -66,7 +66,7 @@ return [
             ],
         ],
     ],
-    '^.*/tag/l11n$' => [
+    '^.*/tag/l11n(\?.*|$)$' => [
         [
             'dest'       => '\Modules\Tag\Controller\ApiController:apiTagL11nCreate',
             'verb'       => RouteVerb::PUT,
@@ -74,7 +74,7 @@ return [
             'active'     => true,
             'permission' => [
                 'module' => ApiController::NAME,
-                'type'   => PermissionType::READ,
+                'type'   => PermissionType::CREATE,
                 'state'  => PermissionCategory::TAG,
             ],
         ],
@@ -85,7 +85,18 @@ return [
             'active'     => true,
             'permission' => [
                 'module' => ApiController::NAME,
-                'type'   => PermissionType::READ,
+                'type'   => PermissionType::MODIFY,
+                'state'  => PermissionCategory::TAG,
+            ],
+        ],
+        [
+            'dest'       => '\Modules\Tag\Controller\ApiController:apiTagL11nDelete',
+            'verb'       => RouteVerb::DELETE,
+            'csrf'       => true,
+            'active'     => true,
+            'permission' => [
+                'module' => ApiController::NAME,
+                'type'   => PermissionType::DELETE,
                 'state'  => PermissionCategory::TAG,
             ],
         ],
