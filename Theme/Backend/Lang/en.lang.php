@@ -21,4 +21,5 @@ return ['Tag' => [
     'Tag'      => 'Tag',
     'Tags'     => 'Tags',
     'Title'    => 'Title',
+    'InternalName'    => 'Internal Name',
 ]];

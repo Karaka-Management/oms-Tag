@@ -22,7 +22,8 @@
     },
     "providing": {
         "Admin": "*",
-        "Navigation": "*"
+        "Navigation": "*",
+        "Tag": "*"
     },
     "load": [
         {

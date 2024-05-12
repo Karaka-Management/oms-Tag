@@ -21,4 +21,5 @@ return ['Tag' => [
     'Tag'      => 'Stichwort',
     'Tags'     => 'Stichworte',
     'Title'    => 'Titel',
+    'InternalName'    => 'Interner Name',
 ]];

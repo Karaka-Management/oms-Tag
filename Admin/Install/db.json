@@ -9,6 +9,11 @@
                 "primary": true,
                 "autoincrement": true
             },
+            "tag_name": {
+                "name": "tag_name",
+                "type": "VARCHAR(255)",
+                "null": false
+            },
             "tag_color": {
                 "name": "tag_color",
                 "type": "VARCHAR(9)",

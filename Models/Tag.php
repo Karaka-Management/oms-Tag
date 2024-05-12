@@ -36,6 +36,8 @@ class Tag implements \JsonSerializable
      */
     public int $id = 0;
 
+    public string $name = '';
+
     /**
      * Title.
      *

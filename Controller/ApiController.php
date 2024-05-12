@@ -223,6 +223,7 @@ final class ApiController extends Controller
     private function createTagFromRequest(RequestAbstract $request) : Tag
     {
         $tag        = new Tag();
+        $tag->name  = $request->getDataString('name') ?? '';
         $tag->color = \str_pad($request->getDataString('color') ?? '#000000ff', 9, 'f');
         $tag->icon  = $request->getDataString('icon') ?? '';
 

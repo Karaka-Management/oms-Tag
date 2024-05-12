@@ -52,7 +52,7 @@ $icons = [
 echo $this->data['nav']->render(); ?>
 <div class="row">
     <div class="col-xs-12 col-md-6">
-        <div class="portlet">
+        <section class="portlet">
             <form id="tagForm"
                 method="<?= $isNew ? 'PUT' : 'POST'; ?>"
                 action="<?= UriFactory::build('{/api}tag?csrf={$CSRF}'); ?>"
@@ -62,6 +62,11 @@ echo $this->data['nav']->render(); ?>
                 <?= $isNew ? 'data-redirect="' . UriFactory::build('{/base}/tag/view') . '?id={/0/response/id}"' : ''; ?>>
                 <div class="portlet-head"><?= $this->getHtml('Tag'); ?></div>
                 <div class="portlet-body">
+                    <div class="form-group">
+                        <label for="iName"><?= $this->getHtml('InternalName'); ?></label>
+                        <input type="text" id="iName" name="name" value="<?= $this->printHtml($tag->name); ?>"<?= $isNew ? ' required' : ' disabled'; ?>>
+                    </div>
+
                     <div class="form-group">
                         <label for="iColor"><?= $this->getHtml('Color'); ?></label>
                         <input type="color" name="color" id="iColor" value="<?= $this->printHtml(\substr($tag->color, 0, 7)); ?>" required>
@@ -88,7 +93,7 @@ echo $this->data['nav']->render(); ?>
                     <input id="iSubmit" name="submit" type="submit" value="<?= $this->getHtml('Save', '0', '0'); ?>">
                 </div>
             </form>
-        </div>
+        </section>
     </div>
 </div>
 
