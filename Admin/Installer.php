@@ -14,8 +14,6 @@ declare(strict_types=1);
 
 namespace Modules\Tag\Admin;
 
-use Modules\Admin\Models\AccountMapper;
-use Modules\Admin\Models\NullAccount;
 use phpOMS\Application\ApplicationAbstract;
 use phpOMS\Config\SettingsInterface;
 use phpOMS\Message\Http\HttpRequest;
@@ -41,14 +39,6 @@ final class Installer extends InstallerAbstract
      * @since 1.0.0
      */
     public const PATH = __DIR__;
-
-    /**
-     * {@inheritdoc}
-     */
-    public static function install(ApplicationAbstract $app, ModuleInfo $info, SettingsInterface $cfgHandler) : void
-    {
-        parent::install($app, $info, $cfgHandler);
-    }
 
     /**
      * Install data from providing modules.
@@ -77,7 +67,7 @@ final class Installer extends InstallerAbstract
         }
 
         $tagData = \json_decode($tagFile, true) ?? [];
-        if ($tagData === false) {
+        if (!\is_array($tagData)) {
             throw new \Exception(); // @codeCoverageIgnore
         }
 

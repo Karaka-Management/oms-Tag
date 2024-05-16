@@ -13,13 +13,13 @@
 declare(strict_types=1);
 
 return ['Tag' => [
-    'Color'    => 'Farbe',
-    'Create'   => 'Erstellen',
-    'Icon'     => 'Symbol',
-    'Language' => 'Sprache',
-    'List'     => 'Liste',
-    'Tag'      => 'Stichwort',
-    'Tags'     => 'Stichworte',
-    'Title'    => 'Titel',
-    'InternalName'    => 'Interner Name',
+    'Color'        => 'Farbe',
+    'Create'       => 'Erstellen',
+    'Icon'         => 'Symbol',
+    'Language'     => 'Sprache',
+    'List'         => 'Liste',
+    'Tag'          => 'Stichwort',
+    'Tags'         => 'Stichworte',
+    'Title'        => 'Titel',
+    'InternalName' => 'Interner Name',
 ]];
