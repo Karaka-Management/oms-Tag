@@ -74,7 +74,7 @@ echo $this->data['nav']->render(); ?>
 
                     <div class="form-group">
                         <label for="iTitle"><?= $this->getHtml('Title'); ?></label>
-                        <input type="text" id="iTitle" name="title" value="<?= $this->printHtml($tag->getL11n()); ?>"<?= $isNew ? ' required' : ' disabled'; ?>>
+                        <input type="text" id="iTitle" name="content" value="<?= $this->printHtml($tag->getL11n()); ?>"<?= $isNew ? ' required' : ' disabled'; ?>>
                     </div>
 
                     <div class="form-group">
@@ -102,7 +102,8 @@ echo $this->data['nav']->render(); ?>
     <?= $this->data['l11nView']->render(
         $this->data['l11nValues'],
         [],
-        '{/api}tag/l11n?csrf={$CSRF}'
+        '{/api}tag/l11n?csrf={$CSRF}',
+        (string) $tag->id
     );
     ?>
 </div>

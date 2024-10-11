@@ -48,7 +48,7 @@ final class ApiController extends Controller
     private function validateTagCreate(RequestAbstract $request) : array
     {
         $val = [];
-        if (($val['title'] = !$request->hasData('title'))
+        if (($val['name'] = !$request->hasData('name'))
             || ($val['color'] = ($request->hasData('color')
                 && (!\ctype_xdigit(\ltrim((string) $request->getData('color'), '#'))
                     || \stripos((string) $request->getData('color'), '#') !== 0)))
@@ -93,7 +93,7 @@ final class ApiController extends Controller
      */
     private function updateTagFromRequest(RequestAbstract $request, Tag $new) : Tag
     {
-        $new->setL11n($request->getDataString('title') ?? $new->getL11n());
+        $new->setL11n($request->getDataString('content') ?? $new->getL11n());
         $new->color = \str_pad($request->getDataString('color') ?? $new->color, 9, 'ff', \STR_PAD_RIGHT);
 
         return $new;
@@ -138,8 +138,8 @@ final class ApiController extends Controller
     private function validateTagL11nCreate(RequestAbstract $request) : array
     {
         $val = [];
-        if (($val['title'] = !$request->hasData('title'))
-            || ($val['tag'] = !$request->hasData('tag'))
+        if (($val['content'] = !$request->hasData('content'))
+            || ($val['ref'] = !$request->hasData('ref'))
         ) {
             return $val;
         }
@@ -192,7 +192,7 @@ final class ApiController extends Controller
             if (isset($tag['id'])) {
                 $tags[] = new NullTag((int) $tag['id']);
             } else {
-                $request->setData('title', $tag['title'], true);
+                $request->setData('name', $tag['name'], true);
                 $request->setData('color', $tag['color'], true);
                 $request->setData('icon', $tag['icon'] ?? null, true);
                 $request->setData('language', $tag['language'], true);
@@ -228,7 +228,7 @@ final class ApiController extends Controller
         $tag->icon  = $request->getDataString('icon') ?? '';
 
         $tag->setL11n(
-            $request->getDataString('title') ?? '',
+            $request->getDataString('content') ?? '',
             ISO639x1Enum::tryFromValue($request->getDataString('language')) ?? $request->header->l11n->language
         );
 
@@ -247,9 +247,9 @@ final class ApiController extends Controller
     private function createTagL11nFromRequest(RequestAbstract $request) : BaseStringL11n
     {
         $tagL11n           = new BaseStringL11n();
-        $tagL11n->ref      = $request->getDataInt('tag') ?? 0;
+        $tagL11n->ref      = $request->getDataInt('ref') ?? 0;
         $tagL11n->language = ISO639x1Enum::tryFromValue($request->getDataString('language')) ?? $request->header->l11n->language;
-        $tagL11n->content  = $request->getDataString('title') ?? '';
+        $tagL11n->content  = $request->getDataString('content') ?? '';
 
         return $tagL11n;
     }
@@ -366,7 +366,7 @@ final class ApiController extends Controller
     public function updateTagL11nFromRequest(RequestAbstract $request, BaseStringL11n $new) : BaseStringL11n
     {
         $new->language = ISO639x1Enum::tryFromValue($request->getDataString('language')) ?? $new->language;
-        $new->content  = $request->getDataString('title') ?? $new->content;
+        $new->content  = $request->getDataString('content') ?? $new->content;
 
         return $new;
     }

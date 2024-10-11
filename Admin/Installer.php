@@ -15,11 +15,9 @@ declare(strict_types=1);
 namespace Modules\Tag\Admin;
 
 use phpOMS\Application\ApplicationAbstract;
-use phpOMS\Config\SettingsInterface;
 use phpOMS\Message\Http\HttpRequest;
 use phpOMS\Message\Http\HttpResponse;
 use phpOMS\Module\InstallerAbstract;
-use phpOMS\Module\ModuleInfo;
 use phpOMS\System\File\PathException;
 
 /**
@@ -85,7 +83,7 @@ final class Installer extends InstallerAbstract
             $request->setData('color', $tag['color'] ?? '#3697db');
 
             if (!empty($tag['l11n'])) {
-                $request->setData('title', \reset($tag['l11n']));
+                $request->setData('content', \reset($tag['l11n']));
                 $request->setData('lang', \array_keys($tag['l11n'])[0] ?? 'en');
             }
 
@@ -110,9 +108,9 @@ final class Installer extends InstallerAbstract
                 $request  = new HttpRequest();
 
                 $request->header->account = 1;
-                $request->setData('title', $l11n);
+                $request->setData('content', $l11n);
                 $request->setData('lang', $language);
-                $request->setData('type', $id);
+                $request->setData('ref', $id);
 
                 $module->apiTagL11nCreate($request, $response);
             }
