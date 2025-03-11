@@ -73,6 +73,7 @@ final class BackendController extends Controller
         $view->setTemplate('/Modules/Tag/Theme/Backend/tag-list');
         $view->data['nav'] = $this->app->moduleManager->get('Navigation')->createNavigationMid(1007501001, $request, $response);
 
+        // @bug Why is this returning languages different from english?
         $view->data['tags'] = TagMapper::getAll()
             ->with('title')
             ->where('title/language', $request->header->l11n->language)
