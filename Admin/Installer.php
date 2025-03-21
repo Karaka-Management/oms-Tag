@@ -84,7 +84,7 @@ final class Installer extends InstallerAbstract
 
             if (!empty($tag['l11n'])) {
                 $request->setData('content', \reset($tag['l11n']));
-                $request->setData('lang', \array_keys($tag['l11n'])[0] ?? 'en');
+                $request->setData('language', \array_keys($tag['l11n'])[0] ?? 'en');
             }
 
             $module->apiTagCreate($request, $response);
@@ -109,7 +109,7 @@ final class Installer extends InstallerAbstract
 
                 $request->header->account = 1;
                 $request->setData('content', $l11n);
-                $request->setData('lang', $language);
+                $request->setData('language', $language);
                 $request->setData('ref', $id);
 
                 $module->apiTagL11nCreate($request, $response);

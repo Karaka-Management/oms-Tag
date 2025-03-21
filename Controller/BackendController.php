@@ -108,7 +108,7 @@ final class BackendController extends Controller
         /** @var \Modules\Tag\Models\Tag $tag */
         $tag = TagMapper::get()
             ->with('title')
-            ->where('id', (int) $request->getData('id'))
+            ->where('id', $request->getDataInt('id') ?? 0)
             ->where('title/language', $response->header->l11n->language)
             ->execute();
 

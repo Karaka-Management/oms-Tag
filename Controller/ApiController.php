@@ -75,7 +75,7 @@ final class ApiController extends Controller
     public function apiTagUpdate(RequestAbstract $request, ResponseAbstract $response, array $data = []) : void
     {
         /** @var Tag $old */
-        $old = TagMapper::get()->where('id', (int) $request->getData('id'))->execute();
+        $old = TagMapper::get()->where('id', $request->getDataInt('id') ?? 0)->execute();
         $new = $this->updateTagFromRequest($request, clone $old);
 
         $this->updateModel($request->header->account, $old, $new, TagMapper::class, 'tag', $request->getOrigin());
@@ -270,7 +270,7 @@ final class ApiController extends Controller
     public function apiTagGet(RequestAbstract $request, ResponseAbstract $response, array $data = []) : void
     {
         /** @var Tag $tag */
-        $tag = TagMapper::get()->where('id', (int) $request->getData('id'))->execute();
+        $tag = TagMapper::get()->where('id', $request->getDataInt('id') ?? 0)->execute();
         $this->createStandardReturnResponse($request, $response, $tag);
     }
 
@@ -290,7 +290,7 @@ final class ApiController extends Controller
     public function apiTagDelete(RequestAbstract $request, ResponseAbstract $response, array $data = []) : void
     {
         /** @var Tag $tag */
-        $tag = TagMapper::get()->where('id', (int) $request->getData('id'))->execute();
+        $tag = TagMapper::get()->where('id', $request->getDataInt('id') ?? 0)->execute();
         $this->deleteModel($request->header->account, $tag, TagMapper::class, 'tag', $request->getOrigin());
         $this->createStandardDeleteResponse($request, $response, $tag);
     }
@@ -344,7 +344,7 @@ final class ApiController extends Controller
         }
 
         /** @var BaseStringL11n $old */
-        $old = TagL11nMapper::get()->where('id', (int) $request->getData('id'))->execute();
+        $old = TagL11nMapper::get()->where('id', $request->getDataInt('id') ?? 0)->execute();
         $new = $this->updateTagL11nFromRequest($request, clone $old);
 
         $this->updateModel($request->header->account, $old, $new, TagL11nMapper::class, 'tag_l11n', $request->getOrigin());
@@ -415,7 +415,7 @@ final class ApiController extends Controller
         }
 
         /** @var BaseStringL11n $tagL11n */
-        $tagL11n = TagL11nMapper::get()->where('id', (int) $request->getData('id'))->execute();
+        $tagL11n = TagL11nMapper::get()->where('id', $request->getDataInt('id') ?? 0)->execute();
         $this->deleteModel($request->header->account, $tagL11n, TagL11nMapper::class, 'tag_l11n', $request->getOrigin());
         $this->createStandardDeleteResponse($request, $response, $tagL11n);
     }
